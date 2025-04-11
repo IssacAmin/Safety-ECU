@@ -1,3 +1,6 @@
 [submodule "UDS_C_SERVER"]
 	path = UDS_C_SERVER
 	url = https://github.com/OmarT-Y/UDS_C_SERVER
+[submodule "MPC574XG_MCAL4_3_RTM_HF8_1_0_1"]
+	path = MPC574XG_MCAL4_3_RTM_HF8_1_0_1
+	url = https://github.com/FadyKamil15/MPC574XG_MCAL4_3_RTM_HF8_1_0_1
