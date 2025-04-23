@@ -45,8 +45,8 @@ const    OSISRCFGTYPE   OsIsrCfg[OSNISR + 1] =  /*Interrupts config table*/
     {
         OSISRSystemTimer, /* actual ISR function */
         OSSYSINTERRUPT, /* ISR type */
-        710U, /* index in OsIsr */
-        5U|0x80U, /* Interrupt priority */
+        706U, /* index in OsIsr */
+        1U|0x80U, /* Interrupt priority */
         OSINVALID_OSAPPLICATION, /* appId */
     }, /* SysTimer */
     {
@@ -129,8 +129,8 @@ const    OSSHORT   OsIsr[OSNINTC] =  /* OSNINTERRUPTS external interrupt handler
     OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, 
     OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, 
     OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, 
+    OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, 0U, OSNISR, OSNISR, OSNISR, 
     OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, 
-    0U, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, 
     OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, 
     OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, 
     OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, OSNISR, 
@@ -139,6 +139,18 @@ const    OSSHORT   OsIsr[OSNINTC] =  /* OSNINTERRUPTS external interrupt handler
 const    OSRESCFG   OsResCfg[OSNRESS + OSNISRRESS] = 
 {
     { 0xFFU, /* Application identification mask value */0U, /* Resource priority for task resources */ }, /* RES_SCHEDULER */
+};
+
+/* Alarms table */
+const    OSALM   OsAlarmsCfg[OSNUSERALMS] = 
+{
+    {
+        1U, /* appMask */
+        0U, /* Task to start or to set Event */
+        0U, /* attached Counter ID */
+        (OSCALLBACK) &canTpOsAlarmCallback, /* Alarms' hook entry */
+        0U, /* application identification value */
+    }, /* canTp_OsAlarm */
 };
 
 /* Counter table */

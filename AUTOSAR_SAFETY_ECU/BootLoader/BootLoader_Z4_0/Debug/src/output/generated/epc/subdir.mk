@@ -4,7 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-C:/Users/Fady/Downloads/SafetyECUProject/bootloaderOsConfig/output/generated/epc/Os_cfg.c 
+C:/Users/Fady/Downloads/Safety-ECU/AUTOSAR_SAFETY_ECU/bootloaderOsConfig/output/generated/epc/Os_cfg.c 
 
 OBJS += \
 ./src/output/generated/epc/Os_cfg.o 
@@ -14,7 +14,7 @@ C_DEPS += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-src/output/generated/epc/Os_cfg.o: C:/Users/Fady/Downloads/SafetyECUProject/bootloaderOsConfig/output/generated/epc/Os_cfg.c
+src/output/generated/epc/Os_cfg.o: C:/Users/Fady/Downloads/Safety-ECU/AUTOSAR_SAFETY_ECU/bootloaderOsConfig/output/generated/epc/Os_cfg.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: Standard S32DS C Compiler'
 	powerpc-eabivle-gcc "@src/output/generated/epc/Os_cfg.args" -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"

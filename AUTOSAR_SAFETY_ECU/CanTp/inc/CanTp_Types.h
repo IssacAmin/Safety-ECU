@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <null.h>
+#include <stdbool.h>
 
 #include "Std_Types.h"
 
@@ -12,6 +13,8 @@
 #include "uds_types.h"
 
 #include "CanIf.h"
+
+#include "Os.h"
 
 
 /********************************************************************************************
@@ -55,15 +58,10 @@
 #define FLOW_CONTROL_ABORT_TRANSMISSION              2
 
 #define MAX_WAIT_CONTROL_FRAMES_COUNT                6
-#define MAX_WAIT_FOR_FC_FRAME_IN_SECONDS             10
+#define MAX_WAIT_FOR_FC_FRAME_IN_SECONDS             1
 
 #define CONSECUITVE_FRAME_BLOCK_SIZE                 3
 
-
-#define WAIT_ST_MIN(time_in_ms)                      StartTimer(ST_MIN_TIMER, time_in_ms)
-#define WAIT_FC_FRAME(time_in_ms)                    StartTimer(FC_TIMER, time_in_ms)
-#define WAIT_N_CR(time_in_ms)                        StartTimer(N_CR_TIMER, time_in_ms)
-#define STOP_TIMER()                                 StopTimer()
 
  /********************************************************************************************
   *                                Type Definition                                           *
@@ -219,6 +217,111 @@ typedef enum{
      uint8_t                     receive_status;
  } IsoTpLinkRx_t;
 
+
+typedef enum {
+    CANTP_OFF, CANTP_ON
+} CanTp_StateType;
+
+
+typedef enum {
+    CANTP_EXTENDED, CANTP_MIXED, CANTP_MIXED29BIT, CANTP_NORMALFIXED, CANTP_STANDARD
+} CanTp_AddressingFormantType;
+
+typedef enum {
+    CANTP_FUNCTIONAL, CANTP_PHYSICAL
+} CanTp_TaTypeType;
+
+typedef const uint32 CanTp_NSaType;
+typedef const uint32 CanTp_NTaType;
+
+
+typedef struct {
+    const CanTp_AddressingFormantType CanTpAddressingMode;
+    const PduIdType CanTpNSduIndex;
+    const PduIdType CanTpReferringTxIndex;
+    const PduIdType CanTpIPduId;
+} CanTp_RxIdType;
+
+
+//missing: sduid, sduref, ae
+typedef struct {
+    const uint8 CanTpBs;  /* Sets the maximum number of messages of N-PDUs before flow control. */
+    const uint16 CanTpNar;  /* Timeout for transmission of a CAN frame (ms). */
+    const uint16 CanTpNbr;
+    const uint16 CanTpNcr;  /* Time out for consecutive frames (ms). */
+    const CanTp_AddressingFormantType CanTpAddressingFormant;
+    const CanTp_StateType CanTpRxPaddingActivation;  /* Enable use of padding. */
+    const CanTp_TaTypeType CanTpRxTaType;  /* Functional or physical addressing. */
+    const uint8 CanTpWftMax;  /* Max number FC wait that can be transmitted consecutively. */
+    const uint16 CanTpSTmin;  /* Minimum time the sender shall wait between transmissions of two N-PDU. */
+    const CanTp_NSaType *CanTpNSa;
+    const CanTp_NTaType *CanTpNTa;
+
+
+    const PduIdType CanTp_RxLPduId; //for recieving SF, CF, FF through canif
+    const PduIdType CanTp_TxFcLPduId; // When recieving this Pdu is used for sending fc frames through canif.
+} CanTp_RxNSduType;
+
+//missing: tc, sduid, ae
+typedef struct {
+    const uint16 CanTpNas;  /* N_As timeout for transmission of any CAN frame. */
+    const uint16 CanTpNbs;  /* N_Bs timeout of transmission until reception of next Flow Control. */
+    const uint16 CanTpNcs;  /* N_Bs timeout of transmission until reception of next Flow Control. */
+    const CanTp_AddressingFormantType CanTpAddressingMode; 
+    const CanTp_StateType CanTpTxPaddingActivation;  /* Enable use of padding. */
+    const CanTp_TaTypeType CanTpTxTaType;  /* Functional or physical addressing. */
+    const CanTp_NSaType CanTpNSa;
+    const CanTp_NTaType CanTpNTa;
+
+    const PduIdType CanTp_TxLPduId; //for sending SF, CF, FF through canif
+    const PduIdType CanTp_RxFcLPduId; // When sending this Pdu is used for recieving fc frames through canif
+} CanTp_TxNSduType; 
+
+typedef enum {
+    ISO15765_TRANSMIT, ISO15765_RECEIVE
+} CanTp_DirectionType;
+
+typedef enum {
+    CANTP_NOT_LAST_ENTRY, CANTP_END_OF_LIST
+} CanTp_ListItemType;
+
+typedef struct {
+    const CanTp_DirectionType direction;
+    const CanTp_ListItemType listItemType;
+    union {
+        const CanTp_RxNSduType 	CanTpRxNSdu;
+        const CanTp_TxNSduType 	CanTpTxNSdu;
+    } configData;
+    const boolean CanTpFDSupport;
+} CanTp_NSduType;
+
+typedef struct {
+    const uint32 main_function_period;
+    const uint32 number_of_sdus;
+    const uint32 number_of_pdus;
+    const uint32 pdu_list_size;
+    const uint8 padding;
+} CanTp_GeneralType; 
+
+typedef struct {
+    /** General configuration paramters for the CANTP module. */
+    const CanTp_GeneralType *CanTpGeneral; // 10.2.3
+    const CanTp_NSduType *CanTpNSduList;
+    const CanTp_RxIdType *CanTpRxIdList;
+} CanTp_ConfigType;
+
+
+
+
+
+void StartTimer(TimerType_t timerType, uint8_t time_sec);
+
+void StopTimer(void);
+
+#define WAIT_ST_MIN(time_in_ms)                      StartTimer(ST_MIN_TIMER, time_in_ms)
+#define WAIT_FC_FRAME(time_in_ms)                    StartTimer(FC_TIMER, time_in_ms)
+#define WAIT_N_CR(time_in_ms)                        StartTimer(N_CR_TIMER, time_in_ms)
+#define STOP_TIMER()                                 StopTimer()
 /*******************************************************************************************
 *                    Shared Global Variables between RX and Tx                             *
 ********************************************************************************************/

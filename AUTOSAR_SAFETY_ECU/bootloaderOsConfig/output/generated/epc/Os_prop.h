@@ -107,6 +107,7 @@
 
 /* Hook routines */
 
+#define OSHOOKSHUTDOWN                     /* SHUTDOWNHOOK is set to TRUE */
 
 /* ISRs categories support */
 
@@ -131,9 +132,10 @@
 #define OSSYSTIMER                         /* SysTimer has the HWCOUNTER or SWCOUNTER value */
 #define OSNSYSTMRS 1U                      /* The number of timers, excluding TP Timer */
 #define OSTIMeMIOS                         /* Hardware for System/Second timer */
-#define OSTIMCHAN 8U                       /* Hardware channel for System timer */
+#define OSTIMCHAN 0U                       /* Hardware channel for System timer */
 #define OSeMIOSGLOBALPRESCALER 124U        /* value of eMIOS.GlobalMIOSPrescaler or eMIOS0.GlobalMIOSPrescaler */
 #define OSTIMPRESCALER 3U                  /* The Prescaler value of the timer */
+#define OSALMCALLBACK                      /* at least one alarm has the  the ACTION = ALARMCALLBACK */
 #define OSNAPPMODES 1U                     /* equal to number of APPMODES objects */
 #define OSNTSKS 1U                         /* equal to number of TASK objects */
 #define OSNXTSKS 0U                        /* equal to number of extended TASK objects */
@@ -142,15 +144,16 @@
 #define OSRESOURCE                         /* at least one resource with task priority and RESOURCEPROPERTY = STANDARD (including RES_SCHEDULER) is defined */
 #define OSNCTRS 1U                         /* equal to number of COUNTER objects */
 #define OSCOUNTER                          /* defined if at least one COUNTER object defined  */
-#define OSNUSERALMS 0U                     /* equal to number of ALARM objects */
-#define OSNALMS 0U                         /* equal to number of ALARM and SCHEDULETABLES objects */
+#define OSNUSERALMS 1U                     /* equal to number of ALARM objects */
+#define OSNALMS 1U                         /* equal to number of ALARM and SCHEDULETABLES objects */
+#define OSALARM                            /* at least one ALARM object defined */
 #define OSNAUTOALMS 0U                     /* equal to number of auto-start alarms */
 #define OSNMSGS 0U                         /* equal to the number of MESSAGE objects */
 #define OSNNONTRUSTEDTSKS 0U               /* Number of tasks which belongs to nontrusted applications  */
 #define OSNNONTRUSTEDISR 0U                /* Number of user's ISR2 which belongs to nontrusted applications  */
 #define OSNUSERISR 0U                      /* The number of ISR2s */
 #define OSNISR 1U                          /* equal to summ of number ISR, system timers and TPTimer */
-#define OSHIGHISRPRIO 5U                   /* equal to the highest ISR(category 2)/SysTimer/SecondTimer (ISR)PRIORITY */
+#define OSHIGHISRPRIO 1U                   /* equal to the highest ISR(category 2)/SysTimer/SecondTimer (ISR)PRIORITY */
 #define OSNIPLS 1U                         /* equal to number of different ISR priorities including timers */
 #define OSTIMER1 0U                        /* Index for a SysTimer */
 

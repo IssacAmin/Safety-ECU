@@ -49,17 +49,19 @@ extern void FuncOsTask_Core0(void); /* Task entry point */
 /* Events definition */
 
 /* Alarms identification */
+#define canTp_OsAlarm ((AlarmType)OS_MKOBJID(OBJECT_ALARM, 0U)) /* Alarm ID */
+void canTpOsAlarmCallback(void); /* callback function of canTp_OsAlarm */
 
 /* Counters identification */
 #define SYSTEMTIMER ((CounterType)OS_MKOBJID(OBJECT_COUNTER, 0U)) /* Counter ID */
-#define OSMINCYCLE_SYSTEMTIMER ((TickType)0x1f4U) /* SYSTEMTIMER */
+#define OSMINCYCLE_SYSTEMTIMER ((TickType)0x1U) /* SYSTEMTIMER */
 #define OSMAXALLOWEDVALUE_SYSTEMTIMER ((TickType)0xffffU) /* SYSTEMTIMER */
 #define OSTICKSPERBASE_SYSTEMTIMER 1000UL  /* SYSTEMTIMER */
 #define OS_TICKS2NS_SYSTEMTIMER(ticks) (PhysicalTimeType)(ticks*1000000U) /*  */
 #define OS_TICKS2US_SYSTEMTIMER(ticks) (PhysicalTimeType)((OSQWORD)(ticks)*1000000ULL/1000UL) /*  */
 #define OS_TICKS2MS_SYSTEMTIMER(ticks) (PhysicalTimeType)((OSQWORD)(ticks)*1000000ULL/1000000UL) /*  */
 #define OS_TICKS2SEC_SYSTEMTIMER(ticks) (PhysicalTimeType)((OSQWORD)(ticks)*1000000ULL/1000000000UL) /*  */
-#define OSMINCYCLE ((TickType)0x1f4U)      /* SysTimer */
+#define OSMINCYCLE ((TickType)0x1U)        /* SysTimer */
 #define OSMAXALLOWEDVALUE ((TickType)0xffffU) /* SysTimer */
 #define OSTICKSPERBASE 1000UL              /* SysTimer */
 #define OSTICKDURATION 1000000UL           /* SysTimer */

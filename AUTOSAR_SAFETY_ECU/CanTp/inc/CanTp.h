@@ -3,7 +3,7 @@
 
 #include "CanTp_Types.h"
 #include "uds_types.h"
-
+#include "CanTp_Cfg.h"
 /********************************************************************************************
  *                                Function Prototypes                                       *
  ********************************************************************************************/
@@ -85,13 +85,7 @@ Std_ReturnType ReceivedFlowControlFrameHandling(uint8_t *data, uint8_t bs, uint8
  **********************************************************************************************************/
 void N_USData_Confirm(MessageType_t msg_type, N_AI address_info, ServiceResult_t result);
 
-void Init_CanTpTimer(void);
 
-void StartTimer(TimerType_t timerType, uint8_t time_sec);
-
-//VOID CALLBACK TimerCallback(PVOID lpParam, BOOLEAN TimerOrWaitFired);
-
-void StopTimer(void);
 
 /********************************************************************************************
  *                                Function Prototypes                                       *
@@ -117,6 +111,12 @@ Std_ReturnType N_USData_CFHandling(uint8_t *data);
 
 void N_USData_FFIndication(MessageType_t msg_type, N_AI address_info, uint32_t data_length);
 
-void CanTp_RxIndication (PduIdType RxPduId,  const PduInfoType* PduInfoPtr );
+void CanTp_RxIndication (PduIdType RxIPduId,  const PduInfoType* PduInfoPtr );
+
+void CanTp_Init (const CanTp_ConfigType* CfgPtr);
+
+Std_ReturnType CanTp_Transmit ( PduIdType TxNPduId, const PduInfoType* PduInfoPtr );
+
+void CanTp_MainFunction(void);
 
 #endif

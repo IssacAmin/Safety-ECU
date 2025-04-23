@@ -22,7 +22,51 @@
                      value="VariantPreCompile">
                 <a:a name="IMPORTER_INFO" value="@DEF"/>
               </d:var>
-              <d:lst name="OsAlarm" type="MAP"/>
+              <d:lst name="OsAlarm" type="MAP">
+                <d:ctr name="canTp_OsAlarm" type="IDENTIFIABLE">
+                  <d:lst name="OsAlarmAccessingApplication"/>
+                  <d:ref name="OsAlarmCounterRef" type="REFERENCE" 
+                         value="ASPath:/Os/Os/SYSTEMTIMER"/>
+                  <d:chc name="OsAlarmAction" type="IDENTIFIABLE" 
+                         value="OsAlarmCallback">
+                    <d:ctr name="OsAlarmActivateTask" type="IDENTIFIABLE">
+                      <d:ref name="OsAlarmActivateTaskRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                    </d:ctr>
+                    <d:ctr name="OsAlarmCallback" type="IDENTIFIABLE">
+                      <d:var name="OsAlarmCallbackName" type="FUNCTION-NAME" 
+                             value="canTpOsAlarmCallback"/>
+                    </d:ctr>
+                    <d:ctr name="OsAlarmIncrementCounter" type="IDENTIFIABLE">
+                      <d:ref name="OsAlarmIncrementCounterRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                    </d:ctr>
+                    <d:ctr name="OsAlarmSetEvent" type="IDENTIFIABLE">
+                      <d:ref name="OsAlarmSetEventRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                      <d:ref name="OsAlarmSetEventTaskRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                    </d:ctr>
+                  </d:chc>
+                  <d:ctr name="OsAlarmAutostart" type="IDENTIFIABLE">
+                    <a:a name="ENABLE" value="false"/>
+                    <d:var name="OsAlarmAlarmTime" type="INTEGER" >
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="OsAlarmAutostartType" type="ENUMERATION" >
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="OsAlarmCycleTime" type="INTEGER" >
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:lst name="OsAlarmAppModeRef"/>
+                  </d:ctr>
+                </d:ctr>
+              </d:lst>
               <d:lst name="OsAppMode" type="MAP">
                 <d:ctr name="OsAppMode_0" type="IDENTIFIABLE"/>
               </d:lst>
@@ -45,7 +89,9 @@
                     <a:a name="ENABLE" value="false"/>
                     <a:a name="IMPORTER_INFO" value="@DEF"/>
                   </d:var>
-                  <d:lst name="OsAppAlarmRef"/>
+                  <d:lst name="OsAppAlarmRef">
+                    <d:ref type="REFERENCE" value="ASPath:/Os/Os/canTp_OsAlarm"/>
+                  </d:lst>
                   <d:lst name="OsAppCounterRef">
                     <d:ref type="REFERENCE" value="ASPath:/Os/Os/SYSTEMTIMER"/>
                   </d:lst>
@@ -75,7 +121,7 @@
                 <d:ctr name="SYSTEMTIMER" type="IDENTIFIABLE">
                   <d:var name="OsCounterMaxAllowedValue" type="INTEGER" 
                          value="65535"/>
-                  <d:var name="OsCounterMinCycle" type="INTEGER" value="500"/>
+                  <d:var name="OsCounterMinCycle" type="INTEGER" value="1"/>
                   <d:var name="OsCounterTicksPerBase" type="INTEGER" 
                          value="1000"/>
                   <d:var name="OsCounterType" type="ENUMERATION" 
@@ -177,15 +223,15 @@
                     <a:a name="ENABLE" value="false"/>
                     <a:a name="IMPORTER_INFO" value="@DEF"/>
                   </d:var>
-                  <d:var name="OsShutdownHook" type="BOOLEAN" value="false"/>
+                  <d:var name="OsShutdownHook" type="BOOLEAN" value="true"/>
                   <d:var name="OsStartupHook" type="BOOLEAN" value="false"/>
                 </d:ctr>
                 <d:chc name="OsTargetMCU" type="IDENTIFIABLE" value="MPC5748G">
                   <d:ctr name="MPC5748G" type="IDENTIFIABLE">
-                    <d:var name="OsClockDivider" type="INTEGER" value="4">
+                    <d:var name="OsClockDivider" type="INTEGER" value="80">
                       <a:a name="ENABLE" value="true"/>
                     </d:var>
-                    <d:var name="OsClockFrequency" type="INTEGER" value="8000">
+                    <d:var name="OsClockFrequency" type="INTEGER" value="160000">
                       <a:a name="ENABLE" value="true"/>
                     </d:var>
                     <d:var name="OsClockMultiplier" type="INTEGER" value="1">
@@ -1318,7 +1364,7 @@
                       <a:a name="ENABLE" value="true"/>
                       <d:ctr name="NONE" type="IDENTIFIABLE"/>
                       <d:ctr name="HWCOUNTER" type="IDENTIFIABLE">
-                        <d:var name="OsIsrPriority" type="INTEGER" value="5"/>
+                        <d:var name="OsIsrPriority" type="INTEGER" value="1"/>
                         <d:var name="OsPeriod" type="INTEGER" value="1000000">
                           <a:a name="ENABLE" value="true"/>
                         </d:var>
@@ -1407,7 +1453,7 @@
                             </d:chc>
                           </d:ctr>
                           <d:ctr name="eMIOS0" type="IDENTIFIABLE">
-                            <d:var name="OsChannel" type="INTEGER" value="8"/>
+                            <d:var name="OsChannel" type="INTEGER" value="0"/>
                             <d:var name="OsFreeze" type="BOOLEAN" value="false">
                               <a:a name="ENABLE" value="false"/>
                               <a:a name="IMPORTER_INFO" value="@DEF"/>

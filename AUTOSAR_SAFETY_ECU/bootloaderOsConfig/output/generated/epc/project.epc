@@ -63,6 +63,15 @@
       </ELEMENTS>
     </AR-PACKAGE>
     <AR-PACKAGE>
+      <SHORT-NAME>Gpt</SHORT-NAME>
+      <ELEMENTS>
+        <ECUC-MODULE-CONFIGURATION-VALUES>
+          <SHORT-NAME>Gpt</SHORT-NAME>
+          <DEFINITION-REF DEST="ECUC-MODULE-DEF">/TS_T2D35M10I1R0/Gpt</DEFINITION-REF>
+        </ECUC-MODULE-CONFIGURATION-VALUES>
+      </ELEMENTS>
+    </AR-PACKAGE>
+    <AR-PACKAGE>
       <SHORT-NAME>Os</SHORT-NAME>
       <ELEMENTS>
         <ECUC-MODULE-CONFIGURATION-VALUES>
@@ -71,11 +80,12 @@
           <IMPLEMENTATION-CONFIG-VARIANT>VARIANT-PRE-COMPILE</IMPLEMENTATION-CONFIG-VARIANT>
           <CONTAINERS>
             <ECUC-CONTAINER-VALUE>
-              <SHORT-NAME>OsAlarm_0</SHORT-NAME>
+              <SHORT-NAME>canTp_OsAlarm</SHORT-NAME>
               <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/TS_T2D35M4I0R92/Os/OsAlarm</DEFINITION-REF>
               <REFERENCE-VALUES>
                 <ECUC-REFERENCE-VALUE>
                   <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/TS_T2D35M4I0R92/Os/OsAlarm/OsAlarmCounterRef</DEFINITION-REF>
+                  <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/Os/Os/SYSTEMTIMER</VALUE-REF>
                 </ECUC-REFERENCE-VALUE>
               </REFERENCE-VALUES>
               <SUB-CONTAINERS>
@@ -85,12 +95,13 @@
                   <SUB-CONTAINERS>
                     <ECUC-CONTAINER-VALUE>
                       <SHORT-NAME>OsAlarmAction</SHORT-NAME>
-                      <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/TS_T2D35M4I0R92/Os/OsAlarm/OsAlarmAction/OsAlarmActivateTask</DEFINITION-REF>
-                      <REFERENCE-VALUES>
-                        <ECUC-REFERENCE-VALUE>
-                          <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/TS_T2D35M4I0R92/Os/OsAlarm/OsAlarmAction/OsAlarmActivateTask/OsAlarmActivateTaskRef</DEFINITION-REF>
-                        </ECUC-REFERENCE-VALUE>
-                      </REFERENCE-VALUES>
+                      <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/TS_T2D35M4I0R92/Os/OsAlarm/OsAlarmAction/OsAlarmCallback</DEFINITION-REF>
+                      <PARAMETER-VALUES>
+                        <ECUC-TEXTUAL-PARAM-VALUE>
+                          <DEFINITION-REF DEST="ECUC-FUNCTION-NAME-DEF">/TS_T2D35M4I0R92/Os/OsAlarm/OsAlarmAction/OsAlarmCallback/OsAlarmCallbackName</DEFINITION-REF>
+                          <VALUE>canTpOsAlarmCallback</VALUE>
+                        </ECUC-TEXTUAL-PARAM-VALUE>
+                      </PARAMETER-VALUES>
                     </ECUC-CONTAINER-VALUE>
                   </SUB-CONTAINERS>
                 </ECUC-CONTAINER-VALUE>
@@ -114,6 +125,10 @@
                 </ECUC-NUMERICAL-PARAM-VALUE>
               </PARAMETER-VALUES>
               <REFERENCE-VALUES>
+                <ECUC-REFERENCE-VALUE>
+                  <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/TS_T2D35M4I0R92/Os/OsApplication/OsAppAlarmRef</DEFINITION-REF>
+                  <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/Os/Os/canTp_OsAlarm</VALUE-REF>
+                </ECUC-REFERENCE-VALUE>
                 <ECUC-REFERENCE-VALUE>
                   <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/TS_T2D35M4I0R92/Os/OsApplication/OsAppCounterRef</DEFINITION-REF>
                   <VALUE-REF DEST="ECUC-CONTAINER-VALUE">/Os/Os/SYSTEMTIMER</VALUE-REF>
@@ -145,43 +160,6 @@
               </SUB-CONTAINERS>
             </ECUC-CONTAINER-VALUE>
             <ECUC-CONTAINER-VALUE>
-              <SHORT-NAME>OsCounter_0</SHORT-NAME>
-              <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/TS_T2D35M4I0R92/Os/OsCounter</DEFINITION-REF>
-              <PARAMETER-VALUES>
-                <ECUC-NUMERICAL-PARAM-VALUE>
-                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/TS_T2D35M4I0R92/Os/OsCounter/OsCounterMaxAllowedValue</DEFINITION-REF>
-                  <VALUE>9223372036854775807</VALUE>
-                </ECUC-NUMERICAL-PARAM-VALUE>
-                <ECUC-NUMERICAL-PARAM-VALUE>
-                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/TS_T2D35M4I0R92/Os/OsCounter/OsCounterMinCycle</DEFINITION-REF>
-                  <VALUE>20</VALUE>
-                </ECUC-NUMERICAL-PARAM-VALUE>
-                <ECUC-NUMERICAL-PARAM-VALUE>
-                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/TS_T2D35M4I0R92/Os/OsCounter/OsCounterTicksPerBase</DEFINITION-REF>
-                  <VALUE>100</VALUE>
-                </ECUC-NUMERICAL-PARAM-VALUE>
-                <ECUC-TEXTUAL-PARAM-VALUE>
-                  <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/TS_T2D35M4I0R92/Os/OsCounter/OsCounterType</DEFINITION-REF>
-                  <VALUE>HARDWARE</VALUE>
-                </ECUC-TEXTUAL-PARAM-VALUE>
-                <ECUC-NUMERICAL-PARAM-VALUE>
-                  <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/TS_T2D35M4I0R92/Os/OsCounter/OsSecondsPerTick</DEFINITION-REF>
-                  <VALUE>0.01</VALUE>
-                </ECUC-NUMERICAL-PARAM-VALUE>
-              </PARAMETER-VALUES>
-              <SUB-CONTAINERS>
-                <ECUC-CONTAINER-VALUE>
-                  <SHORT-NAME>OsDriver</SHORT-NAME>
-                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/TS_T2D35M4I0R92/Os/OsCounter/OsDriver</DEFINITION-REF>
-                  <REFERENCE-VALUES>
-                    <ECUC-REFERENCE-VALUE>
-                      <DEFINITION-REF DEST="ECUC-REFERENCE-DEF">/TS_T2D35M4I0R92/Os/OsCounter/OsDriver/OsGptChannelRef</DEFINITION-REF>
-                    </ECUC-REFERENCE-VALUE>
-                  </REFERENCE-VALUES>
-                </ECUC-CONTAINER-VALUE>
-              </SUB-CONTAINERS>
-            </ECUC-CONTAINER-VALUE>
-            <ECUC-CONTAINER-VALUE>
               <SHORT-NAME>SYSTEMTIMER</SHORT-NAME>
               <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/TS_T2D35M4I0R92/Os/OsCounter</DEFINITION-REF>
               <PARAMETER-VALUES>
@@ -191,7 +169,7 @@
                 </ECUC-NUMERICAL-PARAM-VALUE>
                 <ECUC-NUMERICAL-PARAM-VALUE>
                   <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/TS_T2D35M4I0R92/Os/OsCounter/OsCounterMinCycle</DEFINITION-REF>
-                  <VALUE>500</VALUE>
+                  <VALUE>1</VALUE>
                 </ECUC-NUMERICAL-PARAM-VALUE>
                 <ECUC-NUMERICAL-PARAM-VALUE>
                   <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/TS_T2D35M4I0R92/Os/OsCounter/OsCounterTicksPerBase</DEFINITION-REF>
@@ -269,7 +247,7 @@
                     </ECUC-NUMERICAL-PARAM-VALUE>
                     <ECUC-NUMERICAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/TS_T2D35M4I0R92/Os/OsOS/OsHooks/OsShutdownHook</DEFINITION-REF>
-                      <VALUE>0</VALUE>
+                      <VALUE>1</VALUE>
                     </ECUC-NUMERICAL-PARAM-VALUE>
                     <ECUC-NUMERICAL-PARAM-VALUE>
                       <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/TS_T2D35M4I0R92/Os/OsOS/OsHooks/OsStartupHook</DEFINITION-REF>
@@ -287,11 +265,11 @@
                       <PARAMETER-VALUES>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/TS_T2D35M4I0R92/Os/OsOS/OsTargetMCU/MPC5748G/OsClockDivider</DEFINITION-REF>
-                          <VALUE>4</VALUE>
+                          <VALUE>80</VALUE>
                         </ECUC-NUMERICAL-PARAM-VALUE>
                         <ECUC-NUMERICAL-PARAM-VALUE>
                           <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/TS_T2D35M4I0R92/Os/OsOS/OsTargetMCU/MPC5748G/OsClockFrequency</DEFINITION-REF>
-                          <VALUE>8000</VALUE>
+                          <VALUE>160000</VALUE>
                         </ECUC-NUMERICAL-PARAM-VALUE>
                       </PARAMETER-VALUES>
                       <SUB-CONTAINERS>
@@ -305,7 +283,7 @@
                               <PARAMETER-VALUES>
                                 <ECUC-NUMERICAL-PARAM-VALUE>
                                   <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/TS_T2D35M4I0R92/Os/OsOS/OsTargetMCU/MPC5748G/OsSysTimer/HWCOUNTER/OsIsrPriority</DEFINITION-REF>
-                                  <VALUE>5</VALUE>
+                                  <VALUE>1</VALUE>
                                 </ECUC-NUMERICAL-PARAM-VALUE>
                                 <ECUC-NUMERICAL-PARAM-VALUE>
                                   <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/TS_T2D35M4I0R92/Os/OsOS/OsTargetMCU/MPC5748G/OsSysTimer/HWCOUNTER/OsPeriod</DEFINITION-REF>
@@ -329,7 +307,7 @@
                                       <PARAMETER-VALUES>
                                         <ECUC-NUMERICAL-PARAM-VALUE>
                                           <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/TS_T2D35M4I0R92/Os/OsOS/OsTargetMCU/MPC5748G/OsSysTimer/HWCOUNTER/OsTimerHardware/eMIOS0/OsChannel</DEFINITION-REF>
-                                          <VALUE>8</VALUE>
+                                          <VALUE>0</VALUE>
                                         </ECUC-NUMERICAL-PARAM-VALUE>
                                         <ECUC-NUMERICAL-PARAM-VALUE>
                                           <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/TS_T2D35M4I0R92/Os/OsOS/OsTargetMCU/MPC5748G/OsSysTimer/HWCOUNTER/OsTimerHardware/eMIOS0/OsPeripheralClockDivider</DEFINITION-REF>
@@ -408,15 +386,6 @@
               </SUB-CONTAINERS>
             </ECUC-CONTAINER-VALUE>
           </CONTAINERS>
-        </ECUC-MODULE-CONFIGURATION-VALUES>
-      </ELEMENTS>
-    </AR-PACKAGE>
-    <AR-PACKAGE>
-      <SHORT-NAME>Gpt</SHORT-NAME>
-      <ELEMENTS>
-        <ECUC-MODULE-CONFIGURATION-VALUES>
-          <SHORT-NAME>Gpt</SHORT-NAME>
-          <DEFINITION-REF DEST="ECUC-MODULE-DEF">/TS_T2D35M10I1R0/Gpt</DEFINITION-REF>
         </ECUC-MODULE-CONFIGURATION-VALUES>
       </ELEMENTS>
     </AR-PACKAGE>

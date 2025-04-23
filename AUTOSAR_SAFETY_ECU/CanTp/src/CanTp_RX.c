@@ -2,6 +2,7 @@
 
 uint8_t remainingBlocks= 0;
 uint8_t expectedSequenceNumber= SEQUENCE_NUMBER_INIT_VALUE;
+extern CanTp_ConfigType * currentCanTpCfgPtr;
 
 extern void Dcm_CopyRxData (PduIdType id,const PduInfoType* info);
 
@@ -194,6 +195,14 @@ static void  CanTp_HandleRecievedFrame(MessageType_t msg_type, N_AI address_info
             dataBuffer[i]= data[i+1];
         }
         //TODO: send the singleFrameReceived to the application
+
+        PduInfoType info =
+        {
+        		.SduDataPtr = dataBuffer,
+				.SduLength = data_length - 1
+        };
+        Dcm_CopyRxData(UDS_PDU_ID, &info);
+
         //printf("0X");
         for(i = 0 ; i < data_length ; ++i)
         {
@@ -264,15 +273,39 @@ static void  CanTp_HandleRecievedFrame(MessageType_t msg_type, N_AI address_info
     }
 }
 
-void CanTp_RxIndication (PduIdType RxPduId,  const PduInfoType* PduInfoPtr )
+void CanTp_RxIndication (PduIdType RxIPduId,  const PduInfoType* PduInfoPtr )
 {
+    uint8_t i;
+    uint32_t CanTpNSduIdx;
+    PduIdType CanTpNSduId;
+    CanTp_NSduType * CanTpNSduPtr;
 
-	//TODO: retrieve addressing information from  the address info in cantp how is it retrieved from pduid
-	MessageType_t msg_type = DIAGNOSTIC;
+    //TODO: duplicate code
+    for(i = 0; i < currentCanTpCfgPtr->CanTpGeneral->pdu_list_size; i++) 
+    {
+        if(currentCanTpCfgPtr->CanTpNSduList[i].direction == ISO15765_RECEIVE)
+        {
+            if(currentCanTpCfgPtr->CanTpNSduList[i].configData.CanTpRxNSdu.CanTp_RxLPduId == RxIPduId)
+            {
+                CanTpNSduPtr = (currentCanTpCfgPtr->CanTpNSduList) + i;
+            }
+        }
+        else if(currentCanTpCfgPtr->CanTpNSduList[i].direction == ISO15765_TRANSMIT)
+        {
+            if(currentCanTpCfgPtr->CanTpNSduList[i].configData.CanTpTxNSdu.CanTp_RxFcLPduId == RxIPduId)
+            {
+                CanTpNSduPtr = (currentCanTpCfgPtr->CanTpNSduList) + i;
+            }
+        }
+    }
+
+	MessageType_t msg_type = DIAGNOSTIC; //TODO: how to find this?
+    
+    //TODO: get address info from metadata if NSdu uses a generic connection
 	N_AI address_info = {
-			.N_SA = 0xff,
-			.N_TA = 0x55,
-			.N_TAtype = CAN_BASE_PHY
+			.N_SA = CanTpNSduPtr->configData.CanTpRxNSdu.CanTpNSa,
+			.N_TA = CanTpNSduPtr->configData.CanTpRxNSdu.CanTpNTa,
+			.N_TAtype = CanTpNSduPtr->configData.CanTpRxNSdu.CanTpRxTaType,
 	};
 	CanTp_HandleRecievedFrame(msg_type, address_info, PduInfoPtr->SduDataPtr, PduInfoPtr->SduLength);
 }

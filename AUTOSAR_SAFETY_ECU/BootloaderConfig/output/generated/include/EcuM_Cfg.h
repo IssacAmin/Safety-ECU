@@ -30,6 +30,8 @@
 #ifndef ECUM_CFG_H
 #define ECUM_CFG_H
 
+#include "Platform_Types.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -94,7 +96,7 @@ extern "C" {
 /*==================================================================================================
 *                                 STRUCTURES AND OTHER TYPEDEFS
 ==================================================================================================*/
-//typedef uint32 EcuM_WakeupSourceType; /**< @brief variable type for ECU Manager wakeup sources*/
+typedef uint32 EcuM_WakeupSourceType; /**< @brief variable type for ECU Manager wakeup sources*/
 
 /*==================================================================================================
 *                                 GLOBAL VARIABLE DECLARATIONS
