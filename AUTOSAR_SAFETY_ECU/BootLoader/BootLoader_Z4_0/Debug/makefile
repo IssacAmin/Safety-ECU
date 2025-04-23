@@ -11,23 +11,15 @@ RM := rm -rf
 -include src/src/subdir.mk
 -include src/output/generated/epc/subdir.mk
 -include src/generated/src/subdir.mk
--include src/UDS/Service_Handlers/TesterPresent/subdir.mk
--include src/UDS/Service_Handlers/SessionCTRL/subdir.mk
--include src/UDS/Service_Handlers/SecurityAccess/subdir.mk
--include src/UDS/Service_Handlers/RoutineCTRL/subdir.mk
--include src/UDS/Service_Handlers/RequestDownload/subdir.mk
--include src/UDS/Service_Handlers/ReadWriteDID/subdir.mk
--include src/UDS/Service_Handlers/ECUReset/subdir.mk
--include src/UDS/subdir.mk
--include src/Rte_TS_T2D35M10I1R0/src/subdir.mk
--include src/Port_TS_T2D35M10I1R0/src/subdir.mk
--include src/Mcu_TS_T2D35M10I1R0/src/subdir.mk
--include src/MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3/ssc/src/subdir.mk
--include src/Fls_TS_T2D35M10I1R0/src/subdir.mk
--include src/Dio_TS_T2D35M10I1R0/src/subdir.mk
--include src/Det_TS_T2D35M10I1R0/src/subdir.mk
--include src/Can_TS_T2D35M10I1R0/src/subdir.mk
--include src/CanIf_TS_T2D35M10I1R0/src/subdir.mk
+-include src/eclipse/plugins/Port_TS_T2D35M10I1R0/src/subdir.mk
+-include src/eclipse/plugins/Mcu_TS_T2D35M10I1R0/src/subdir.mk
+-include src/eclipse/plugins/Fls_TS_T2D35M10I1R0/src/subdir.mk
+-include src/eclipse/plugins/Dio_TS_T2D35M10I1R0/src/subdir.mk
+-include src/eclipse/plugins/Det_TS_T2D35M10I1R0/src/subdir.mk
+-include src/eclipse/plugins/Can_TS_T2D35M10I1R0/src/subdir.mk
+-include src/eclipse/plugins/CanIf_TS_T2D35M10I1R0/src/subdir.mk
+-include src/MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3/src/subdir.mk
+-include src/CanIfConfig/src/subdir.mk
 -include src/subdir.mk
 -include Project_Settings/Startup_Code/subdir.mk
 -include Project_Settings/Linker_Files/subdir.mk
@@ -51,7 +43,7 @@ BootLoader_Z4_0.siz \
 all: BootLoader_Z4_0.elf secondary-outputs
 
 # Tool invocations
-BootLoader_Z4_0.elf: $(OBJS) C:/Users/Fady/Downloads/SafetyECUProject/BootLoader/BootLoader_Z4_0/Project_Settings/Linker_Files/57xx_flash.ld $(OSPT) $(USER_OBJS)
+BootLoader_Z4_0.elf: $(OBJS) C:/Users/Fady/Downloads/Safety-ECU/AUTOSAR_SAFETY_ECU/BootLoader/BootLoader_Z4_0/Project_Settings/Linker_Files/57xx_flash.ld $(OSPT) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Standard S32DS C Linker'
 	powerpc-eabivle-gcc -o "BootLoader_Z4_0.elf" "@BootLoader_Z4_0.args"  $(USER_OBJS) $(LIBS) $(OSPT)

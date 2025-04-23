@@ -42,11 +42,12 @@
 								</option>
 								<option id="gnu.c.compiler.option.include.paths.2094590694" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../MPC574XG_MCAL4_0_RTM_1_0_5\eclipse\plugins\MemIf_TS_T2D35M10I5R0\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../BootloaderConfig/output/generated/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Rte_TS_T2D35M10I1R0\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Dio_TS_T2D35M10I1R0\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\EcuM_TS_T2D35M10I1R0\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Fls_TS_T2D35M10I1R0\include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../BootloaderConfig/output/generated/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../BootloaderConfig/CanIfConfig/inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../CanTp/inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Det_TS_T2D35M10I1R0\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Base_TS_T2D35M10I1R0\include&quot;"/>
@@ -62,8 +63,8 @@
 									<listOptionValue builtIn="false" value="&quot;C:\Users\Fady\Downloads\SRC\SRC\Service_Handlers\RoutineCTRL&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Users\Fady\Downloads\SRC\SRC&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../bootloaderOsConfig\output\generated\epc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3\ssc\other_includes&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3\ssc\inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3\other_includes&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3\inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${VLE_EWL_DIR}/EWL_C/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${VLE_EWL_DIR}/EWL_C/include/pa&quot;"/>
