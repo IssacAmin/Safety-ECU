@@ -126,7 +126,7 @@ Std_ReturnType N_USData_CFHandling(uint8_t *data)
             		.SduDataPtr = dataBuffer,
 					.SduLength = dataBufferLength
             };
-            Dcm_CopyRxData(UDS_PDU_ID, &info);
+//            Dcm_CopyRxData(0, &info);
 
 
         }
@@ -201,7 +201,7 @@ static void  CanTp_HandleRecievedFrame(MessageType_t msg_type, N_AI address_info
         		.SduDataPtr = dataBuffer,
 				.SduLength = data_length - 1
         };
-        Dcm_CopyRxData(UDS_PDU_ID, &info);
+//        Dcm_CopyRxData(0, &info);
 
         //printf("0X");
         for(i = 0 ; i < data_length ; ++i)

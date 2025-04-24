@@ -1,0 +1,1603 @@
+<?xml version='1.0'?>
+<datamodel version="7.0" 
+           xmlns="http://www.tresos.de/_projects/DataModel2/16/root.xsd" 
+           xmlns:a="http://www.tresos.de/_projects/DataModel2/16/attribute.xsd" 
+           xmlns:v="http://www.tresos.de/_projects/DataModel2/06/schema.xsd" 
+           xmlns:d="http://www.tresos.de/_projects/DataModel2/06/data.xsd">
+
+  <d:ctr type="AUTOSAR" factory="autosar" 
+         xmlns:ad="http://www.tresos.de/_projects/DataModel2/08/admindata.xsd" 
+         xmlns:cd="http://www.tresos.de/_projects/DataModel2/08/customdata.xsd" 
+         xmlns:f="http://www.tresos.de/_projects/DataModel2/14/formulaexpr.xsd" 
+         xmlns:icc="http://www.tresos.de/_projects/DataModel2/08/implconfigclass.xsd" 
+         xmlns:mt="http://www.tresos.de/_projects/DataModel2/11/multitest.xsd"  
+         xmlns:variant="http://www.tresos.de/_projects/DataModel2/11/variant.xsd">
+    <d:lst type="TOP-LEVEL-PACKAGES">
+      <d:ctr name="Fls" type="AR-PACKAGE">
+        <d:lst type="ELEMENTS">
+          <d:chc name="Fls" type="AR-ELEMENT" value="MODULE-CONFIGURATION">
+            <d:ctr type="MODULE-CONFIGURATION">
+              <a:a name="DEF" value="ASPath:/TS_T2D35M10I1R0/Fls"/>
+              <d:var name="IMPLEMENTATION_CONFIG_VARIANT" type="ENUMERATION" 
+                     value="VariantPostBuild">
+                <a:a name="IMPORTER_INFO" value="@DEF"/>
+              </d:var>
+              <d:ctr name="FlsConfigSet" type="IDENTIFIABLE">
+                <d:var name="FlsAcErase" type="INTEGER" value="1073751296">
+                  <a:a name="IMPORTER_INFO">
+                    <a:v>@CALC</a:v>
+                    <a:v>@DEF</a:v>
+                  </a:a>
+                </d:var>
+                <d:var name="FlsAcWrite" type="INTEGER" value="1073751296">
+                  <a:a name="IMPORTER_INFO">
+                    <a:v>@DEF</a:v>
+                    <a:v>@CALC</a:v>
+                  </a:a>
+                </d:var>
+                <d:var name="FlsAcErasePointer" type="FUNCTION-NAME" 
+                       value="NULL_PTR">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsAcWritePointer" type="FUNCTION-NAME" 
+                       value="NULL_PTR">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsCallCycle" type="FLOAT" value="0.0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsDefaultMode" type="ENUMERATION" 
+                       value="MEMIF_MODE_SLOW">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsACCallback" type="FUNCTION-NAME" 
+                       value="Fls_AC_Callback">
+                  <a:a name="ENABLE" value="false"/>
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsJobEndNotification" type="FUNCTION-NAME" 
+                       value="Fee_JobEndNotification">
+                  <a:a name="ENABLE" value="false"/>
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsJobErrorNotification" type="FUNCTION-NAME" 
+                       value="Fee_JobErrorNotification">
+                  <a:a name="ENABLE" value="false"/>
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsStartFlashAccessNotif" type="FUNCTION-NAME" 
+                       value="Fls_StartFlashAccessNotif">
+                  <a:a name="ENABLE" value="false"/>
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsFinishedFlashAccessNotif" type="FUNCTION-NAME" 
+                       value="Fls_FinishedFlashAccessNotif">
+                  <a:a name="ENABLE" value="false"/>
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsQspiInitCallout" type="FUNCTION-NAME" 
+                       value="FlsQspiInitCallout">
+                  <a:a name="ENABLE" value="false"/>
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsQspiResetCallout" type="FUNCTION-NAME" 
+                       value="FlsQspiResetCallout">
+                  <a:a name="ENABLE" value="false"/>
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsQspiErrorCheckCallout" type="FUNCTION-NAME" 
+                       value="FlsQspiErrorCheckCallout">
+                  <a:a name="ENABLE" value="false"/>
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsQspiEccCheckCallout" type="FUNCTION-NAME" 
+                       value="FlsQspiEccCheckCallout">
+                  <a:a name="ENABLE" value="false"/>
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsMaxReadFastMode" type="INTEGER" value="1048576"/>
+                <d:var name="FlsMaxReadNormalMode" type="INTEGER" value="1024"/>
+                <d:var name="FlsMaxWriteFastMode" type="INTEGER" value="256">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsMaxWriteNormalMode" type="INTEGER" value="8">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsProtection" type="INTEGER" value="0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:ctr name="FlsExternalDriver" type="IDENTIFIABLE">
+                  <a:a name="ENABLE" value="false"/>
+                  <d:ref name="FlsSpiReference" type="REFERENCE" >
+                    <a:a name="ENABLE" value="false"/>
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:ref>
+                  <d:lst name="FlsHwUnit" type="MAP">
+                    <d:ctr name="FlsHwUnit_0" type="IDENTIFIABLE">
+                      <d:var name="FlsHwUnitName" type="ENUMERATION" value="">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsHwUnitReadMode" type="ENUMERATION" 
+                             value="FLS_SDR">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitDqsMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitInputPadsBufferEn" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitInputClockSel" type="ENUMERATION" 
+                             value="FLS_QSPI_SYS_CLK">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitInternalRefClockSel" 
+                             type="ENUMERATION" value="FLS_QSPI_SPLLDIV1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitDqsBStage2ClkSource" 
+                             type="ENUMERATION" value="FLS_QSPI_DQS_INVERTED">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitDqsBStage1ClkSource" 
+                             type="ENUMERATION" value="FLS_QSPI_DQS_INTERNAL">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitDqsAStage2ClkSource" 
+                             type="ENUMERATION" value="FLS_QSPI_DQS_INVERTED">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitDqsAStage1ClkSource" 
+                             type="ENUMERATION" value="FLS_QSPI_DQS_INTERNAL">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitPendingReadBusGasket" 
+                             type="BOOLEAN" value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitBurstReadBusGasket" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitBurstWriteBusGasket" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitProgrammableDivider" 
+                             type="ENUMERATION" value="FLS_PGM_DIV_1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="IdleSignalDriveIOFB3HighLvl" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="IdleSignalDriveIOFB2HighLvl" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="IdleSignalDriveIOFA3HighLvl" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="IdleSignalDriveIOFA2HighLvl" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitSamplingEdge" type="ENUMERATION" 
+                             value="FLS_RISING">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitSamplingDly" type="ENUMERATION" 
+                             value="FLS_1SAMPLE_DLY">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitSamplingPoint" type="INTEGER" 
+                             value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitDqsLatencyEnable" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitFineDelayA" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitFineDelayB" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitTdh" type="ENUMERATION" 
+                             value="FLS_ALIGNED_INT_REF_CLK">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitTcsh" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitTcss" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitEndianness" type="ENUMERATION" 
+                             value="FLS_LITTLE_ENDIAN_64">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitReadBufferMode" type="ENUMERATION" 
+                             value="FLS_AHB_READ_MODE">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitRxBufferAccessMode" 
+                             type="ENUMERATION" 
+                             value="FLS_RXBUFFER_IP_BUS_ACCESS">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitColumnAddressWidth" type="INTEGER" 
+                             value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwUnitWordAddressable" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSerialFlashA1TopAddr" type="INTEGER" 
+                             value="0">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSerialFlashA2TopAddr" type="INTEGER" 
+                             value="0">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSerialFlashB1TopAddr" type="INTEGER" 
+                             value="0">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSerialFlashB2TopAddr" type="INTEGER" >
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:lst name="FlsAhbBuffer" type="MAP"/>
+                      <d:var name="FlsQspiHyperflashLatencyCycles" 
+                             type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:ctr name="FlsQspiLutSeqIdRefs" type="IDENTIFIABLE">
+                        <a:a name="ENABLE" value="false"/>
+                        <d:ref name="FlsLUTGetStatusSequenceIdRef" 
+                               type="REFERENCE" >
+                          <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        </d:ref>
+                        <d:ref name="FlsLUTReadSequenceIdRef" type="REFERENCE" >
+                          <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        </d:ref>
+                        <d:ref name="FlsLUTWriteEnableSequenceIdRef" 
+                               type="REFERENCE" >
+                          <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        </d:ref>
+                        <d:ref name="FlsLUTWriteSequenceIdRef" type="REFERENCE" >
+                          <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        </d:ref>
+                        <d:ref name="FlsLUTEraseSequenceIdRef" type="REFERENCE" >
+                          <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        </d:ref>
+                        <d:ref name="FlsLUTReadIdSequenceIdRef" 
+                               type="REFERENCE" >
+                          <a:a name="ENABLE" value="false"/>
+                          <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        </d:ref>
+                      </d:ctr>
+                      <d:lst name="FlsLUT" type="MAP"/>
+                      <d:var name="FlsExtUnitRegWidth" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsBusyBitValue" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsBusyBitPositionOffset" type="INTEGER" 
+                             value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsQspiDeviceId" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                  </d:lst>
+                </d:ctr>
+                <d:ctr name="FlsSectorList" type="IDENTIFIABLE">
+                  <d:lst name="FlsSector" type="MAP">
+                    <d:ctr name="Fls_Flags_Sector" type="IDENTIFIABLE">
+                      <d:var name="FlsSectorIndex" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsPhysicalSectorUnlock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPhysicalSector" type="ENUMERATION" 
+                             value="FLS_CODE_ARRAY_0_PART_3_M04"/>
+                      <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageSize" type="INTEGER" value="8"/>
+                      <d:var name="FlsSectorSize" type="INTEGER" value="16384">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@CALC</a:v>
+                          <a:v>@DEF</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorStartaddress" type="INTEGER" 
+                             value="0">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsProgrammingSize" type="ENUMERATION" 
+                             value="FLS_WRITE_QUAD_PAGE"/>
+                      <d:var name="FlsSectorEraseAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageWriteAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSectorIrqMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwCh" type="ENUMERATION" 
+                             value="FLS_CH_INTERN">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsQspiSectorCh" type="ENUMERATION" 
+                             value="NOT_QSPI_CHANNEL">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorHwAddress" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="Fls_Flashbank_A_0" type="IDENTIFIABLE">
+                      <d:var name="FlsSectorIndex" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsPhysicalSectorUnlock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPhysicalSector" type="ENUMERATION" 
+                             value="FLS_CODE_ARRAY_0_PART_6_LG00"/>
+                      <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageSize" type="INTEGER" value="8"/>
+                      <d:var name="FlsSectorSize" type="INTEGER" value="262144"/>
+                      <d:var name="FlsSectorStartaddress" type="INTEGER" 
+                             value="16384"/>
+                      <d:var name="FlsProgrammingSize" type="ENUMERATION" 
+                             value="FLS_WRITE_QUAD_PAGE"/>
+                      <d:var name="FlsSectorEraseAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageWriteAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSectorIrqMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwCh" type="ENUMERATION" 
+                             value="FLS_CH_INTERN">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsQspiSectorCh" type="ENUMERATION" 
+                             value="NOT_QSPI_CHANNEL">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorHwAddress" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="Fls_Flashbank_A_1" type="IDENTIFIABLE">
+                      <d:var name="FlsSectorIndex" type="INTEGER" value="2">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsPhysicalSectorUnlock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPhysicalSector" type="ENUMERATION" 
+                             value="FLS_CODE_ARRAY_0_PART_6_LG01"/>
+                      <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageSize" type="INTEGER" value="8"/>
+                      <d:var name="FlsSectorSize" type="INTEGER" value="262144"/>
+                      <d:var name="FlsSectorStartaddress" type="INTEGER" 
+                             value="278528"/>
+                      <d:var name="FlsProgrammingSize" type="ENUMERATION" 
+                             value="FLS_WRITE_QUAD_PAGE">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorEraseAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageWriteAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSectorIrqMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwCh" type="ENUMERATION" 
+                             value="FLS_CH_INTERN">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsQspiSectorCh" type="ENUMERATION" 
+                             value="NOT_QSPI_CHANNEL">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorHwAddress" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="Fls_Flashbank_A_2" type="IDENTIFIABLE">
+                      <d:var name="FlsSectorIndex" type="INTEGER" value="3">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsPhysicalSectorUnlock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPhysicalSector" type="ENUMERATION" 
+                             value="FLS_CODE_ARRAY_0_PART_6_LG02"/>
+                      <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageSize" type="INTEGER" value="8">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorSize" type="INTEGER" value="262144">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@CALC</a:v>
+                          <a:v>@DEF</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorStartaddress" type="INTEGER" 
+                             value="540672"/>
+                      <d:var name="FlsProgrammingSize" type="ENUMERATION" 
+                             value="FLS_WRITE_QUAD_PAGE">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorEraseAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageWriteAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSectorIrqMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwCh" type="ENUMERATION" 
+                             value="FLS_CH_INTERN">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsQspiSectorCh" type="ENUMERATION" 
+                             value="NOT_QSPI_CHANNEL">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorHwAddress" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="Fls_Flashbank_A_3" type="IDENTIFIABLE">
+                      <d:var name="FlsSectorIndex" type="INTEGER" value="4">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsPhysicalSectorUnlock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPhysicalSector" type="ENUMERATION" 
+                             value="FLS_CODE_ARRAY_0_PART_6_LG03"/>
+                      <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageSize" type="INTEGER" value="8">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorSize" type="INTEGER" value="262144"/>
+                      <d:var name="FlsSectorStartaddress" type="INTEGER" 
+                             value="802816"/>
+                      <d:var name="FlsProgrammingSize" type="ENUMERATION" 
+                             value="FLS_WRITE_QUAD_PAGE">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorEraseAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageWriteAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSectorIrqMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwCh" type="ENUMERATION" 
+                             value="FLS_CH_INTERN">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsQspiSectorCh" type="ENUMERATION" 
+                             value="NOT_QSPI_CHANNEL">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorHwAddress" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="Fls_Flashbank_A_4" type="IDENTIFIABLE">
+                      <d:var name="FlsSectorIndex" type="INTEGER" value="5">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsPhysicalSectorUnlock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPhysicalSector" type="ENUMERATION" 
+                             value="FLS_CODE_ARRAY_0_PART_6_LG04"/>
+                      <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageSize" type="INTEGER" value="8"/>
+                      <d:var name="FlsSectorSize" type="INTEGER" value="262144">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@CALC</a:v>
+                          <a:v>@DEF</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorStartaddress" type="INTEGER" 
+                             value="1064960"/>
+                      <d:var name="FlsProgrammingSize" type="ENUMERATION" 
+                             value="FLS_WRITE_QUAD_PAGE">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorEraseAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageWriteAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSectorIrqMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwCh" type="ENUMERATION" 
+                             value="FLS_CH_INTERN">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsQspiSectorCh" type="ENUMERATION" 
+                             value="NOT_QSPI_CHANNEL">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorHwAddress" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="Fls_Flashbank_A_5" type="IDENTIFIABLE">
+                      <d:var name="FlsSectorIndex" type="INTEGER" value="6">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsPhysicalSectorUnlock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPhysicalSector" type="ENUMERATION" 
+                             value="FLS_CODE_ARRAY_0_PART_6_LG05"/>
+                      <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageSize" type="INTEGER" value="8">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorSize" type="INTEGER" value="262144">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@CALC</a:v>
+                          <a:v>@DEF</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorStartaddress" type="INTEGER" 
+                             value="1327104"/>
+                      <d:var name="FlsProgrammingSize" type="ENUMERATION" 
+                             value="FLS_WRITE_QUAD_PAGE">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorEraseAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageWriteAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSectorIrqMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwCh" type="ENUMERATION" 
+                             value="FLS_CH_INTERN">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsQspiSectorCh" type="ENUMERATION" 
+                             value="NOT_QSPI_CHANNEL">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorHwAddress" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="Fls_Flashbank_A_6" type="IDENTIFIABLE">
+                      <d:var name="FlsSectorIndex" type="INTEGER" value="7">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsPhysicalSectorUnlock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPhysicalSector" type="ENUMERATION" 
+                             value="FLS_CODE_ARRAY_0_PART_6_LG06"/>
+                      <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageSize" type="INTEGER" value="8">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorSize" type="INTEGER" value="262144">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@CALC</a:v>
+                          <a:v>@DEF</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorStartaddress" type="INTEGER" 
+                             value="1589248">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsProgrammingSize" type="ENUMERATION" 
+                             value="FLS_WRITE_QUAD_PAGE">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorEraseAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageWriteAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSectorIrqMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwCh" type="ENUMERATION" 
+                             value="FLS_CH_INTERN">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsQspiSectorCh" type="ENUMERATION" 
+                             value="NOT_QSPI_CHANNEL">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorHwAddress" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="Fls_Flashbank_A_7" type="IDENTIFIABLE">
+                      <d:var name="FlsSectorIndex" type="INTEGER" value="8">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsPhysicalSectorUnlock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPhysicalSector" type="ENUMERATION" 
+                             value="FLS_CODE_ARRAY_0_PART_6_LG07"/>
+                      <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageSize" type="INTEGER" value="8">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorSize" type="INTEGER" value="262144"/>
+                      <d:var name="FlsSectorStartaddress" type="INTEGER" 
+                             value="1851392">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsProgrammingSize" type="ENUMERATION" 
+                             value="FLS_WRITE_QUAD_PAGE">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorEraseAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageWriteAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSectorIrqMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwCh" type="ENUMERATION" 
+                             value="FLS_CH_INTERN">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsQspiSectorCh" type="ENUMERATION" 
+                             value="NOT_QSPI_CHANNEL">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorHwAddress" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="Fls_Flashbank_B_0" type="IDENTIFIABLE">
+                      <d:var name="FlsSectorIndex" type="INTEGER" value="9">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsPhysicalSectorUnlock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPhysicalSector" type="ENUMERATION" 
+                             value="FLS_CODE_ARRAY_0_PART_7_LG08"/>
+                      <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageSize" type="INTEGER" value="8">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorSize" type="INTEGER" value="262144">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@CALC</a:v>
+                          <a:v>@DEF</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorStartaddress" type="INTEGER" 
+                             value="2113536">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsProgrammingSize" type="ENUMERATION" 
+                             value="FLS_WRITE_QUAD_PAGE">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorEraseAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageWriteAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSectorIrqMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwCh" type="ENUMERATION" 
+                             value="FLS_CH_INTERN">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsQspiSectorCh" type="ENUMERATION" 
+                             value="NOT_QSPI_CHANNEL">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorHwAddress" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="Fls_Flashbank_B_1" type="IDENTIFIABLE">
+                      <d:var name="FlsSectorIndex" type="INTEGER" value="10">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsPhysicalSectorUnlock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPhysicalSector" type="ENUMERATION" 
+                             value="FLS_CODE_ARRAY_0_PART_7_LG09"/>
+                      <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageSize" type="INTEGER" value="8">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorSize" type="INTEGER" value="262144"/>
+                      <d:var name="FlsSectorStartaddress" type="INTEGER" 
+                             value="2375680">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsProgrammingSize" type="ENUMERATION" 
+                             value="FLS_WRITE_QUAD_PAGE">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorEraseAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageWriteAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSectorIrqMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwCh" type="ENUMERATION" 
+                             value="FLS_CH_INTERN">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsQspiSectorCh" type="ENUMERATION" 
+                             value="NOT_QSPI_CHANNEL">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorHwAddress" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="Fls_Flashbank_B_2" type="IDENTIFIABLE">
+                      <d:var name="FlsSectorIndex" type="INTEGER" value="11">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsPhysicalSectorUnlock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPhysicalSector" type="ENUMERATION" 
+                             value="FLS_CODE_ARRAY_0_PART_7_LG10"/>
+                      <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageSize" type="INTEGER" value="8">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorSize" type="INTEGER" value="262144">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@CALC</a:v>
+                          <a:v>@DEF</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorStartaddress" type="INTEGER" 
+                             value="2637824">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsProgrammingSize" type="ENUMERATION" 
+                             value="FLS_WRITE_QUAD_PAGE">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorEraseAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageWriteAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSectorIrqMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwCh" type="ENUMERATION" 
+                             value="FLS_CH_INTERN">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsQspiSectorCh" type="ENUMERATION" 
+                             value="NOT_QSPI_CHANNEL">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorHwAddress" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="Fls_Flashbank_B_3" type="IDENTIFIABLE">
+                      <d:var name="FlsSectorIndex" type="INTEGER" value="12">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsPhysicalSectorUnlock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPhysicalSector" type="ENUMERATION" 
+                             value="FLS_CODE_ARRAY_0_PART_7_LG11"/>
+                      <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageSize" type="INTEGER" value="8">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorSize" type="INTEGER" value="262144"/>
+                      <d:var name="FlsSectorStartaddress" type="INTEGER" 
+                             value="2899968"/>
+                      <d:var name="FlsProgrammingSize" type="ENUMERATION" 
+                             value="FLS_WRITE_QUAD_PAGE">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorEraseAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageWriteAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSectorIrqMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwCh" type="ENUMERATION" 
+                             value="FLS_CH_INTERN">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsQspiSectorCh" type="ENUMERATION" 
+                             value="NOT_QSPI_CHANNEL">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorHwAddress" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="Fls_Flashbank_B_4" type="IDENTIFIABLE">
+                      <d:var name="FlsSectorIndex" type="INTEGER" value="13">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsPhysicalSectorUnlock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPhysicalSector" type="ENUMERATION" 
+                             value="FLS_CODE_ARRAY_0_PART_7_LG12"/>
+                      <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageSize" type="INTEGER" value="8">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorSize" type="INTEGER" value="262144"/>
+                      <d:var name="FlsSectorStartaddress" type="INTEGER" 
+                             value="3162112"/>
+                      <d:var name="FlsProgrammingSize" type="ENUMERATION" 
+                             value="FLS_WRITE_QUAD_PAGE">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorEraseAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageWriteAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSectorIrqMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwCh" type="ENUMERATION" 
+                             value="FLS_CH_INTERN">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsQspiSectorCh" type="ENUMERATION" 
+                             value="NOT_QSPI_CHANNEL">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorHwAddress" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="Fls_Flashbank_B_5" type="IDENTIFIABLE">
+                      <d:var name="FlsSectorIndex" type="INTEGER" value="14">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsPhysicalSectorUnlock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPhysicalSector" type="ENUMERATION" 
+                             value="FLS_CODE_ARRAY_0_PART_7_LG13"/>
+                      <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageSize" type="INTEGER" value="8">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorSize" type="INTEGER" value="262144">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@CALC</a:v>
+                          <a:v>@DEF</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorStartaddress" type="INTEGER" 
+                             value="3424256"/>
+                      <d:var name="FlsProgrammingSize" type="ENUMERATION" 
+                             value="FLS_WRITE_QUAD_PAGE">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorEraseAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageWriteAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSectorIrqMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwCh" type="ENUMERATION" 
+                             value="FLS_CH_INTERN">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsQspiSectorCh" type="ENUMERATION" 
+                             value="NOT_QSPI_CHANNEL">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorHwAddress" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="Fls_Flashbank_B_6" type="IDENTIFIABLE">
+                      <d:var name="FlsSectorIndex" type="INTEGER" value="15">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsPhysicalSectorUnlock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPhysicalSector" type="ENUMERATION" 
+                             value="FLS_CODE_ARRAY_0_PART_7_LG14"/>
+                      <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageSize" type="INTEGER" value="8">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorSize" type="INTEGER" value="262144">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@CALC</a:v>
+                          <a:v>@DEF</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorStartaddress" type="INTEGER" 
+                             value="3686400"/>
+                      <d:var name="FlsProgrammingSize" type="ENUMERATION" 
+                             value="FLS_WRITE_QUAD_PAGE">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorEraseAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageWriteAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSectorIrqMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwCh" type="ENUMERATION" 
+                             value="FLS_CH_INTERN">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsQspiSectorCh" type="ENUMERATION" 
+                             value="NOT_QSPI_CHANNEL">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorHwAddress" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="Fls_Flashbank_B_7" type="IDENTIFIABLE">
+                      <d:var name="FlsSectorIndex" type="INTEGER" value="16">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsPhysicalSectorUnlock" type="BOOLEAN" 
+                             value="true">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPhysicalSector" type="ENUMERATION" 
+                             value="FLS_CODE_ARRAY_0_PART_7_LG15"/>
+                      <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageSize" type="INTEGER" value="8">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorSize" type="INTEGER" value="262144"/>
+                      <d:var name="FlsSectorStartaddress" type="INTEGER" 
+                             value="3948544"/>
+                      <d:var name="FlsProgrammingSize" type="ENUMERATION" 
+                             value="FLS_WRITE_QUAD_PAGE">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorEraseAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsPageWriteAsynch" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsSectorIrqMode" type="BOOLEAN" 
+                             value="false">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                      <d:var name="FlsHwCh" type="ENUMERATION" 
+                             value="FLS_CH_INTERN">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsQspiSectorCh" type="ENUMERATION" 
+                             value="NOT_QSPI_CHANNEL">
+                        <a:a name="IMPORTER_INFO">
+                          <a:v>@DEF</a:v>
+                          <a:v>@CALC</a:v>
+                        </a:a>
+                      </d:var>
+                      <d:var name="FlsSectorHwAddress" type="INTEGER" value="0">
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                  </d:lst>
+                </d:ctr>
+              </d:ctr>
+              <d:ctr name="NonAutosar" type="IDENTIFIABLE">
+                <d:var name="FlsDisableDemReportErrorStatus" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsExtendedReadErrorCheck" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsEnableUserModeSupport" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsQspiLockLUT" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsQspiHyperflashEnable" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsSynchronizeCache" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsInternalSectorsConfigured" type="BOOLEAN" 
+                       value="true"/>
+                <d:var name="FlsExternalSectorsConfigured" type="BOOLEAN" 
+                       value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+              </d:ctr>
+              <d:ctr name="FlsGeneral" type="IDENTIFIABLE">
+                <d:var name="FlsAcLoadOnJobStart" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsBaseAddress" type="INTEGER" value="0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsBlankCheckApi" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsCancelApi" type="BOOLEAN" value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsCompareApi" type="BOOLEAN" value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsDevErrorDetect" type="BOOLEAN" value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsRuntimeErrorDetect" type="BOOLEAN" value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsTransientFaultDetect" type="BOOLEAN" 
+                       value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsDriverIndex" type="INTEGER" value="0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsGetJobResultApi" type="BOOLEAN" value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsGetStatusApi" type="BOOLEAN" value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsSetModeApi" type="BOOLEAN" value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsTotalSize" type="INTEGER" value="0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsUseInterrupts" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsVersionInfoApi" type="BOOLEAN" value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsDsiHandlerApi" type="BOOLEAN" value="false">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsEraseVerificationEnabled" type="BOOLEAN" 
+                       value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsWriteVerificationEnabled" type="BOOLEAN" 
+                       value="true">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsMaxEraseBlankCheck" type="INTEGER" value="256">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsTimeoutSupervisionEnabled" type="BOOLEAN" 
+                       value="false"/>
+                <d:ctr name="FlsTimeouts" type="IDENTIFIABLE">
+                  <d:var name="FlsAsyncWriteTimeout" type="INTEGER" 
+                         value="2147483647">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FlsAsyncEraseTimeout" type="INTEGER" 
+                         value="2147483647">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FlsSyncWriteTimeout" type="INTEGER" 
+                         value="2147483647">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FlsSyncEraseTimeout" type="INTEGER" 
+                         value="2147483647">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:var name="FlsAbortTimeout" type="INTEGER" value="32767">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                </d:ctr>
+              </d:ctr>
+              <d:ctr name="FlsPublishedInformation" type="IDENTIFIABLE">
+                <d:var name="FlsAcLocationErase" type="INTEGER" value="0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsAcLocationWrite" type="INTEGER" value="0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsAcSizeErase" type="INTEGER" value="0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsAcSizeWrite" type="INTEGER" value="0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsEraseTime" type="FLOAT" value="5.0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsErasedValue" type="INTEGER" value="4294967295">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsExpectedHwId" type="STRING" value="0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsSpecifiedEraseCycles" type="INTEGER" 
+                       value="100000">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="FlsWriteTime" type="FLOAT" value="5.0E-4">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+              </d:ctr>
+              <d:ctr name="CommonPublishedInformation" type="IDENTIFIABLE">
+                <d:var name="ArReleaseMajorVersion" type="INTEGER" value="4">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="ArReleaseMinorVersion" type="INTEGER" value="3">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="ArReleaseRevisionVersion" type="INTEGER" value="1">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="ModuleId" type="INTEGER" value="92">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SwMajorVersion" type="INTEGER" value="1">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SwMinorVersion" type="INTEGER" value="0">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="SwPatchVersion" type="INTEGER" value="1">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="VendorApiInfix" type="STRING" value="">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+                <d:var name="VendorId" type="INTEGER" value="43">
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                </d:var>
+              </d:ctr>
+            </d:ctr>
+          </d:chc>
+        </d:lst>
+      </d:ctr>
+    </d:lst>
+  </d:ctr>
+
+</datamodel>

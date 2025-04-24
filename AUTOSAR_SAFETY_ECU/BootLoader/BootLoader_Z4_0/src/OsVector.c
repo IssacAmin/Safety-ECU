@@ -1,12 +1,3 @@
-/**************************************************************************/
-/*                                                                        */
-/* DESCRIPTION:                                                           */
-/* This is a generic base template for all core exceptions, excluding     */
-/* IVOR4 exceptions which have seperate handler                           */
-/*                                                                        */
-/* This file starts in memory at the beginning of the                     */
-/*".core_exceptions_table" section.                                       */
-/**************************************************************************/
 #include "compiler_api.h"
 
 #define PPCASMF(x) PPCASM (" " tostring(x) " ")
@@ -47,9 +38,13 @@
 #if defined(OSGHSPPC)
 #define OSALIGN   asm (" .skip 0x0C ")
 #endif
+#if defined(__GNUC__)
+#define OSALIGN   __asm__ (".skip 0x0C")
+#endif
 
 #if defined(OSDIABPPC) || defined(OSGHSPPC) || defined(__GNUC__)
     OSASMF(   .globl VTABLE                   );
+    OSASM("    .section \".vects\", \"ax\"    ");
     OSASMF(VTABLE:                            ); /* Vector table start address */
 
 #elif defined(OSCWPPC)  /* defined(OSDIABPPC) || defined(OSGHSPPC) */

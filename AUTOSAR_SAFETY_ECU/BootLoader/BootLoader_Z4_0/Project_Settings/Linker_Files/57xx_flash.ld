@@ -3,7 +3,7 @@ ENTRY(_start)
 
 /* define heap and stack size */
 __HEAP_SIZE            = 0 ;
-__STACK_SIZE           = 4096 ;
+__STACK_SIZE           = 20K ;
 
 SRAM_SIZE =  256K;    
 /* Define SRAM Base Address */
@@ -26,16 +26,11 @@ SECTIONS
     	*(.startup)
     } > m_text
     
-    .core_exceptions_table   : ALIGN(4096)
-    {
-      __IVPR_VALUE = . ;
-      KEEP(*(.core_exceptions_table))
-    } > m_text
-
-    .intc_vector_table   : ALIGN(4096)
-    {
-      KEEP(*(.intc_vector_table))
-    } > m_text
+    .vects : ALIGN(0x100)
+     {
+    	*(.vects)
+    	*(.vects_vle)
+	} > m_text
       
     .text : 
     {
@@ -82,6 +77,7 @@ SECTIONS
       __DTOR_END__ = .;
     } > m_text
         
+	
     .preinit_array :
     {
       PROVIDE_HIDDEN (__preinit_array_start = .);

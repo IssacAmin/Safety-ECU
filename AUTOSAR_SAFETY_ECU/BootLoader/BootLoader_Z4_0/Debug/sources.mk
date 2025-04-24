@@ -26,6 +26,14 @@ Project_Settings/Startup_Code \
 src/CanIfConfig/src \
 src/MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3/src \
 src \
+src/UDS_C_SERVER/server_main/src \
+src/UDS_C_SERVER/srv_handlers/ECUReset/src \
+src/UDS_C_SERVER/srv_handlers/ReadWriteDID/src \
+src/UDS_C_SERVER/srv_handlers/RequestDownload/src \
+src/UDS_C_SERVER/srv_handlers/RoutineCTRL/src \
+src/UDS_C_SERVER/srv_handlers/SecurityAccess/src \
+src/UDS_C_SERVER/srv_handlers/SessionCTRL/src \
+src/UDS_C_SERVER/srv_handlers/TesterPresent/src \
 src/eclipse/plugins/CanIf_TS_T2D35M10I1R0/src \
 src/eclipse/plugins/Can_TS_T2D35M10I1R0/src \
 src/eclipse/plugins/Det_TS_T2D35M10I1R0/src \
@@ -33,6 +41,7 @@ src/eclipse/plugins/Dio_TS_T2D35M10I1R0/src \
 src/eclipse/plugins/Fls_TS_T2D35M10I1R0/src \
 src/eclipse/plugins/Mcu_TS_T2D35M10I1R0/src \
 src/eclipse/plugins/Port_TS_T2D35M10I1R0/src \
+src/eclipse/plugins/Rte_TS_T2D35M10I1R0/src \
 src/generated/src \
 src/output/generated/epc \
 src/src \
