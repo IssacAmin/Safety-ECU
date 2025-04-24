@@ -4,3 +4,6 @@
 [submodule "MPC574XG_MCAL4_3_RTM_HF8_1_0_1"]
 	path = MPC574XG_MCAL4_3_RTM_HF8_1_0_1
 	url = https://github.com/FadyKamil15/MPC574XG_MCAL4_3_RTM_HF8_1_0_1
+[submodule "AUTOSAR_SAFETY_ECU/MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3"]
+	path = AUTOSAR_SAFETY_ECU/MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3
+	url = https://github.com/FadyKamil15/MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3.git

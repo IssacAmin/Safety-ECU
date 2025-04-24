@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+
+<!--
+*   @file    plugin.xml
+*   @version 1.0.5
+*
+*   @brief   AUTOSAR MemIf_TS_T2D35M10I5R0 - Tresos Studio plugin configuration file.
+*   @details This file contains the configuration for and MemIf Tresos Studio plugin.
+-->
+<!--
+====================================================================================================
+*   Project              : AUTOSAR 4.0 MCAL
+*   Platform             : PA
+*   Peripheral           : MPC574XG
+*   Dependencies         : none
+*
+*   Autosar Version      : 4.0.3
+*   Autosar Revision     : ASR_REL_4_0_REV_0003
+*   Autosar Conf.Variant :
+*   SW Version           : 1.0.5
+*   Build Version        : MPC574XG_MCAL_1_0_5_RTM_ASR_REL_4_0_REV_0003_20171215
+*
+*   Copyright (c) 2006-2016 Freescale Semiconductor, Inc.  Copyright 2017 NXP.
+*   All Rights Reserved.
+====================================================================================================
+====================================================================================================
+====================================================================================================
+-->
+
+<plugin>
+  <extension point="dreisoft.tresos.launcher2.plugin.module"
+             id="MemIf_TS_T2D35M10I5R0_ModuleId"
+             name="MemIf_TS_T2D35M10I5R0 Module">
+
+    <module id="MemIf_TS_T2D35M10I5R0"
+            label="MemIf"
+            mandatory="false"
+            allowMultiple="false"
+            description="MemIf BSW module"
+            copyright="Copyright (c) 2006-2016 Freescale Semiconductor, Inc.  Copyright 2017 NXP."
+            swVersionMajor="1"
+            swVersionMinor="0"
+            swVersionPatch="5"
+            swVersionSuffix="RTM"
+            specVersionMajor="1"
+            specVersionMinor="4"
+            specVersionPatch="0"
+            specVersionSuffix="Rev_0003"
+            relVersionPrefix="AUTOSAR"
+            relVersionMajor="4"
+            relVersionMinor="0"
+            relVersionPatch="3"
+            relVersionSuffix="0003"
+            categoryType="MemIf"
+            categoryLayer="MCAL"
+            categoryCategory="ECU Firmware"
+            categoryComponent="ECUC">
+      <ecuType target="PA" derivate="MPC574XG"/>
+    </module>
+    </extension>
+   
+  <extension point="dreisoft.tresos.launcher2.plugin.configuration"
+             id="MemIf_TS_T2D35M10I5R0_ConfigId"
+             name="MemIf_TS_T2D35M10I5R0 Configuration">
+    <configuration moduleId="MemIf_TS_T2D35M10I5R0">
+      <schema>
+        <manager class="dreisoft.tresos.autosar2.resourcehandling.AutosarSchemaManager"/>
+          <!-- register the main xdm configuration schema for MemIf -->
+          <resource value="config/MemIf.xdm" type="xdm"/>
+
+
+
+
+      </schema>
+
+      <data>
+        <manager class="dreisoft.tresos.autosar2.resourcehandling.AutosarConfigManager"/>
+        <schemaNode path="ASPath:/TS_T2D35M10I5R0/MemIf"/>
+      </data>
+
+      <editor id="MemIf_TS_T2D35M10I5R0_EditorId"
+              label="Default"
+              tooltip="MemIf BSW module">
+        <class class="dreisoft.tresos.launcher2.editor.GenericConfigEditor">
+          <parameter name="schema" value="ASPath:/TS_T2D35M10I5R0/MemIf"/>
+          <parameter name="title" value="MemIf"/>
+          <parameter name="noTabs" value="false"/>
+          <parameter name="noLinks" value="true"/>
+          <parameter name="groupLinks" value="false"/>
+          <parameter name="groupContainers" value="false"/>
+          <parameter name="groupTables" value="true"/>
+          <parameter name="optionalGeneralTab" value="true"/>
+        </class>
+      </editor>
+    </configuration>
+  </extension>
+
+ <extension point="dreisoft.tresos.launcher2.plugin.generator"
+             id="EPCGenerator"
+             name="EPC Generator">
+  <generator moduleId="MemIf_TS_T2D35M10I5R0"
+               id="MemIf_TS_T2D35M10I5R0"
+               class="dreisoft.tresos.autosar2.generator.EPCFileGenerator">
+   <parameter name="cfgFilePath" value="output"/>
+  <parameter name="generateAllModules" value="false"/>
+  <parameter name="generateIntoOneFile" value="false"/>
+  <parameter name="contentType" value="asc:4.0.3"/>
+  </generator>
+ </extension>
+     <extension point="dreisoft.tresos.launcher2.plugin.generator"
+              id="MemIf_TS_T2D35M10I5R0_GeneratorId"
+              name="MemIf_TS_T2D35M10I5R0 Generator">
+    <generator moduleId="MemIf_TS_T2D35M10I5R0"
+               class="dreisoft.tresos.launcher2.generator.TemplateBasedCodeGenerator">
+     <!-- swcd modes and template path parameters -->
+    <parameter name="mode_type" mode="generate_swcd" value="generate"></parameter>
+    <parameter name="mode_type" mode="verify_swcd" value="verify"></parameter>
+    <parameter name="templates" mode="generate_swcd,verify_swcd" value="generate_swcd"></parameter>   
+
+      <!-- common template path parameters -->
+      <parameter name="templates" mode="generate,verify" value="generate"/>
+    </generator>
+  </extension>
+ 
+  <extension point="org.eclipse.help.toc">
+    <toc file="anchors.xml" primary="true"/>
+    <toc file="$nl$/MemIf/toc.xml" primary="false"/>
+    <!-- toc file="$nl$/ReleaseNotes/toc.xml" primary="false"/ !-->
+  </extension>
+</plugin>
