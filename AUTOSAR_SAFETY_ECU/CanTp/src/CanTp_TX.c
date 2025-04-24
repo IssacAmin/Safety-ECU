@@ -3,6 +3,8 @@
 #define CANTP_SINGLEFRAME_LENGTH 8
 #define CANTP_FIRSTFRAME_LENGTH 8
 
+static void sendFrame(PduIdType NPduId, uint8_t* data, uint8_t length);
+
 /********************************************************************************************
  *                                Global Variables                                          *
  ********************************************************************************************/
@@ -27,6 +29,7 @@ uint16_t byteNumber = BYTE_NUMBER_INIT_VALUE;
 static uint8_t ST_Min= 0;
 uint8_t blockSize= 0;
 
+PduIdType currentNPduId;
 TimerType_t currentTimer;
 bool timerElapsed = false;
 
@@ -47,7 +50,7 @@ bool timerElapsed = false;
  *      *data     : Pointer to the data buffer.
  *      dataLength: The length of the data buffer.
  **********************************************************************************************************/
-Std_ReturnType TransmitSingleFrame(uint8_t * data, uint8_t dataLength)
+Std_ReturnType TransmitSingleFrame(PduIdType NPduId, uint8_t * data, uint8_t dataLength)
 {
 	int i;
 	SingleFrame_t sf;
@@ -82,11 +85,13 @@ Std_ReturnType TransmitSingleFrame(uint8_t * data, uint8_t dataLength)
 	}
 	//printf("\n\n");
 
-	// TODO: (PDU ID?)
-	PduInfoType pduInfo;
-	pduInfo.SduDataPtr = &sf; //TODO: this should include the N_AI
-	pduInfo.SduLength = CANTP_SINGLEFRAME_LENGTH;
-	return CanIf_Transmit(0,&pduInfo);
+	// PduInfoType pduInfo;
+	// pduInfo.SduDataPtr = &sf; //TODO: this should include the N_AI
+	// pduInfo.SduLength = CANTP_SINGLEFRAME_LENGTH;
+	// return CanIf_Transmit(0,&pduInfo);
+
+	sendFrame(NPduId, (uint8_t* )&sf, CANTP_SINGLEFRAME_LENGTH);
+	return E_OK;
 }
 
 /********************************************************************************************************** 
@@ -97,7 +102,7 @@ Std_ReturnType TransmitSingleFrame(uint8_t * data, uint8_t dataLength)
  *      *data     : Pointer to the data buffer
  *      dataLength: The length of the data buffer
  **********************************************************************************************************/
-Std_ReturnType TransmitFirstFrame(uint8_t * data, uint8_t dataLength)
+Std_ReturnType TransmitFirstFrame(PduIdType NPduId, uint8_t * data, uint8_t dataLength)
 {
 	int i;
 	FirstFrame_t ff;
@@ -122,10 +127,14 @@ Std_ReturnType TransmitFirstFrame(uint8_t * data, uint8_t dataLength)
 	//printf("\n");
 
 	// TODO: Send FF, variable type FC by refrence to Can If AND Start Timer to detect the timeout
-	PduInfoType pduInfo;
-	pduInfo.SduDataPtr = &ff;
-	pduInfo.SduLength = 8;
-	return CanIf_Transmit (0,&pduInfo);
+	// PduInfoType pduInfo;
+	// pduInfo.SduDataPtr = &ff;
+	// pduInfo.SduLength = 8;
+	// return CanIf_Transmit (0,&pduInfo);
+
+	sendFrame(NPduId, (uint8_t *)&ff, 8);
+
+	return E_OK;
 }
 
 
@@ -138,7 +147,7 @@ Std_ReturnType TransmitFirstFrame(uint8_t * data, uint8_t dataLength)
  *      *data         : Pointer to the data buffer.
  *      sequenceNumber: The sequence number of the CF
  **********************************************************************************************************/
-Std_ReturnType TransmitConsecutiveFrame(uint8_t * data, uint8_t sequnceNumber)
+Std_ReturnType TransmitConsecutiveFrame(PduIdType NPduId, uint8_t * data, uint8_t sequnceNumber)
 {
 	uint8_t result= E_NOT_OK;
 	ConsecutiveFrame_t cf;
@@ -186,10 +195,12 @@ Std_ReturnType TransmitConsecutiveFrame(uint8_t * data, uint8_t sequnceNumber)
 		}
 		//printf("\n");
 
-		PduInfoType pduInfo;
-		pduInfo.SduDataPtr = &cf;
-		pduInfo.SduLength = 8;
-		return CanIf_Transmit(0,&pduInfo);
+		// PduInfoType pduInfo;
+		// pduInfo.SduDataPtr = &cf;
+		// pduInfo.SduLength = 8;
+		// return CanIf_Transmit(0,&pduInfo);
+
+		sendFrame(NPduId,(uint8_t *) &cf, 8);
 	}
 	else
 	{
@@ -207,7 +218,7 @@ Std_ReturnType TransmitConsecutiveFrame(uint8_t * data, uint8_t sequnceNumber)
  *      st_min   : Time between transmitting two consecutive frames
  *      fc_flags : Flag from the FC frame that decide to (continue sending CF/Wait for FC/Abort transmission)
  **********************************************************************************************************/ 
-Std_ReturnType TransmitFlowControlFrame(uint8_t bs, uint8_t st_min, uint8_t fc_flags)
+Std_ReturnType TransmitFlowControlFrame(PduIdType NPduId, uint8_t bs, uint8_t st_min, uint8_t fc_flags)
 {
 	uint8_t result= E_NOT_OK;
 	int i;
@@ -222,12 +233,52 @@ Std_ReturnType TransmitFlowControlFrame(uint8_t bs, uint8_t st_min, uint8_t fc_f
 	}
 	//printf("\n\n");
 
-	PduInfoType pduInfo;
-	pduInfo.SduDataPtr = &fc;
-	pduInfo.SduLength = CANTP_FIRSTFRAME_LENGTH;
-	CanIf_Transmit (0,&pduInfo);
+	// PduInfoType pduInfo;
+	// pduInfo.SduDataPtr = &fc;
+	// pduInfo.SduLength = FLOW_CONTROL_FRAME_SIZE;
+	// CanIf_Transmit (0,&pduInfo);
+
+	sendFrame(NPduId, fc, FLOW_CONTROL_FRAME_SIZE);
 
 	return result;
+}
+
+static void sendFrame(PduIdType NPduId, uint8_t* data, uint8_t length)
+{
+	PduInfoType pduInfo;
+	PduIdType LPduId;
+	CanTp_NSduType * CanTpNSduRecordPtr = &(currentCanTpCfgPtr->CanTpNSduList[NPduId]);
+	
+	/*add addressing info to payload if necessary */
+	switch(CanTpNSduRecordPtr->configData.CanTpTxNSdu.CanTpAddressingMode)
+	{
+		case CANTP_STANDARD:
+			break;
+		case CANTP_EXTENDED:
+			break;
+		case CANTP_MIXED:
+			break;
+		case CANTP_MIXED29BIT:
+			break;	
+		case CANTP_NORMALFIXED:
+			break;
+	}
+
+	switch(CanTpNSduRecordPtr->direction)
+	{
+		case ISO15765_TRANSMIT:
+			LPduId = CanTpNSduRecordPtr->configData.CanTpTxNSdu.CanTp_TxLPduId;
+			break;
+		case ISO15765_RECEIVE:
+			LPduId = CanTpNSduRecordPtr->configData.CanTpRxNSdu.CanTp_TxFcLPduId;
+			break;
+		default:
+			break;
+	}
+
+	pduInfo.SduDataPtr = data;
+	pduInfo.SduLength = length;
+	CanIf_Transmit (LPduId,&pduInfo);
 }
 
 /*******************************************************************************************************
@@ -241,7 +292,7 @@ Std_ReturnType TransmitFlowControlFrame(uint8_t bs, uint8_t st_min, uint8_t fc_f
  *      *data       : Pointer to the data buffer
  *      data_length : The length of the data buffer
  **********************************************************************************************************/
-ServiceResult_t N_USData_Request(MessageType_t msg_type, N_AI address_info, uint8_t * data, uint32_t data_length)
+ServiceResult_t N_USData_Request(PduIdType NPduId, MessageType_t msg_type, N_AI address_info, uint8_t * data, uint32_t data_length)
 {
 	// Variable to save the return value of the function
 	ServiceResult_t result= N_RESULT_ERROR;
@@ -277,7 +328,7 @@ ServiceResult_t N_USData_Request(MessageType_t msg_type, N_AI address_info, uint
 		if(MAX_SINGLE_FRAME_DATA_LENGTH >= data_length)
 		{
 			//Construct the Single Frame check on the
-			TransmitSingleFrame(data, data_length);
+			TransmitSingleFrame(NPduId, data, data_length);
 
 			// End of handling the request
 			networkLayerStatus= N_S_IDLE;
@@ -300,7 +351,7 @@ ServiceResult_t N_USData_Request(MessageType_t msg_type, N_AI address_info, uint
 			isDataBufferHasValidData= TRUE;
 
 			// Transmit the first frame and start the timer to wait for the FC frame
-			TransmitFirstFrame(dataBuffer, dataBufferLength);
+			TransmitFirstFrame(NPduId, dataBuffer, dataBufferLength);
 
 			WAIT_FC_FRAME(MAX_WAIT_FOR_FC_FRAME_IN_SECONDS);
 			networkLayerStatus= N_S_TX_WAIT_FC;
@@ -329,7 +380,7 @@ ServiceResult_t N_USData_Request(MessageType_t msg_type, N_AI address_info, uint
  *      st_min   : Time between transmitting two consecutive frames
  *      fc_flags : Flag from the FC frame that decide to (continue sending CF/Wait for FC/Abort transmission)    
  **********************************************************************************************************/
-Std_ReturnType ReceivedFlowControlFrameHandling(uint8_t *data, uint8_t bs, uint8_t St_min, uint8_t fc_flags)
+Std_ReturnType ReceivedFlowControlFrameHandling(PduIdType NPduId, uint8_t *data, uint8_t bs, uint8_t St_min, uint8_t fc_flags)
 {
 	uint8_t result= E_NOT_OK;
 	uint8_t waitFlowControlFlag_f= TRUE;
@@ -351,7 +402,7 @@ Std_ReturnType ReceivedFlowControlFrameHandling(uint8_t *data, uint8_t bs, uint8
 			 *              --> 1) Change the network layer state to wait for the next FC frame
 			 *                  2) Start the timer to wait for the next FC frame
 			 */
-			TransmitConsecutiveFrame((dataBuffer + byteNumber), sequenceNumber);
+			TransmitConsecutiveFrame(NPduId, (dataBuffer + byteNumber), sequenceNumber);
 
 			// After transmitting the consecutive frame successfully, point to the next seven byte
 			// to send them in the next itteration
@@ -462,7 +513,7 @@ Std_ReturnType CanTp_Transmit ( PduIdType TxNPduId, const PduInfoType* PduInfoPt
 	};
 
 	//TODO: where to get message type?
-	N_USData_Request(DIAGNOSTIC, addressInfo, PduInfoPtr->SduDataPtr, PduInfoPtr->SduLength);
+	N_USData_Request(TxNPduId, DIAGNOSTIC, addressInfo, PduInfoPtr->SduDataPtr, PduInfoPtr->SduLength);
 
 	return N_OK;
 }
@@ -504,7 +555,7 @@ void CanTp_MainFunction (void)
 
 			if((byteNumber < dataBufferLength) && (blockSize > 0))
 			{
-				TransmitConsecutiveFrame((dataBuffer + byteNumber), sequenceNumber);
+				TransmitConsecutiveFrame(currentNPduId, (dataBuffer + byteNumber), sequenceNumber);
 				// After transmitting the consecutive frame successfully, point to the next seven byte
 				// to send them in the next iteration
 				byteNumber += 7;

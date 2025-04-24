@@ -70,7 +70,7 @@
                     <d:var name="CanListenOnlyMode" type="BOOLEAN" value="false">
                       <a:a name="IMPORTER_INFO" value="@DEF"/>
                     </d:var>
-                    <d:var name="CanLoopBackMode" type="BOOLEAN" value="true"/>
+                    <d:var name="CanLoopBackMode" type="BOOLEAN" value="false"/>
                     <d:var name="CanSoftwareBusOffRecovery" type="BOOLEAN" 
                            value="false"/>
                     <d:var name="CanAutoBusOffRecovery" type="BOOLEAN" 

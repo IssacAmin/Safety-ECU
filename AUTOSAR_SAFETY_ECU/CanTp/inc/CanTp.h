@@ -19,7 +19,7 @@
  *      *data       : Pointer to the data buffer
  *      data_length : The length of the data buffer
  **********************************************************************************************************/
-ServiceResult_t N_USData_Request(MessageType_t msg_type, N_AI address_info, uint8_t * data, uint32_t data_length);
+ServiceResult_t N_USData_Request(PduIdType NPduId, MessageType_t msg_type, N_AI address_info, uint8_t * data, uint32_t data_length);
 
 /**************************************************************************
  * Function Description:
@@ -30,7 +30,7 @@ ServiceResult_t N_USData_Request(MessageType_t msg_type, N_AI address_info, uint
  *      *data     : Pointer to the data buffer.
  *      dataLength: The length of the data bufferr.
  ***************************************************************************/
-Std_ReturnType TransmitSingleFrame(uint8_t * data, uint8_t dataLength);
+Std_ReturnType TransmitSingleFrame(PduIdType NPduId, uint8_t * data, uint8_t dataLength);
 
 
 /**************************************************************************
@@ -41,7 +41,7 @@ Std_ReturnType TransmitSingleFrame(uint8_t * data, uint8_t dataLength);
  *      *data     : Pointer to the data buffer
  *      dataLength: The length of the data buffer
  ***************************************************************************/
-Std_ReturnType TransmitFirstFrame(uint8_t * data, uint8_t dataLength);
+Std_ReturnType TransmitFirstFrame(PduIdType NPduId, uint8_t * data, uint8_t dataLength);
 
 /*******************************************************************************************************
  * Function Description:
@@ -52,7 +52,7 @@ Std_ReturnType TransmitFirstFrame(uint8_t * data, uint8_t dataLength);
  *      *data         : Pointer to the data buffer.
  *      sequenceNumber: The sequence number of the CF
  **********************************************************************************************************/
-Std_ReturnType TransmitConsecutiveFrame(uint8_t * data, uint8_t sequnceNumber);
+Std_ReturnType TransmitConsecutiveFrame(PduIdType NPduId, uint8_t * data, uint8_t sequnceNumber);
 
 /*******************************************************************************************************
  * Function Description:
@@ -64,7 +64,7 @@ Std_ReturnType TransmitConsecutiveFrame(uint8_t * data, uint8_t sequnceNumber);
  *      st_min   : Time between transmitting two consecutive frames
  *      fc_flags : Flag from the FC frame that decide to (continue sending CF/Wait for FC/Abort transmission)
  **********************************************************************************************************/
-Std_ReturnType TransmitFlowControlFrame(uint8_t bs, uint8_t st_min, uint8_t fc_flags);
+Std_ReturnType TransmitFlowControlFrame(PduIdType NPduId, uint8_t bs, uint8_t st_min, uint8_t fc_flags);
 
 /*******************************************************************************************************
  * Function Description:
@@ -78,7 +78,7 @@ Std_ReturnType TransmitFlowControlFrame(uint8_t bs, uint8_t st_min, uint8_t fc_f
  *      st_min   : Time between transmitting two consecutive frames
  *      fc_flags : Flag from the FC frame that decide to (continue sending CF/Wait for FC/Abort transmission)
  **********************************************************************************************************/
-Std_ReturnType ReceivedFlowControlFrameHandling(uint8_t *data, uint8_t bs, uint8_t St_min, uint8_t fc_flags);
+Std_ReturnType ReceivedFlowControlFrameHandling(PduIdType NPduId, uint8_t *data, uint8_t bs, uint8_t St_min, uint8_t fc_flags);
 
 /**********************************************************************************************************
  *
@@ -102,14 +102,14 @@ void N_USData_Confirm(MessageType_t msg_type, N_AI address_info, ServiceResult_t
  *      data_length : The length of the data buffer.
  *      *result     : the result of the service.
  **********************************************************************************************************/
-Std_ReturnType N_USData_Indication(MessageType_t msg_type, N_AI address_info, uint8_t * data, uint32_t data_length,  ServiceResult_t * result);
+Std_ReturnType N_USData_Indication(PduIdType NPduId, MessageType_t msg_type, N_AI address_info, uint8_t * data, uint32_t data_length,  ServiceResult_t * result);
 
 
-Std_ReturnType N_USData_FFHandling(MessageType_t msg_type, N_AI address_info, uint8_t *data, uint32_t data_length);
+Std_ReturnType N_USData_FFHandling(PduIdType NPduId, MessageType_t msg_type, N_AI address_info, uint8_t *data, uint32_t data_length);
 
-Std_ReturnType N_USData_CFHandling(uint8_t *data);
+Std_ReturnType N_USData_CFHandling(PduIdType NPduId, uint8_t *data);
 
-void N_USData_FFIndication(MessageType_t msg_type, N_AI address_info, uint32_t data_length);
+void N_USData_FFIndication(PduIdType NPduId,  MessageType_t msg_type, N_AI address_info, uint32_t data_length);
 
 void CanTp_RxIndication (PduIdType RxIPduId,  const PduInfoType* PduInfoPtr );
 

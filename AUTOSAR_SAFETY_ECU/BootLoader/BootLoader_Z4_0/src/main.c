@@ -23,21 +23,10 @@
  uint8_t alarmFlag = 0;
  
  uint8_t togglesCount = 0;
+
+ #define UDS_TX_NPDUID 0
+ #define UDS_RX_NPDUID 1
  
- void toogleLED(Dio_ChannelType channel)
- {
-	 SuspendOSInterrupts();
-	 uint8_t currentState = Dio_ReadChannel(channel);
-	 if(currentState == STD_LOW)
-	 {
-		 Dio_WriteChannel(channel, STD_HIGH);
-	 }
-	 else if(currentState = STD_HIGH)
-	 {
-		 Dio_WriteChannel(channel, STD_LOW);
-	 }
-	 ResumeOSInterrupts();
- }
  void testcantpRecieverWithCanFrames(void)
  {
 	 char ff []= {0x10, 0x35, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06};
@@ -166,14 +155,14 @@
 	 }
  }
  
-	 char data[] = {
-			 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A,
-			 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11, 0x12, 0x13, 0x14,
-			 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E,
-			 0x1F, 0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28,
-			 0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F, 0x30, 0x31, 0x32,
-			 0x33, 0x34, 0x35};
- 
+char data[] = {
+		0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A,
+		0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11, 0x12, 0x13, 0x14,
+		0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E,
+		0x1F, 0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28,
+		0x29, 0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F, 0x30, 0x31, 0x32,
+		0x33, 0x34, 0x35};
+
  void testcantpSenderWithCanFrames(void)
  {
  
@@ -262,8 +251,30 @@
 
 uint8_t UDS_sendResponse(UDS_RES_t *response)
 {
+	PduInfoType PduInfo;
 
+	//TODO: add application layer addressing info to data payload
+	PduInfo.SduDataPtr = response->data;
+	PduInfo.SduLength = response->udsDataLen;
+	CanTp_Transmit(UDS_TX_NPDUID, &PduInfo);
 }
+
+void PduR_CantpReception(PduIdType NPduId, PduInfoType* info)
+{
+	//decide the upper layer based on the NPduId
+	if(1 == NPduId)
+	{
+		UDS_REQ_t req;
+		req.data = info->SduDataPtr;
+		req.udsDataLen = info->SduLength;
+		req.msgType = UDS_MType_Diagnostics;
+		req.trgAddType = UDS_A_TA_PHYSICAL;
+		req.srcAdd = 0x55;
+		req.trgAdd = 0xAA;
+		UDS_RequestIndication(&req);
+	}
+}
+
 
  TASK(OsTask_Core0)
  {
@@ -271,7 +282,8 @@ uint8_t UDS_sendResponse(UDS_RES_t *response)
  
 	 int counter = 0;
  
-	 testcantpSenderWithCanFrames();
+//	 testcantpSenderWithCanFrames();
+	 testcantpRecieverWithCanFrames();
  
 	 for(;;)                                  /* main endless loop */
 	 {

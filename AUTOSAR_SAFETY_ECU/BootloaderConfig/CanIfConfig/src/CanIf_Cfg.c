@@ -84,7 +84,7 @@ const CanIf_RxPduConfigType CanIfRxPduConfigData[] = {
 		{
 				.CanIfCanRxPduCanId =(uint32) 0,
 				.CanIfUserRxIndication = 0,
-				.CanIfCanRxPduId = (uint32) 0,
+				.CanIfCanRxPduId = (uint32) 1,
 				.CanIfCanRxPduDlc = (uint8) 8,
 				.CanIfUserRxIndication = CanTp_RxIndication
 #if ( CANIF_CANPDUID_READDATA_API == STD_ON )

@@ -190,7 +190,7 @@ static CONST(CanStatic_ControllerBaudrateConfigType, CAN_CONST) ControllerBaudra
         /* ===== Control Register - CTRL ===== */
         (uint32)(
                     /* CTRL[LPB] - Loop-back mode */
-                    ((uint32)1<< FLEXCAN_CTRL_LPB_SHIFT_U8) |
+                    ((uint32)0<< FLEXCAN_CTRL_LPB_SHIFT_U8) |
                     /* CTRL[SMP] - Sampling mode */
                     ((uint32)0<< FLEXCAN_CTRL_SMP_SHIFT_U8) |
                     /* CTRL[BOFF_REC] - Bus off recovery */

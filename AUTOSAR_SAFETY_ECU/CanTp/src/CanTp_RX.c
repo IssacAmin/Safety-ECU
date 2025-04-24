@@ -4,14 +4,14 @@ uint8_t remainingBlocks= 0;
 uint8_t expectedSequenceNumber= SEQUENCE_NUMBER_INIT_VALUE;
 extern CanTp_ConfigType * currentCanTpCfgPtr;
 
-extern void Dcm_CopyRxData (PduIdType id,const PduInfoType* info);
+void PduR_CantpReception(PduIdType NPduId, PduInfoType* info);
 
 /*********************************************************************************************
  *                                Functions Definition                                       *
  *********************************************************************************************/
  
 //This should be a call to send the ff to the upper layer!!!
-Std_ReturnType N_USData_FFHandling(MessageType_t msg_type, N_AI address_info, uint8_t *data, uint32_t data_length)
+Std_ReturnType N_USData_FFHandling(PduIdType NPduId, MessageType_t msg_type, N_AI address_info, uint8_t *data, uint32_t data_length)
 {
     /*
      * 1) Check the data length (FF_DL !!!!) is valid and fits within the receiver's buffer size.
@@ -48,7 +48,7 @@ Std_ReturnType N_USData_FFHandling(MessageType_t msg_type, N_AI address_info, ui
         networkLayerStatus= N_S_RX_BUSY;
 
         // TODO: change the parameter of the function to be more generic
-        TransmitFlowControlFrame(CONSECUITVE_FRAME_BLOCK_SIZE, 1, FLOW_CONTROL_CONTINUE_TRANSMISSION);
+        TransmitFlowControlFrame(NPduId, CONSECUITVE_FRAME_BLOCK_SIZE, 1, FLOW_CONTROL_CONTINUE_TRANSMISSION);
         remainingBlocks = CONSECUITVE_FRAME_BLOCK_SIZE;
         WAIT_N_CR(5);
 
@@ -64,7 +64,7 @@ Std_ReturnType N_USData_FFHandling(MessageType_t msg_type, N_AI address_info, ui
 }
 
 
-Std_ReturnType N_USData_CFHandling(uint8_t *data)
+Std_ReturnType N_USData_CFHandling(PduIdType NPduId, uint8_t *data)
 {
     Std_ReturnType result= E_NOT_OK;
 
@@ -126,8 +126,8 @@ Std_ReturnType N_USData_CFHandling(uint8_t *data)
             		.SduDataPtr = dataBuffer,
 					.SduLength = dataBufferLength
             };
-//            Dcm_CopyRxData(0, &info);
 
+            PduR_CantpReception(NPduId, &info);
 
         }
         else
@@ -136,7 +136,7 @@ Std_ReturnType N_USData_CFHandling(uint8_t *data)
             if(0 == remainingBlocks)
             {
                 // Send the FC frame to the sender
-                TransmitFlowControlFrame(CONSECUITVE_FRAME_BLOCK_SIZE, 1, FLOW_CONTROL_CONTINUE_TRANSMISSION);
+                TransmitFlowControlFrame(NPduId, CONSECUITVE_FRAME_BLOCK_SIZE, 1, FLOW_CONTROL_CONTINUE_TRANSMISSION);
                 WAIT_N_CR(5);
                 remainingBlocks= CONSECUITVE_FRAME_BLOCK_SIZE;
             }
@@ -175,7 +175,7 @@ Std_ReturnType N_USData_Indication(MessageType_t msg_type, N_AI address_info, ui
 
 }
 
-static void  CanTp_HandleRecievedFrame(MessageType_t msg_type, N_AI address_info, uint8_t * data, uint32_t data_length)
+static void  CanTp_HandleRecievedFrame(PduIdType NPduId, MessageType_t msg_type, N_AI address_info, uint8_t * data, uint32_t data_length)
 {
     uint8_t frameType= ((data[RECEIVED_FRAME_PCI_INDEX] & (uint8_t)FLOW_CONTROL_RECEIVED_FRAME_TYPE_MASK)>>4);
     uint8_t bs;
@@ -201,7 +201,8 @@ static void  CanTp_HandleRecievedFrame(MessageType_t msg_type, N_AI address_info
         		.SduDataPtr = dataBuffer,
 				.SduLength = data_length - 1
         };
-//        Dcm_CopyRxData(0, &info);
+
+        PduR_CantpReception(NPduId, &info);
 
         //printf("0X");
         for(i = 0 ; i < data_length ; ++i)
@@ -217,7 +218,7 @@ static void  CanTp_HandleRecievedFrame(MessageType_t msg_type, N_AI address_info
         {
             //*result= E_OK;
             // Start handling the first frame and send the FC frae to the sender
-            N_USData_FFHandling(msg_type, address_info, data, data_length);
+            N_USData_FFHandling(NPduId, msg_type, address_info, data, data_length);
         }
         else
         {
@@ -231,7 +232,7 @@ static void  CanTp_HandleRecievedFrame(MessageType_t msg_type, N_AI address_info
             STOP_TIMER();
             // Start handling the CF frame
             //printf("ha call the cf\n");
-            N_USData_CFHandling(data);
+            N_USData_CFHandling(NPduId, data);
         }
         else
         {
@@ -258,7 +259,7 @@ static void  CanTp_HandleRecievedFrame(MessageType_t msg_type, N_AI address_info
             networkLayerStatus= N_S_TX_BUSY;
             //printf("fc: %x\n", FC_Flag);
             //printf("Flow Control Frame: BS: %d, STmin: %d, FC_Flag: %d\n", bs, STmin, FC_Flag);
-            ReceivedFlowControlFrameHandling(dataBuffer, bs, STmin, FC_Flag);
+            ReceivedFlowControlFrameHandling(NPduId, dataBuffer, bs, STmin, FC_Flag);
         }
         else
         {
@@ -273,29 +274,41 @@ static void  CanTp_HandleRecievedFrame(MessageType_t msg_type, N_AI address_info
     }
 }
 
-void CanTp_RxIndication (PduIdType RxIPduId,  const PduInfoType* PduInfoPtr )
+void CanTp_RxIndication (PduIdType RxLPduId,  const PduInfoType* PduInfoPtr )
 {
     uint8_t i;
     uint32_t CanTpNSduIdx;
-    PduIdType CanTpNSduId;
     CanTp_NSduType * CanTpNSduPtr;
+    uint8_t * data = PduInfoPtr->SduDataPtr;
+
+    uint8_t frameType= ((data[RECEIVED_FRAME_PCI_INDEX] & (uint8_t)FLOW_CONTROL_RECEIVED_FRAME_TYPE_MASK)>>4);
+
 
     //TODO: duplicate code
     for(i = 0; i < currentCanTpCfgPtr->CanTpGeneral->pdu_list_size; i++) 
     {
-        if(currentCanTpCfgPtr->CanTpNSduList[i].direction == ISO15765_RECEIVE)
+        switch (frameType)
         {
-            if(currentCanTpCfgPtr->CanTpNSduList[i].configData.CanTpRxNSdu.CanTp_RxLPduId == RxIPduId)
-            {
-                CanTpNSduPtr = (currentCanTpCfgPtr->CanTpNSduList) + i;
-            }
-        }
-        else if(currentCanTpCfgPtr->CanTpNSduList[i].direction == ISO15765_TRANSMIT)
-        {
-            if(currentCanTpCfgPtr->CanTpNSduList[i].configData.CanTpTxNSdu.CanTp_RxFcLPduId == RxIPduId)
-            {
-                CanTpNSduPtr = (currentCanTpCfgPtr->CanTpNSduList) + i;
-            }
+            case FLOW_CONTROL_FRAME_PCI:
+                if(currentCanTpCfgPtr->CanTpNSduList[i].direction == ISO15765_TRANSMIT)
+                {
+                    if(currentCanTpCfgPtr->CanTpNSduList[i].configData.CanTpTxNSdu.CanTp_RxFcLPduId == RxLPduId)
+                    {
+                        CanTpNSduPtr = (currentCanTpCfgPtr->CanTpNSduList) + i;
+                        break;
+                    }
+                }
+                break;
+            default:
+                if(currentCanTpCfgPtr->CanTpNSduList[i].direction == ISO15765_RECEIVE)
+                {
+                    if(currentCanTpCfgPtr->CanTpNSduList[i].configData.CanTpRxNSdu.CanTp_RxLPduId == RxLPduId)
+                    {
+                        CanTpNSduPtr = (currentCanTpCfgPtr->CanTpNSduList) + i;
+                        break;
+                    }
+                }
+                break;
         }
     }
 
@@ -307,5 +320,5 @@ void CanTp_RxIndication (PduIdType RxIPduId,  const PduInfoType* PduInfoPtr )
 			.N_TA = CanTpNSduPtr->configData.CanTpRxNSdu.CanTpNTa,
 			.N_TAtype = CanTpNSduPtr->configData.CanTpRxNSdu.CanTpRxTaType,
 	};
-	CanTp_HandleRecievedFrame(msg_type, address_info, PduInfoPtr->SduDataPtr, PduInfoPtr->SduLength);
+	CanTp_HandleRecievedFrame(i, msg_type, address_info, PduInfoPtr->SduDataPtr, PduInfoPtr->SduLength);
 }
