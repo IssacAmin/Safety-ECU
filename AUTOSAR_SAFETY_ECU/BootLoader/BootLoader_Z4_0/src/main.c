@@ -174,16 +174,16 @@ char data[] = {
  
 	 CanTp_Transmit(0, &PduInfo);
  
-	 uint8_t fc[]= {0x30, 0x0A, 0x01};
- 
-	 Can_PduType CanMessage;
-	 CanMessage.length = 3;
- 
-	 CanMessage.swPduHandle = 0;
-	 CanMessage.id = 0;
-	 CanMessage.sdu = fc;
- 
-	 Can_Write(CanHardwareObject_1, &CanMessage);
+//	 uint8_t fc[]= {0x30, 0x0A, 0x01};
+//
+//	 Can_PduType CanMessage;
+//	 CanMessage.length = 3;
+//
+//	 CanMessage.swPduHandle = 0;
+//	 CanMessage.id = 0;
+//	 CanMessage.sdu = fc;
+//
+//	 Can_Write(CanHardwareObject_1, &CanMessage);
  }
  
  FUNC(void,CAN_CODE) canErrorNotification( void)
@@ -228,7 +228,7 @@ char data[] = {
 	 /* Turn On on board LED2 to indicate Boot Loader state*/
 	 Dio_WriteChannel(DioConf_DioChannel_LED_3, STD_LOW);
  
-	 //	testcantpSenderWithCanFrames();
+//	 	testcantpSenderWithCanFrames();
  
 	 StartOS(OsAppMode_0);                            /* jump to OS startup */
  
@@ -282,8 +282,8 @@ void PduR_CantpReception(PduIdType NPduId, PduInfoType* info)
  
 	 int counter = 0;
  
-//	 testcantpSenderWithCanFrames();
-	 testcantpRecieverWithCanFrames();
+	 testcantpSenderWithCanFrames();
+//	 testcantpRecieverWithCanFrames();
  
 	 for(;;)                                  /* main endless loop */
 	 {

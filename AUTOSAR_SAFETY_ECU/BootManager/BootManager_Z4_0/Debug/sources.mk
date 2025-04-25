@@ -23,12 +23,12 @@ C_DEPS :=
 SUBDIRS := \
 Project_Settings/Linker_Files \
 Project_Settings/Startup_Code \
-src/Det_TS_T2D35M10I1R0/src \
-src/Dio_TS_T2D35M10I1R0/src \
-src/Fls_TS_T2D35M10I1R0/src \
+src/MPC574XG_MCAL4_3_RTM_HF8_1_0_1/eclipse/plugins/Det_TS_T2D35M10I1R0/src \
+src/MPC574XG_MCAL4_3_RTM_HF8_1_0_1/eclipse/plugins/Dio_TS_T2D35M10I1R0/src \
+src/MPC574XG_MCAL4_3_RTM_HF8_1_0_1/eclipse/plugins/Fls_TS_T2D35M10I1R0/src \
+src/MPC574XG_MCAL4_3_RTM_HF8_1_0_1/eclipse/plugins/Mcu_TS_T2D35M10I1R0/src \
+src/MPC574XG_MCAL4_3_RTM_HF8_1_0_1/eclipse/plugins/Port_TS_T2D35M10I1R0/src \
+src/MPC574XG_MCAL4_3_RTM_HF8_1_0_1/eclipse/plugins/Rte_TS_T2D35M10I1R0/src \
 src \
-src/Mcu_TS_T2D35M10I1R0/src \
-src/Port_TS_T2D35M10I1R0/src \
-src/Rte_TS_T2D35M10I1R0/src \
 src/output/generated/src \
 
