@@ -21,11 +21,11 @@ int main(void)
 
 	while(1)
 	{
-		Dio_WriteChannel(DioConf_DioChannel_LED_2, STD_HIGH);
+		Dio_WriteChannel(DioConf_DioChannel_LED_3, STD_HIGH);
 		counter = 1000000;
 		while(counter--);
 
-		Dio_WriteChannel(DioConf_DioChannel_LED_2, STD_LOW);
+		Dio_WriteChannel(DioConf_DioChannel_LED_3, STD_LOW);
 		counter = 1000000;
 		while(counter--);
 

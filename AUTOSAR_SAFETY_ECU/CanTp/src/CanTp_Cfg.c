@@ -34,8 +34,8 @@ CanTp_NSduType CanTpNSduConfigList[] =
 
     {
         .direction = ISO15765_RECEIVE,
-        .configData.CanTpRxNSdu.CanTp_RxLPduId = 1,
-        .configData.CanTpRxNSdu.CanTp_TxFcLPduId = 1,
+        .configData.CanTpRxNSdu.CanTp_RxLPduId = 0,
+        .configData.CanTpRxNSdu.CanTp_TxFcLPduId = 0,
         .configData.CanTpRxNSdu.CanTpAddressingFormant = CANTP_STANDARD,
         .configData.CanTpRxNSdu.CanTpBs = 30,
         .configData.CanTpRxNSdu.CanTpNar = 5000,

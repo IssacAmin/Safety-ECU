@@ -71,40 +71,14 @@ const CanIf_TxPduConfigType CanIfTxPduConfigData[] = {
 #if ( CANIF_READTXPDU_NOTIFY_STATUS_API == STD_ON )
 				.CanIfReadTxPduNotifyStatus = false,
 #endif
-		}, 
-		{
-				.CanIfTxPduBufferRef = NULL,
-				.CanIfUserTxConfirmation = 0,
-				.CanIfCanTxPduIdCanId = (uint32)1,
-				.CanIfTxPduId = (uint32) 1,
-				.CanIfTxPduIdCanIdType = CANIF_CAN_ID_TYPE_11,
-				.CanIfCanTxPduType = CANIF_PDU_TYPE_STATIC,
-				.CanIfCanTxPduIdDlc = (uint8) 8,
-				.CanIfUserTxConfirmation = CanTp_TxConfirmation
-#if ( CANIF_READTXPDU_NOTIFY_STATUS_API == STD_ON )
-				.CanIfReadTxPduNotifyStatus = false,
-#endif
 		}
 };
 
 const CanIf_RxPduConfigType CanIfRxPduConfigData[] = {
 		{
-				.CanIfCanRxPduCanId =(uint32) 0,
-				.CanIfUserRxIndication = 0,
-				.CanIfCanRxPduId = (uint32) 1,
-				.CanIfCanRxPduDlc = (uint8) 8,
-				.CanIfUserRxIndication = CanTp_RxIndication
-#if ( CANIF_CANPDUID_READDATA_API == STD_ON )
-				.CanIfReadRxPduData = false,
-#endif
-#if ( CANIF_READTXPDU_NOTIFY_STATUS_API == STD_ON )
-				.CanIfReadRxPduNotifyStatus = false,
-#endif
-		}, 
-		{
 				.CanIfCanRxPduCanId =(uint32) 1,
 				.CanIfUserRxIndication = 0,
-				.CanIfCanRxPduId = (uint32) 1,
+				.CanIfCanRxPduId = (uint32) 0,
 				.CanIfCanRxPduDlc = (uint8) 8,
 				.CanIfUserRxIndication = CanTp_RxIndication
 #if ( CANIF_CANPDUID_READDATA_API == STD_ON )

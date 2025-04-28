@@ -52,7 +52,7 @@ BootLoader_Z4_0.siz \
 all: BootLoader_Z4_0.elf secondary-outputs
 
 # Tool invocations
-BootLoader_Z4_0.elf: $(OBJS) D:/eJad_GP/SDV-SOTA/ECU/AUTOSAR_SAFETY_ECU/BootLoader/BootLoader_Z4_0/Project_Settings/Linker_Files/57xx_flash.ld $(OSPT) $(USER_OBJS)
+BootLoader_Z4_0.elf: $(OBJS) C:/Users/Fady/Downloads/Safety-ECU/AUTOSAR_SAFETY_ECU/BootLoader/BootLoader_Z4_0/Project_Settings/Linker_Files/57xx_flash.ld $(OSPT) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Standard S32DS C Linker'
 	powerpc-eabivle-gcc -o "BootLoader_Z4_0.elf" "@BootLoader_Z4_0.args"  $(USER_OBJS) $(LIBS) $(OSPT)

@@ -408,7 +408,7 @@
                             <a:v>@CALC</a:v>
                           </a:a>
                         </d:var>
-                        <d:var name="PortPinPcr" type="INTEGER" value="15"/>
+                        <d:var name="PortPinPcr" type="INTEGER" value="17"/>
                         <d:var name="PortPinDirection" type="ENUMERATION" 
                                value="PORT_PIN_IN">
                           <a:a name="IMPORTER_INFO" value="@DEF"/>
@@ -458,7 +458,7 @@
                             <a:v>@CALC</a:v>
                           </a:a>
                         </d:var>
-                        <d:var name="PortPinPcr" type="INTEGER" value="13"/>
+                        <d:var name="PortPinPcr" type="INTEGER" value="16"/>
                         <d:var name="PortPinDirection" type="ENUMERATION" 
                                value="PORT_PIN_OUT"/>
                         <d:var name="PortPinInitialMode" type="ENUMERATION" 

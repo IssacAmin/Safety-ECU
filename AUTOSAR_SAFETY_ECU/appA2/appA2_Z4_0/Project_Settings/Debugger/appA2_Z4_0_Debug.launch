@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="com.pemicro.debug.gdbjtag.ppc.launchConfigurationType">
-<listAttribute key="com.pemicro.debug.gdbjtag.ppc.ELVES">
-<listEntry value="C:\Users\Fady\Downloads\BM_BL\BootManager\BootManager_Z4_0\Debug\BootManager_Z4_0.elf"/>
-<listEntry value="C:\Users\Fady\Downloads\BM_BL\BootLoader\BootLoader_Z4_0\Debug\BootLoader_Z4_0.elf"/>
-</listAttribute>
-<intAttribute key="com.pemicro.debug.gdbjtag.ppc.NUMBER_ELVES" value="2"/>
+<listAttribute key="com.pemicro.debug.gdbjtag.ppc.ELVES"/>
+<intAttribute key="com.pemicro.debug.gdbjtag.ppc.NUMBER_ELVES" value="0"/>
 <stringAttribute key="com.pemicro.debug.gdbjtag.ppc.PE.DEVICE_NAME" value="MPC5748G"/>
 <stringAttribute key="com.pemicro.debug.gdbjtag.ppc.PE.GDB_OPTIONS" value=""/>
 <intAttribute key="com.pemicro.debug.gdbjtag.ppc.PE.HARDWARE_INTERFACE" value="6"/>

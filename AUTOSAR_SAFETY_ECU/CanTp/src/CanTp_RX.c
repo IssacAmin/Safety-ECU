@@ -281,10 +281,12 @@ void CanTp_RxIndication (PduIdType RxLPduId,  const PduInfoType* PduInfoPtr )
     CanTp_NSduType * CanTpNSduPtr;
     uint8_t * data = PduInfoPtr->SduDataPtr;
 
+    uint8_t NPduId = 0;
     uint8_t frameType= ((data[RECEIVED_FRAME_PCI_INDEX] & (uint8_t)FLOW_CONTROL_RECEIVED_FRAME_TYPE_MASK)>>4);
 
 
     //TODO: duplicate code
+    //TOOO: these breaks don't work
     for(i = 0; i < currentCanTpCfgPtr->CanTpGeneral->pdu_list_size; i++) 
     {
         switch (frameType)
@@ -295,6 +297,7 @@ void CanTp_RxIndication (PduIdType RxLPduId,  const PduInfoType* PduInfoPtr )
                     if(currentCanTpCfgPtr->CanTpNSduList[i].configData.CanTpTxNSdu.CanTp_RxFcLPduId == RxLPduId)
                     {
                         CanTpNSduPtr = (currentCanTpCfgPtr->CanTpNSduList) + i;
+                        NPduId = i;
                         break;
                     }
                 }
@@ -305,6 +308,7 @@ void CanTp_RxIndication (PduIdType RxLPduId,  const PduInfoType* PduInfoPtr )
                     if(currentCanTpCfgPtr->CanTpNSduList[i].configData.CanTpRxNSdu.CanTp_RxLPduId == RxLPduId)
                     {
                         CanTpNSduPtr = (currentCanTpCfgPtr->CanTpNSduList) + i;
+                        NPduId = i;
                         break;
                     }
                 }
@@ -320,5 +324,5 @@ void CanTp_RxIndication (PduIdType RxLPduId,  const PduInfoType* PduInfoPtr )
 			.N_TA = CanTpNSduPtr->configData.CanTpRxNSdu.CanTpNTa,
 			.N_TAtype = CanTpNSduPtr->configData.CanTpRxNSdu.CanTpRxTaType,
 	};
-	CanTp_HandleRecievedFrame(i, msg_type, address_info, PduInfoPtr->SduDataPtr, PduInfoPtr->SduLength);
+	CanTp_HandleRecievedFrame(NPduId, msg_type, address_info, PduInfoPtr->SduDataPtr, PduInfoPtr->SduLength);
 }
