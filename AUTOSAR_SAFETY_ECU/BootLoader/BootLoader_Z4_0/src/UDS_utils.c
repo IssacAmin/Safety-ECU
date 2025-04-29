@@ -224,6 +224,8 @@ UDS_Utils_ReturnType copy_segment(uint32_t start_address, uint32_t segment_lengt
 	return FLASH_OK;
 }
 
+
+
 UDS_Utils_ReturnType add_segment(uint32_t dst_address, uint8_t *data, uint32_t segment_length){
 	/* Variable Initialization */
 	Std_ReturnType fls_ret;
@@ -271,6 +273,10 @@ UDS_Utils_ReturnType add_segment(uint32_t dst_address, uint8_t *data, uint32_t s
 	}
 	return FLASH_OK;
 
+}
+
+UDS_Utils_ReturnType jump_segment(uint32_t start, uint32_t size){
+	global_dst_address += size;
 }
 
 //TODO: return something
@@ -323,21 +329,29 @@ UDS_Utils_ReturnType parse_data(uint8_t* data, uint32_t data_length){
 
 	if(data_length == 0)
 		return PARAMETERS_INVALID;
-	if(data[0] != ADD_SEGMENT_BYTE_CODE && data[0] != COPY_SEGMENT_BYTE_CODE)
-		return PARAMETERS_INVALID;
-	if(data[0] == ADD_SEGMENT_BYTE_CODE && data_length <= 9)
+	if((data[0] == JUMP_SEGMENT_BYTE_CODE || data[0] == COPY_SEGMENT_BYTE_CODE ) && data_length != 9)
 		return PARAMETERS_INVALID;
 
-	else if(data[0] == COPY_SEGMENT_BYTE_CODE && data_length != 9 )
+	if((data[0] == ADD_SEGMENT_BYTE_CODE ) && data_length <= 9 )
+	return PARAMETERS_INVALID;
+
+	else if(data[0] == METADATA_SEGMENT_BYTE_CODE && data_length != 7)
 		return PARAMETERS_INVALID;
 
+		uint32_t start_address;
+		uint32_t segment_length;
+		uint16_t crc;
+		uint16_t app_length;
 	/*parse data bytes to respective variables*/
-	uint32_t start_address;
-	uint32_t segment_length;
-
-	start_address = (data[1] << 24) | (data[2] << 16) | (data[3] << 8) | data[4];
-	segment_length = (data[5] << 24) | (data[6] << 16) | (data[7] << 8) | data[8];
-
+	if(data[0] != METADATA_SEGMENT_BYTE_CODE){
+	
+		start_address = (data[1] << 24) | (data[2] << 16) | (data[3] << 8) | data[4];
+		segment_length = (data[5] << 24) | (data[6] << 16) | (data[7] << 8) | data[8];
+	}
+	else{
+		crc = (data[1] << 8) | data[2];
+		app_length = (data[3] << 24) | (data[4] << 16) | (data[5] << 8) | data[6];
+	}
 
 
 	if(data[0] == ADD_SEGMENT_BYTE_CODE){
@@ -346,12 +360,18 @@ UDS_Utils_ReturnType parse_data(uint8_t* data, uint32_t data_length){
 			return FLASH_FAILED;
 
 		global_dst_address += segment_length;
-	}else{
+	}else if (data[0] == COPY_SEGMENT_BYTE_CODE){
 		utils_ret = copy_segment(start_address, segment_length, global_dst_address);
 		if(utils_ret != FLASH_OK)
 			return FLASH_FAILED;
 
 		global_dst_address += segment_length;
+	}
+	else if(data[0] == JUMP_SEGMENT_BYTE_CODE)
+	{
+		jump_segment(start_address,segment_length);
+	}else{
+		flash_flashbank_metadata(crc, app_length);
 	}
 
 	return FLASH_OK;
