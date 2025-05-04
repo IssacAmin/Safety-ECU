@@ -4,3 +4,6 @@
 [submodule "MPC574XG_MCAL4_3_RTM_HF8_1_0_1"]
 	path = MPC574XG_MCAL4_3_RTM_HF8_1_0_1
 	url = https://github.com/FadyKamil15/MPC574XG_MCAL4_3_RTM_HF8_1_0_1
+[submodule "openBSW_ECU/openBSW"]
+	path = openBSW_ECU/openBSW
+	url = https://github.com/OmarT-Y/openbsw
