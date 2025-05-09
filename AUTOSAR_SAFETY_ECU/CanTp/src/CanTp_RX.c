@@ -187,12 +187,14 @@ static void  CanTp_HandleRecievedFrame(PduIdType NPduId, MessageType_t msg_type,
     int i;
     //printf("Data Indication: %x\n", frameType);
     
+    uint8_t SF_DL;
     switch (frameType)
     {
     // Single Frame
     case SINGLE_FRAME_PCI_INDICATOR:
-        //printf("Single Frame received\n");
-        for(i = 0 ; i < data_length ; ++i)
+        SF_DL = (data[0] & 0x0F);
+        //printf("Single Frame received\n")
+        for(i = 0 ; i < SF_DL ; ++i)
         {
             dataBuffer[i]= data[i+1];
         }
@@ -201,7 +203,7 @@ static void  CanTp_HandleRecievedFrame(PduIdType NPduId, MessageType_t msg_type,
         PduInfoType info =
         {
         		.SduDataPtr = dataBuffer,
-				.SduLength = data_length - 1
+				.SduLength = SF_DL
         };
 
         PduR_CantpReception(NPduId, &info);
