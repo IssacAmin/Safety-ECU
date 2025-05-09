@@ -1,0 +1,187 @@
+03:02:13 **** Build of configuration Debug for project openBSW_Z4_0 ****
+make -j12 all 
+Building file: D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/application/src/app/CanDemoListener.cpp
+Building file: D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/application/src/app/app.cpp
+Building file: D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/application/src/main.cpp
+Invoking: Standard S32DS C++ Compiler
+powerpc-eabivle-g++ "@src/openBSW/executables/referenceApp/application/src/app/CanDemoListener.args" -MMD -MP -MF"src/openBSW/executables/referenceApp/application/src/app/CanDemoListener.d" -MT"src/openBSW/executables/referenceApp/application/src/app/CanDemoListener.o" -o "src/openBSW/executables/referenceApp/application/src/app/CanDemoListener.o" "D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/application/src/app/CanDemoListener.cpp"
+Invoking: Standard S32DS C++ Compiler
+powerpc-eabivle-g++ "@src/openBSW/executables/referenceApp/application/src/app/app.args" -MMD -MP -MF"src/openBSW/executables/referenceApp/application/src/app/app.d" -MT"src/openBSW/executables/referenceApp/application/src/app/app.o" -o "src/openBSW/executables/referenceApp/application/src/app/app.o" "D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/application/src/app/app.cpp"
+Invoking: Standard S32DS C++ Compiler
+powerpc-eabivle-g++ "@src/openBSW/executables/referenceApp/application/src/main.args" -MMD -MP -MF"src/openBSW/executables/referenceApp/application/src/main.d" -MT"src/openBSW/executables/referenceApp/application/src/main.o" -o "src/openBSW/executables/referenceApp/application/src/main.o" "D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/application/src/main.cpp"
+Building file: ../src/MPC57xx__Interrupt_Init.c
+Building file: ../src/Vector.c
+Building file: ../src/flashrchw.c
+Invoking: Standard S32DS C Compiler
+Invoking: Standard S32DS C Compiler
+powerpc-eabivle-gcc "@src/MPC57xx__Interrupt_Init.args" -MMD -MP -MF"src/MPC57xx__Interrupt_Init.d" -MT"src/MPC57xx__Interrupt_Init.o" -o "src/MPC57xx__Interrupt_Init.o" "../src/MPC57xx__Interrupt_Init.c"
+powerpc-eabivle-gcc "@src/MPC57xx__Interrupt_Init.args" -MMD -MP -MF"src/flashrchw.d" -MT"src/flashrchw.o" -o "src/flashrchw.o" "../src/flashrchw.c"
+Invoking: Standard S32DS C Compiler
+powerpc-eabivle-gcc "@src/MPC57xx__Interrupt_Init.args" -MMD -MP -MF"src/Vector.d" -MT"src/Vector.o" -o "src/Vector.o" "../src/Vector.c"
+Building file: ../src/intc_SW_mode_isr_vectors_MPC5748G.c
+Finished building: D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/application/src/main.cpp
+Building file: ../src/intc_sw_handlers.S
+Invoking: Standard S32DS C Compiler
+ 
+powerpc-eabivle-gcc "@src/MPC57xx__Interrupt_Init.args" -MMD -MP -MF"src/intc_SW_mode_isr_vectors_MPC5748G.d" -MT"src/intc_SW_mode_isr_vectors_MPC5748G.o" -o "src/intc_SW_mode_isr_vectors_MPC5748G.o" "../src/intc_SW_mode_isr_vectors_MPC5748G.c"
+Invoking: Standard S32DS Assembler
+powerpc-eabivle-gcc "@src/intc_sw_handlers.args" -o "src/intc_sw_handlers.o" "../src/intc_sw_handlers.S"
+Building file: ../src/main.cpp
+Invoking: Standard S32DS C++ Compiler
+powerpc-eabivle-g++ "@src/main.args" -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.cpp"
+Finished building: ../src/flashrchw.c
+In file included from c:\nxp\s32ds_power_v2.1\s32ds\build_tools\powerpc-eabivle-4_9\powerpc-eabivle\include\c++\4.9.4\bits\stl_iterator_base_types.h:67:0,
+Finished building: ../src/Vector.c
+                 from c:\nxp\s32ds_power_v2.1\s32ds\build_tools\powerpc-eabivle-4_9\powerpc-eabivle\include\c++\4.9.4\iterator:61,
+Building file: ../Project_Settings/Startup_Code/startup.S
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/iterator.h:5,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/forward_list.h:6,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/cpp2can/include/can/framemgmt/ICANFrameListener.h:10,
+ 
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/cpp2can/include/can/framemgmt/AbstractBitFieldFilteredCANFrameListener.h:11,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/cpp2can/include/can/transceiver/AbstractCANTransceiver.h:11,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/application/include/app/CanDemoListener.h:5,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/application/src/app/CanDemoListener.cpp:3:
+c:\nxp\s32ds_power_v2.1\s32ds\build_tools\powerpc-eabivle-4_9\powerpc-eabivle\include\c++\4.9.4\type_traits:612:63: error: there are no arguments to '__is_trivially_copyable' that depend on a template parameter, so a declaration of '__is_trivially_copyable' must be available [-fpermissive]
+ 
+   : public integral_constant<bool, __is_trivially_copyable(_Tp)>
+                                                               ^
+c:\nxp\s32ds_power_v2.1\s32ds\build_tools\powerpc-eabivle-4_9\powerpc-eabivle\include\c++\4.9.4\type_traits:612:63: note: (if you use '-fpermissive', G++ will accept your code, but allowing the use of an undeclared name is deprecated)
+c:\nxp\s32ds_power_v2.1\s32ds\build_tools\powerpc-eabivle-4_9\powerpc-eabivle\include\c++\4.9.4\type_traits:612:64: error: template argument 2 is invalid
+   : public integral_constant<bool, __is_trivially_copyable(_Tp)>
+                                                                ^
+c:\nxp\s32ds_power_v2.1\s32ds\build_tools\powerpc-eabivle-4_9\powerpc-eabivle\include\c++\4.9.4\type_traits:614:19: error: '__is_complete_or_unbounded' is not a member of 'std'
+     static_assert(std::__is_complete_or_unbounded(__type_identity<_Tp>{}),
+                   ^
+c:\nxp\s32ds_power_v2.1\s32ds\build_tools\powerpc-eabivle-4_9\powerpc-eabivle\include\c++\4.9.4\type_traits:614:51: error: '__type_identity' was not declared in this scope
+     static_assert(std::__is_complete_or_unbounded(__type_identity<_Tp>{}),
+                                                   ^
+c:\nxp\s32ds_power_v2.1\s32ds\build_tools\powerpc-eabivle-4_9\powerpc-eabivle\include\c++\4.9.4\type_traits:614:70: error: expected primary-expression before '>' token
+     static_assert(std::__is_complete_or_unbounded(__type_identity<_Tp>{}),
+                                                                      ^
+c:\nxp\s32ds_power_v2.1\s32ds\build_tools\powerpc-eabivle-4_9\powerpc-eabivle\include\c++\4.9.4\type_traits:614:71: error: expected primary-expression before '{' token
+     static_assert(std::__is_complete_or_unbounded(__type_identity<_Tp>{}),
+                                                                       ^
+In file included from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/platforms/s32k1xx/bsp/bspMcu/include/3rdparty/cmsis/cmsis_compiler.h:52:0,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/platforms/s32k1xx/bsp/bspMcu/include/3rdparty/cmsis/core_cm4.h:177,
+Invoking: Standard S32DS Assembler
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/platforms/s32k1xx/bsp/bspMcu/include/mcu/mcu.h:10,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/platforms/s32k148evb/freeRtosCoreConfiguration/include/os/FreeRtosPlatformConfig.h:116,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/asyncFreeRtos/freeRtosConfiguration/FreeRTOSConfig.h:82,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/3rdparty/freeRtos/include/FreeRTOS.h:64,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/asyncFreeRtos/include/async/TaskContext.h:19,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/asyncFreeRtos/include/async/FreeRtosAdapter.h:8,
+powerpc-eabivle-gcc "@Project_Settings/Startup_Code/startup.args" -o "Project_Settings/Startup_Code/startup.o" "../Project_Settings/Startup_Code/startup.S"
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/asyncBinding/include/async/AsyncBinding.h:6,
+Finished building: ../src/intc_SW_mode_isr_vectors_MPC5748G.c
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/consoleCommands/include/lifecycle/console/StatisticsCommand.h:5,
+Finished building: ../src/intc_sw_handlers.S
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/application/include/systems/RuntimeSystem.h:9,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/application/src/app/app.cpp:10:
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/platforms/s32k1xx/bsp/bspMcu/include/3rdparty/cmsis/cmsis_gcc.h:30:22: fatal error: arm_acle.h: No such file or directory
+ #include <arm_acle.h>
+                      ^
+compilation terminated.
+make: *** [src/openBSW/executables/referenceApp/application/src/app/subdir.mk:30: src/openBSW/executables/referenceApp/application/src/app/app.o] Error 1
+make: *** Waiting for unfinished jobs....
+ 
+ 
+Finished building: ../src/MPC57xx__Interrupt_Init.c
+ 
+Finished building: ../Project_Settings/Startup_Code/startup.S
+ 
+In file included from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:8:0,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/bitset.h:12,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/common/include/common/busid/BusId.h:10,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/configuration/include/busid/BusId.h:5,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/configuration/include/systems/ICanSystem.h:5,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/application/include/app/CanDemoListener.h:6,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/application/src/app/CanDemoListener.cpp:3:
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/slice.h:663:15: error: 'value' is not a member of 'std::is_trivially_copyable<estd::slice<unsigned char> >'
+ static_assert(std::is_trivially_copyable<slice<uint8_t>>::value, "slice is trivially copyable");
+               ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/slice.h:664:15: error: 'value' is not a member of 'std::is_trivially_copyable<estd::slice<const unsigned char> >'
+ static_assert(std::is_trivially_copyable<slice<uint8_t const>>::value, "slice of const is trivially copyable");
+               ^
+In file included from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/bitset.h:12:0,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/common/include/common/busid/BusId.h:10,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/configuration/include/busid/BusId.h:5,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/configuration/include/systems/ICanSystem.h:5,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/application/include/app/CanDemoListener.h:6,
+                 from D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/executables/referenceApp/application/src/app/CanDemoListener.cpp:3:
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h: In function 'estd::slice<const T> estd::memory::take(size_t, estd::slice<const unsigned char>&)':
+Finished building: ../src/main.cpp
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:206:9: error: 'is_trivially_constructible' is not a member of 'std'
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+         ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:206:42: error: expected primary-expression before '>' token
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+                                          ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:206:43: error: '::value' has not been declared
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+ 
+                                           ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h: In function 'estd::slice<T, 0u> estd::memory::take(size_t, estd::slice<unsigned char>&)':
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:235:9: error: 'is_trivially_constructible' is not a member of 'std'
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+         ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:235:42: error: expected primary-expression before '>' token
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+                                          ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:235:43: error: '::value' has not been declared
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+                                           ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h: In function 'const T& estd::memory::take(estd::slice<const unsigned char>&)':
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:257:9: error: 'is_trivially_constructible' is not a member of 'std'
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+         ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:257:42: error: expected primary-expression before '>' token
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+                                          ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:257:43: error: '::value' has not been declared
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+                                           ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h: In function 'T& estd::memory::take(estd::slice<unsigned char>&)':
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:279:9: error: 'is_trivially_constructible' is not a member of 'std'
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+         ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:279:42: error: expected primary-expression before '>' token
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+                                          ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:279:43: error: '::value' has not been declared
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+                                           ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h: In function 'T estd::memory::take_or(estd::slice<const unsigned char>&, const T&)':
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:357:9: error: 'is_trivially_constructible' is not a member of 'std'
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+         ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:357:42: error: expected primary-expression before '>' token
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+                                          ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:357:43: error: '::value' has not been declared
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+                                           ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h: In function 'T estd::memory::peek_or_else(const estd::slice<const unsigned char>&, const F&)':
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:369:9: error: 'is_trivially_constructible' is not a member of 'std'
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+         ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:369:42: error: expected primary-expression before '>' token
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+                                          ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:369:43: error: '::value' has not been declared
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+                                           ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h: In function 'T estd::memory::take_or_else(estd::slice<const unsigned char>&, const F&)':
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:381:9: error: 'is_trivially_constructible' is not a member of 'std'
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+         ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:381:42: error: expected primary-expression before '>' token
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+                                          ^
+D:/eJad_GP/SDV-SOTA/ECU/openBSW_ECU/openBSW/libs/bsw/estd/include/estd/memory.h:381:43: error: '::value' has not been declared
+         std::is_trivially_constructible<T>::value, "type has to be trivially constructible");
+                                           ^
+make: *** [src/openBSW/executables/referenceApp/application/src/app/subdir.mk:23: src/openBSW/executables/referenceApp/application/src/app/CanDemoListener.o] Error 1
+
+03:02:14 Build Finished (took 1s.362ms)
+

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workingSetManager>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1746384522062_2" label="openBSW" name="openBSW">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/openBSW_Z4_0" type="4"/>
+</workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1746383183633_0" label="Window Working Set" name="Aggregate for window 1746383183632"/>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1746383753547_1" label="Window Working Set" name="Aggregate for window 1746383753547"/>
 </workingSetManager>

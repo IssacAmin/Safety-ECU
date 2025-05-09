@@ -1,0 +1,16 @@
+eclipse.preferences.version=1
+environment/project/com.freescale.s32ds.cross.gnu.e200.exe.Debug_RAM/PATH/delimiter=;
+environment/project/com.freescale.s32ds.cross.gnu.e200.exe.Debug_RAM/PATH/operation=prepend
+environment/project/com.freescale.s32ds.cross.gnu.e200.exe.Debug_RAM/PATH/value=
+environment/project/com.freescale.s32ds.cross.gnu.e200.exe.Debug_RAM/append=true
+environment/project/com.freescale.s32ds.cross.gnu.e200.exe.Debug_RAM/appendContributed=true
+environment/project/com.freescale.s32ds.cross.gnu.e200.exe.debug.435289184/PATH/delimiter=;
+environment/project/com.freescale.s32ds.cross.gnu.e200.exe.debug.435289184/PATH/operation=replace
+environment/project/com.freescale.s32ds.cross.gnu.e200.exe.debug.435289184/PATH/value=D\:\\eJad_GP\\SDV-SOTA\\ECU\\openBSW_ECU\\MinGW-powerpc-eabi-13.1.0\\bin;C\:\\NXP\\S32DS_Power_v2.1\\S32DS\\build_tools\\msys32\\usr\\bin;C\:\\NXP\\S32DS_Power_v2.1\\eclipse\\..\\S32DS\\build_tools\\SPT\\bin;C\:/NXP/S32DS_Power_v2.1/eclipse/jre/bin/client;C\:/NXP/S32DS_Power_v2.1/eclipse/jre/bin;C\:/NXP/S32DS_Power_v2.1/eclipse/jre/lib/i386;C\:\\WinAVR-20100110\\bin;C\:\\WinAVR-20100110\\utils\\bin;C\:\\Program Files\\Common Files\\Oracle\\Java\\javapath;C\:\\Windows\\system32;C\:\\Windows;C\:\\Windows\\System32\\Wbem;C\:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C\:\\Windows\\System32\\OpenSSH\\;C\:\\Program Files\\Git\\cmd;D\:\\MatLab\\runtime\\win64;D\:\\MatLab\\bin;C\:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\bin\\Hostx64\\x64;C\:\\Program Files\\Microsoft VS Code\\bin;C\:\\msys64\\mingw64\\bin;C\:\\msys64\\mingw32\\bin;C\:\\msys64\\usr\\bin;C\:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C\:\\Program Files\\dotnet\\;C\:\\Program Files\\GitExtensions\\;C\:\\Program Files\\Graphviz\\bin;;C\:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\NvDLISR;C\:\\Program Files\\Meld\\;C\:\\Program Files\\CMake\\bin;C\:\\Users\\omart\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\;C\:\\Users\\omart\\AppData\\Local\\Programs\\Python\\Python313\\;C\:\\Users\\omart\\AppData\\Local\\Microsoft\\WindowsApps;C\:\\intelFPGA\\20.1\\modelsim_ase\\win32aloem;C\:\\Users\\omart\\AppData\\Local\\GitHubDesktop\\bin;C\:\\Users\\omart\\AppData\\Local\\Muse Hub\\lib;C\:\\Users\\omart\\AppData\\Local\\Programs\\Python\\Python311\\Scripts\\;C\:\\Users\\omart\\AppData\\Local\\Programs\\Python\\Python311\\;C\:\\Program Files\\Graphviz\\bin;;C\:\\NXP\\S32DS_Power_v2.1\\eclipse
+environment/project/com.freescale.s32ds.cross.gnu.e200.exe.debug.435289184/append=true
+environment/project/com.freescale.s32ds.cross.gnu.e200.exe.debug.435289184/appendContributed=true
+environment/project/com.freescale.s32ds.cross.gnu.e200.exe.release.1730335381/PATH/delimiter=;
+environment/project/com.freescale.s32ds.cross.gnu.e200.exe.release.1730335381/PATH/operation=prepend
+environment/project/com.freescale.s32ds.cross.gnu.e200.exe.release.1730335381/PATH/value=
+environment/project/com.freescale.s32ds.cross.gnu.e200.exe.release.1730335381/append=true
+environment/project/com.freescale.s32ds.cross.gnu.e200.exe.release.1730335381/appendContributed=true
