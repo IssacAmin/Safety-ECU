@@ -136,6 +136,7 @@ void testFlashingSequenceWithUdsPayloads(void)
 }
 void testcantpRecieverWithCanFrames(void)
 {
+	Std_ReturnType canRet;
 	char ff []= {0x10, 0x35, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06};
 	char cf1[]= {0x21, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D};
 	char cf2[]= {0x22, 0x0E, 0x0F, 0x10, 0x11, 0x12, 0x13, 0x14};
@@ -148,7 +149,7 @@ void testcantpRecieverWithCanFrames(void)
 	Can_PduType CanMessage;
 	CanMessage.length = 8;
 	CanMessage.swPduHandle = 0;
-	CanMessage.id = 0;
+	CanMessage.id = 0x123;
 
 	CanMessage.sdu = ff;
 
@@ -163,7 +164,7 @@ void testcantpRecieverWithCanFrames(void)
 
 	CanMessage.length = 8;
 	CanMessage.swPduHandle = 0;
-	CanMessage.id = 0;
+	CanMessage.id = 0x123;
 
 	CanMessage.sdu = cf1;
 
@@ -178,7 +179,7 @@ void testcantpRecieverWithCanFrames(void)
 
 	CanMessage.length = 8;
 	CanMessage.swPduHandle = 0;
-	CanMessage.id = 0;
+	CanMessage.id = 0x123;
 
 	CanMessage.sdu = cf2;
 
@@ -193,13 +194,12 @@ void testcantpRecieverWithCanFrames(void)
 
 	CanMessage.length = 8;
 	CanMessage.swPduHandle = 0;
-	CanMessage.id = 0;
+	CanMessage.id = 0x123;
 
 	CanMessage.sdu = cf3;
 
-	Can_Write(CanHardwareObject_1, &CanMessage);
+	canRet = Can_Write(CanHardwareObject_1, &CanMessage);
 	transmitFlag = 1;
-
 	while(transmitFlag)
 	{
 		Can_MainFunction_Write();
@@ -207,7 +207,7 @@ void testcantpRecieverWithCanFrames(void)
 	}
 	CanMessage.length = 8;
 	CanMessage.swPduHandle = 0;
-	CanMessage.id = 0;
+	CanMessage.id = 0x123;
 
 	CanMessage.sdu = cf4;
 
@@ -221,7 +221,7 @@ void testcantpRecieverWithCanFrames(void)
 
 	CanMessage.length = 8;
 	CanMessage.swPduHandle = 0;
-	CanMessage.id = 0;
+	CanMessage.id = 0x123;
 
 	CanMessage.sdu = cf5;
 
@@ -235,7 +235,7 @@ void testcantpRecieverWithCanFrames(void)
 
 	CanMessage.length = 8;
 	CanMessage.swPduHandle = 0;
-	CanMessage.id = 0;
+	CanMessage.id = 0x123;
 
 	CanMessage.sdu = cf6;
 
@@ -249,7 +249,7 @@ void testcantpRecieverWithCanFrames(void)
 
 	CanMessage.length = 7;
 	CanMessage.swPduHandle = 0;
-	CanMessage.id = 0;
+	CanMessage.id = 0x123;
 
 	CanMessage.sdu = cf7;
 
@@ -362,6 +362,12 @@ void ShutdownHook (StatusType error)
 	Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_LOW);
 }
 
+void funcccc(void)
+{
+	Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_LOW);
+
+}
+
 
 uint8_t UDS_sendResponse(UDS_RES_t *response)
 {
@@ -370,7 +376,7 @@ uint8_t UDS_sendResponse(UDS_RES_t *response)
 	//TODO: add application layer addressing info to data payload
 	PduInfo.SduDataPtr = response->data;
 	PduInfo.SduLength = response->udsDataLen;
-	//	CanTp_Transmit(UDS_TX_NPDUID, &PduInfo);
+	CanTp_Transmit(UDS_TX_NPDUID, &PduInfo);
 
 	return 1;
 }
@@ -400,17 +406,20 @@ TASK(OsTask_Core0)
 	int counter = 0;
 	uint8_t bytesT[] = {1, 2, 3};
 
-	testcantpSenderWithCanFrames();
+//	testcantpSenderWithCanFrames();
 	//	 testcantpRecieverWithCanFrames();
 
+	bool sendVar = false;
 	for(;;)                                  /* main endless loop */
 	{
+		if(sendVar == true){
 		Can_PduType CanMessage;
 		CanMessage.length = 3;
 		CanMessage.swPduHandle = 0;
 		CanMessage.id = 1;
 		CanMessage.sdu = bytesT;
-		sendCanMessageBlocking(&CanMessage);
+		Can_Write(CanHardwareObject_1, &CanMessage);
+		}
 
 		Dio_FlipChannel(DioConf_DioChannel_LED_6);
 		UDS_mainFunction();
@@ -422,8 +431,8 @@ TASK(OsTask_Core0)
 
 		CanTp_MainFunction();
 
-		volatile uint32_t i = 100000;
-		while(i--); //OS enters into machine check exception without this delay
+//		volatile uint32_t i = 100000;
+//		while(i--); //OS enters into machine check exception without this delay
 	}
 }
 

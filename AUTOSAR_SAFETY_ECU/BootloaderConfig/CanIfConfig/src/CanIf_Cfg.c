@@ -62,7 +62,7 @@ const CanIf_TxPduConfigType CanIfTxPduConfigData[] = {
 		{
 				.CanIfTxPduBufferRef =&TxBufferCfg1,
 				.CanIfUserTxConfirmation = 0,
-				.CanIfCanTxPduIdCanId = (uint32)1,
+				.CanIfCanTxPduIdCanId = (uint32)0x456,
 				.CanIfTxPduId = (uint32) 0,
 				.CanIfTxPduIdCanIdType = CANIF_CAN_ID_TYPE_11,
 				.CanIfCanTxPduType = CANIF_PDU_TYPE_STATIC,
@@ -76,7 +76,7 @@ const CanIf_TxPduConfigType CanIfTxPduConfigData[] = {
 
 const CanIf_RxPduConfigType CanIfRxPduConfigData[] = {
 		{
-				.CanIfCanRxPduCanId =(uint32) 1,
+				.CanIfCanRxPduCanId =(uint32) 0x123,
 				.CanIfUserRxIndication = 0,
 				.CanIfCanRxPduId = (uint32) 0,
 				.CanIfCanRxPduDlc = (uint8) 8,

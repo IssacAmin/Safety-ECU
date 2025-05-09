@@ -30,6 +30,7 @@
 "./src/MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3/src/Os_tp.o"
 "./src/OsVector.o"
 "./src/UDS_utils.o"
+"./src/eraseMemoryRoutine.o"
 "./src/flags.o"
 "./src/intc_sw_handlers.o"
 "./src/main.o"

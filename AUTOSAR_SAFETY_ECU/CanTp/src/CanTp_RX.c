@@ -43,6 +43,8 @@ Std_ReturnType N_USData_FFHandling(PduIdType NPduId, MessageType_t msg_type, N_A
         // Increment the byte number pointer to start saving the next CF in the buffer
         byteNumber = BYTE_NUMBER_INIT_VALUE;
 
+        expectedSequenceNumber= SEQUENCE_NUMBER_INIT_VALUE;
+
 
         // change the network layer status to RX_BUSY
         networkLayerStatus= N_S_RX_BUSY;
@@ -50,7 +52,7 @@ Std_ReturnType N_USData_FFHandling(PduIdType NPduId, MessageType_t msg_type, N_A
         // TODO: change the parameter of the function to be more generic
         TransmitFlowControlFrame(NPduId, CONSECUITVE_FRAME_BLOCK_SIZE, 1, FLOW_CONTROL_CONTINUE_TRANSMISSION);
         remainingBlocks = CONSECUITVE_FRAME_BLOCK_SIZE;
-        WAIT_N_CR(5);
+        WAIT_N_CR(30);
 
         // TODO: send the FFIndication to the application
 //         N_USData_FFIndication(msg_type, address_info, data_length);
@@ -69,17 +71,17 @@ Std_ReturnType N_USData_CFHandling(PduIdType NPduId, uint8_t *data)
     Std_ReturnType result= E_NOT_OK;
 
     int i;
-
+    
     uint8_t receivedDataSequenceNumber= (data[CONSECUTIVE_FRAME_PCI_INDEX] & CONSECUTIVE_FRAME_PCI_MASK);
-
+    
     /* 
-     * 1) Check the sequence number of the received frame.
-     * 2) Append the data to the buffer.
-     * 3) If the sender sent BS consecutive frames --> send the FC frame to the sender.
-     * 3) If all data has been received --> send the data buffer to the application.
-     */
-    if(receivedDataSequenceNumber == expectedSequenceNumber)
-    {
+    * 1) Check the sequence number of the received frame.
+    * 2) Append the data to the buffer.
+    * 3) If the sender sent BS consecutive frames --> send the FC frame to the sender.
+    * 3) If all data has been received --> send the data buffer to the application.
+    */
+   if(receivedDataSequenceNumber == expectedSequenceNumber)
+   {
         result= E_OK;
         // Save the data in the buffer
 //        //printf("consecutive frame: 0x");
@@ -143,7 +145,7 @@ Std_ReturnType N_USData_CFHandling(PduIdType NPduId, uint8_t *data)
             else
             {
                 // Start timer to wait for the next CF to detect timeout when it fires
-                WAIT_N_CR(5);
+                WAIT_N_CR(30);
             }
         }
     }
@@ -172,7 +174,7 @@ Std_ReturnType N_USData_CFHandling(PduIdType NPduId, uint8_t *data)
  **********************************************************************************************************/
 Std_ReturnType N_USData_Indication(MessageType_t msg_type, N_AI address_info, uint8_t * data, uint32_t data_length,  ServiceResult_t * result)
 {
-
+    
 }
 
 static void  CanTp_HandleRecievedFrame(PduIdType NPduId, MessageType_t msg_type, N_AI address_info, uint8_t * data, uint32_t data_length)
@@ -181,10 +183,10 @@ static void  CanTp_HandleRecievedFrame(PduIdType NPduId, MessageType_t msg_type,
     uint8_t bs;
     uint8_t STmin;
     uint8_t FC_Flag;
-
+    
     int i;
     //printf("Data Indication: %x\n", frameType);
-
+    
     switch (frameType)
     {
     // Single Frame
@@ -281,7 +283,7 @@ void CanTp_RxIndication (PduIdType RxLPduId,  const PduInfoType* PduInfoPtr )
     CanTp_NSduType * CanTpNSduPtr;
     uint8_t * data = PduInfoPtr->SduDataPtr;
 
-    uint8_t NPduId = 0;
+    uint8_t NPduId = -1;
     uint8_t frameType= ((data[RECEIVED_FRAME_PCI_INDEX] & (uint8_t)FLOW_CONTROL_RECEIVED_FRAME_TYPE_MASK)>>4);
 
 
@@ -314,6 +316,12 @@ void CanTp_RxIndication (PduIdType RxLPduId,  const PduInfoType* PduInfoPtr )
                 }
                 break;
         }
+    }
+
+    if(NPduId == -1)
+    {
+        // No matching PduId found
+        return;
     }
 
 	MessageType_t msg_type = DIAGNOSTIC; //TODO: how to find this?
