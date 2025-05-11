@@ -113,7 +113,6 @@ uint8_t UDS_sendResponse(UDS_RES_t *response)
 	PduInfo.SduDataPtr = response->data;
 	PduInfo.SduLength = response->udsDataLen;
 	CanTp_Transmit(UDS_TX_NPDUID, &PduInfo);
-
 	return 1;
 }
 
@@ -193,9 +192,19 @@ TASK(OsTask_Core0)
 			ret = GetCounterValue(SYSTEMTIMER, &previousTicks);
 			Dio_FlipChannel(DioConf_DioChannel_LED_6);
 		}
+		
 
-		erase_flashbank();
-
+		//check for incoming messages
+		
 	}
 }
 
+
+void flsWaitUntilJobDone(void)
+{
+	Fls_MainFunction();
+	while(Fls_GetJobResult() == MEMIF_JOB_PENDING)
+	{
+		Fls_MainFunction();
+	}
+}

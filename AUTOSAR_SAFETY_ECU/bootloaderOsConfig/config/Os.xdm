@@ -190,9 +190,16 @@
                   <d:lst name="OsTimeConstant" type="MAP"/>
                 </d:ctr>
               </d:lst>
-              <d:lst name="OsEvent" type="MAP"/>
+              <d:lst name="OsEvent" type="MAP">
+                <d:ctr name="OsEvent_FlsDone" type="IDENTIFIABLE">
+                  <d:var name="OsEventMask" type="INTEGER" >
+                    <a:a name="ENABLE" value="false"/>
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                </d:ctr>
+              </d:lst>
               <d:ctr name="OsIoc" type="IDENTIFIABLE">
-                <a:a name="ENABLE" value="false"/>
+                <a:a name="ENABLE" value="true"/>
                 <d:lst name="OsIocCommunication" type="MAP"/>
               </d:ctr>
               <d:lst name="OsIsr" type="MAP"/>

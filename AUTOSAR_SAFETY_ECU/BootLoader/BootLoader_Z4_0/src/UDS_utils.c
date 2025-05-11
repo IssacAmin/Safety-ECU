@@ -417,12 +417,3 @@ void UDSUtils_MainFunction(void)
 		}
 	}
 }
-
-void flsWaitUntilJobDone(void)
-{
-	Fls_MainFunction();
-	while(Fls_GetJobResult() == MEMIF_JOB_PENDING)
-	{
-		Fls_MainFunction();
-	}
-}
