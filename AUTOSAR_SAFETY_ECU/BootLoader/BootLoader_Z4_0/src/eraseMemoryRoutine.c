@@ -8,12 +8,10 @@
 #include "uds_routines_types.h"
 #include "UDS_utils.h"
 
-uint8_t flashErasedFlag = 0, commandToEraseFlashBank = 0;
 uint8_t rid_FF00_start(uint8_t* data,uint8_t dataLen)
 {
-	/*Queue the task for the fls*/
-	commandToEraseFlashBank = 1;
-	return 1U;
+	BL_UDS_UtilsReq_MetaData_t BL_UtilsReq = {BL_UTIL_REQ_ERASE_FLASH_BANK,NULL,0U,5U};
+    return BLUtils_createNewRequest(&BL_UtilsReq);
 }
 
 uint8_t rid_FF00_checkRes(uint8_t* data,uint8_t dataLen)

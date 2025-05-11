@@ -12,13 +12,31 @@
 #include "flags.h"
 #include <stdbool.h>
 #include <stdint.h>
+#include <inttypes.h>
 #include "BootLoader_cfg.h"
 #include "Mcu.h"
 
+extern void UDS_BL_UtilsReq_callBack(uint8_t status);
 #define ADD_SEGMENT_BYTE_CODE 		0x00
 #define COPY_SEGMENT_BYTE_CODE		0x11
 #define JUMP_SEGMENT_BYTE_CODE 		0x01
 #define METADATA_SEGMENT_BYTE_CODE	0x10
+
+typedef enum
+{
+	BL_UTIL_REQ_NO_REQ,
+	BL_UTIL_REQ_ERASE_FLASH_BANK,
+	BL_UTIL_REQ_PARSE_DATA,
+	BL_UTIL_REQ_VALIDATE_FLASH_BANK
+}BL_UDS_UtilsReq_t;
+
+typedef struct
+{
+	BL_UDS_UtilsReq_t	requestType;
+	uint8_t* 			requestData;
+	uint32_t			requestDataLen;
+	uint8_t				requestTrialCount;
+}BL_UDS_UtilsReq_MetaData_t;
 
 typedef enum{
 	FLASH_OK,
@@ -42,7 +60,8 @@ typedef enum{
 	RESET_DURING_FLASH,
 	FLASHING_IN_PROGRESS, 
 	FLASHBANK_A_ERASED, 
-	FLASHBANK_B_ERASED
+	FLASHBANK_B_ERASED,
+	UDS_LAST_SECURITY_LEVEL
 }UDS_Utils_FLAG;
 /* 
 * Requirements: 
@@ -57,30 +76,18 @@ typedef enum{
 *
 */
 
-extern uint8_t commandToEraseFlashBank, flashErasedFlag;
 void flsWaitUntilJobDone(void);
 
- UDS_Utils_ReturnType modify_flag(UDS_Utils_FLAG flag ,UDS_Utils_ModifyFlag input);
- 
- uint8_t read_flags(UDS_Utils_FLAG flag);
- 
- UDS_Utils_ReturnType erase_flashbank(void);
- 
- UDS_Utils_ReturnType copy_segment(uint32_t start_address, uint32_t segment_length, uint32_t dst_address);
- 
- UDS_Utils_ReturnType add_segment(uint32_t dst_address, uint8_t *data, uint32_t segment_length);
+UDS_Utils_ReturnType modify_flag(UDS_Utils_FLAG flag ,UDS_Utils_ModifyFlag input);
 
- UDS_Utils_ReturnType flash_flashbank_metadata(uint16_t crc, uint32_t app_length);
+uint8_t read_flags(UDS_Utils_FLAG flag);
 
- UDS_Utils_ReturnType switch_and_validate_flashbank(void);
+void reset_ecu(void);
 
- /* copy code 0x00 - start address - segment length (data length must b 9 bytes)*/
- /* add  code 0x11 - start address - segment length - data[1-n]  (data length must be a minimum of 10 bytes) */
+void BLUtil_mainFunction(void);
 
- UDS_Utils_ReturnType parse_data(uint8_t* data, uint32_t data_length);
+uint8_t BLUtils_createNewRequest(BL_UDS_UtilsReq_MetaData_t* reqType);
 
- void reset_ecu(void);
+UDS_Utils_ReturnType flash_flashbank_metadata(uint16_t crc, uint32_t app_length);
  
- void UDS_mainFunction(void);
- 
- #endif /* UDS_UTILS_H_ */
+#endif /* UDS_UTILS_H_ */

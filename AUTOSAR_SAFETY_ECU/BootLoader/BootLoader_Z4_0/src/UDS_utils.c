@@ -6,9 +6,9 @@
  */
 #include "UDS_utils.h"
 
+static BL_UDS_UtilsReq_MetaData_t BL_UtilisRequestStatus = {BL_UTIL_REQ_NO_REQ,NULL,0U};
 static flags flags_instance;
 static uint32_t global_dst_address = 0, modifyFlashBankErasedFlagTrigger = 0;
-
 
 UDS_Utils_ReturnType modify_flag(UDS_Utils_FLAG flag ,UDS_Utils_ModifyFlag input){
 	Std_ReturnType fls_ret;
@@ -75,6 +75,9 @@ UDS_Utils_ReturnType modify_flag(UDS_Utils_FLAG flag ,UDS_Utils_ModifyFlag input
 			flags_instance.flashbank_B_Erased = (input == FLAG_SET)? 1 : 0;
 		}
 		break;
+	case UDS_LAST_SECURITY_LEVEL:
+		flags_instance.uds_last_securityLvl = input;
+		break;
 	default:
 		break;
 	}
@@ -113,6 +116,8 @@ uint8_t read_flags(UDS_Utils_FLAG flag){
 		return flags_instance.flashbank_A_Erased;	
 	case FLASHBANK_B_ERASED:
 		return flags_instance.flashbank_B_Erased;
+	case UDS_LAST_SECURITY_LEVEL:
+		return flags_instance.uds_last_securityLvl;
 	default:
 		return -1; //TODO: return something
 	}
@@ -164,8 +169,9 @@ UDS_Utils_ReturnType erase_flashbank(void){
 		return FLASH_FAILED;
 	}
 }
-
-UDS_Utils_ReturnType copy_segment(uint32_t start_address, uint32_t segment_length, uint32_t dst_address){
+/* copy code 0x00 - start address - segment length (data length must b 9 bytes)*/
+/* add  code 0x11 - start address - segment length - data[1-n]  (data length must be a minimum of 10 bytes) */
+static UDS_Utils_ReturnType copy_segment(uint32_t start_address, uint32_t segment_length, uint32_t dst_address){
 	/* Variable Initialization */
 	Std_ReturnType fls_ret;
 	uint8_t app_sector_buffer[SECTOR_SIZE + PAGE_SIZE];
@@ -242,7 +248,7 @@ UDS_Utils_ReturnType copy_segment(uint32_t start_address, uint32_t segment_lengt
 
 
 
-UDS_Utils_ReturnType add_segment(uint32_t dst_address, uint8_t *data, uint32_t segment_length){
+static UDS_Utils_ReturnType add_segment(uint32_t dst_address, uint8_t *data, uint32_t segment_length){
 	/* Variable Initialization */
 	Std_ReturnType fls_ret;
 
@@ -291,12 +297,13 @@ UDS_Utils_ReturnType add_segment(uint32_t dst_address, uint8_t *data, uint32_t s
 
 }
 
-UDS_Utils_ReturnType jump_segment(uint32_t start, uint32_t size){
+static UDS_Utils_ReturnType jump_segment(uint32_t start, uint32_t size){
 	global_dst_address += size;
 }
 
 //TODO: return something
-UDS_Utils_ReturnType flash_flashbank_metadata(uint16_t crc, uint32_t app_length){
+UDS_Utils_ReturnType flash_flashbank_metadata(uint16_t crc, uint32_t app_length)
+{
 	/* Variable Initialization */
 	Std_ReturnType fls_ret;
 	meta_data meta_data_instance;
@@ -404,16 +411,65 @@ else{
 	return FLASH_OK;
 }
 
-void UDSUtils_MainFunction(void)
+uint8_t BLUtils_createNewRequest(BL_UDS_UtilsReq_MetaData_t* reqType)
 {
-	uint8_t i = 0;
-	UDS_Utils_ReturnType ret;
-	if(commandToEraseFlashBank == 1)
+	if(BL_UTIL_REQ_NO_REQ == BL_UtilisRequestStatus.requestType)
 	{
-		commandToEraseFlashBank = 0;
-		for(;i<5;i++)
+
+	}
+	/*Fail*/
+	return 0U;
+}
+
+void BLUtil_mainFunction(void)
+{
+	if(BL_UTIL_REQ_NO_REQ != BL_UtilisRequestStatus.requestType)
+	{/*There is a request being processed*/
+		
+		if(BL_UtilisRequestStatus.requestTrialCount == 0U)
+		{/*The current request exceeded the number of allowed trails*/
+			
+			/*Reset request status*/
+			BL_UtilisRequestStatus.requestType = BL_UTIL_REQ_NO_REQ;
+			BL_UtilisRequestStatus.requestData = NULL;
+			BL_UtilisRequestStatus.requestDataLen = 0U;
+			/*TODO : Call the callback function with a fail status*/
+			UDS_BL_UtilsReq_callBack(0U);
+		}
+		else
 		{
-			ret = erase_flashbank();
+			uint8_t ret = 0;
+			switch (BL_UtilisRequestStatus.requestType)
+			{
+			case BL_UTIL_REQ_ERASE_FLASH_BANK:
+				if(FLASH_OK == erase_flashbank())
+				{
+					ret = 1;
+				}
+				break;
+			case BL_UTIL_REQ_PARSE_DATA:
+				if(FLASH_OK == parse_data(BL_UtilisRequestStatus.requestData,BL_UtilisRequestStatus.requestDataLen))
+				{
+					ret = 1;
+				}
+			case BL_UTIL_REQ_VALIDATE_FLASH_BANK:
+				if(FLASH_OK == switch_and_validate_flashbank())
+				{
+					ret = 1;
+				}
+				break;
+			default:
+				/*TODO : Error*/
+				break;
+			}
+			if(1U == ret)
+			{
+				BL_UtilisRequestStatus.requestType = BL_UTIL_REQ_NO_REQ;
+				BL_UtilisRequestStatus.requestData = NULL;
+				BL_UtilisRequestStatus.requestDataLen = 0U;
+				/*TODO : Call the callback function with a success status*/
+				UDS_BL_UtilsReq_callBack(1U);
+			}
 		}
 	}
 }

@@ -27,6 +27,45 @@ FUNC(void,CAN_CODE) canErrorNotification( void)
 	return;
 }
 
+void UDS_setSecurityLvlAfterProgSessionReset(UDS_SecurityLevel_t* lvlRecord);
+
+static void BL_InitUDS(void)
+{
+	/*UDS Set up*/
+	/*Initialize The server*/
+	UDS_serverInit();
+
+	/*Is theere a programming session request pending ?*/
+	if(read_flags(PROGRAMMING_SESSION))
+	{
+		/*Set the bootloader flag for the UDS*/
+		set_BootLoader_ActiveFlag();
+
+		/*Force The Security Level*/
+		/*get the last security level*/
+		uint8_t uds_secLvl = read_flags(UDS_LAST_SECURITY_LEVEL);
+		/*get level record structure*/
+		UDS_SecurityLevel_t *securityLvlRecord = (UDS_SecurityLevel_t*)UDS_BinaryID_Search(securityLevels,sizeof(UDS_SecurityLevel_t),UDS_NUMBER_OF_SECURITY_LEVELS,&(uds_secLvl),1);
+		if(NULL != securityLvlRecord)
+		{
+			UDS_setSecurityLvlAfterProgSessionReset(securityLvlRecord);
+			uint8_t progSessReq[] = {0x10,0x1};
+			UDS_REQ_t req;
+			req.data = &progSessReq;
+			req.udsDataLen = 2;
+			/*meta data should be checked*/
+			req.msgType = UDS_MType_Diagnostics;
+			req.trgAddType = UDS_A_TA_PHYSICAL;
+			req.srcAdd = 0x55;
+			req.trgAdd = 0xAA;
+			req.status = UDS_REQUEST_STATUS_NOT_SERVED;
+			UDS_RequestIndication(&req);
+			UDS_mainFunction();
+		}
+		modify_flag(PROGRAMMING_SESSION,FLAG_CLEAR);
+	}
+}
+
 void (*ptr_to_bootloader)(void);
 void (*ptr_to_flashbank_A)(void);
 void (*ptr_to_flashbank_B)(void) = 0x1200000;
@@ -66,21 +105,7 @@ int main(void)
 
 	//	 	testcantpSenderWithCanFrames();
 
-	/*UDS Set up*/
-	UDS_serverInit();
-	set_BootLoader_ActiveFlag();
-	uint8_t progSessReq[] = {0x10,0x1};
-	UDS_REQ_t req;
-	req.data = &progSessReq;
-	req.udsDataLen = 2;
-	req.msgType = UDS_MType_Diagnostics;
-	req.trgAddType = UDS_A_TA_PHYSICAL;
-	req.srcAdd = 0x55;
-	req.trgAdd = 0xAA;
-	req.status = UDS_REQUEST_STATUS_NOT_SERVED;
-	UDS_RequestIndication(&req);
-	UDS_mainFunction();
-
+	BL_InitUDS();
 
 	//	testFlashingSequenceWithCanFrames();
 
@@ -154,8 +179,6 @@ TASK(OsTask2_Core0)
 
 	CanTp_MainFunction();
 
-	UDSUtils_MainFunction();
-
 	ret = SetRelAlarm(task2WakeupAlarm, 8, 0);
 	ret = TerminateTask();
 	/*should never get here*/
@@ -197,6 +220,9 @@ TASK(OsTask_Core0)
 		//check for incoming messages
 		
 	}
+
+	BLUtil_mainFunction();
+	while(1);
 }
 
 
