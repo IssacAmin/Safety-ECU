@@ -872,7 +872,7 @@ OSASM("    .vle ");
 
 #else
 
-#warning Unknown compiler
+#error Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OSVECTORS_STOP_SEC_CODE)
@@ -895,7 +895,7 @@ OSASM("    .vle ");
 
 #else
 
-#warning Unknown compiler
+#error Unknown compiler
 #endif /* OSCWPPC */
 
 /*  --- OSVECTORS CODE second core ---  */
@@ -920,7 +920,7 @@ OSASM("    .vle ");
 
 #else
 
-#warning Unknown compiler
+#error Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OSVECTORS2_STOP_SEC_CODE)
@@ -943,7 +943,7 @@ OSASM("    .vle ");
 
 #else
 
-#warning Unknown compiler
+#error Unknown compiler
 #endif /* OSCWPPC */
 
 /*  --- STARTUP CODE second core ---  */
@@ -968,7 +968,7 @@ OSASM("    .vle ");
 
 #else
 
-#warning Unknown compiler
+#error Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OSSTARTUP2_STOP_SEC_CODE)
@@ -991,7 +991,7 @@ OSASM("    .vle ");
 
 #else
 
-#warning Unknown compiler
+#error Unknown compiler
 #endif /* OSCWPPC */
 
 #endif /* OsApplication_1_START_SEC_CONST_8 */

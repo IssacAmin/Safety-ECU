@@ -35,6 +35,7 @@
 "./src/intc_sw_handlers.o"
 "./src/main.o"
 "./src/securityLevelsFunctions.o"
+"./src/testFunctions.o"
 "./src/UDS_C_SERVER/server_main/src/uds_NR_Handler.o"
 "./src/UDS_C_SERVER/server_main/src/uds_helpers.o"
 "./src/UDS_C_SERVER/server_main/src/uds_server.o"

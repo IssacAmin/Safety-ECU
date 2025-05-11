@@ -455,6 +455,7 @@ The specification only allows up to 256 can hardware objects. The driver support
 * @details        Maximum number of Filters configured for RxFifo.
 *
 */
+#define CAN_MAXTABLEID_0 8U
 
 
 /*
@@ -464,7 +465,7 @@ The specification only allows up to 256 can hardware objects. The driver support
 *                 configuration for Rx Fifo (see Can_ControllerConfigType structure).
 *
 */
-#define CAN_RXFIFO_ENABLE (STD_OFF)
+#define CAN_RXFIFO_ENABLE (STD_ON)
 
 /*
 * @brief          Set if Rx Fifo events (Warning/Overflow/FrameAvailable) are configured on the same int on INTC vector table.
@@ -503,7 +504,7 @@ The specification only allows up to 256 can hardware objects. The driver support
 * @details        RxFifo Functionality enabled/disabled. Used for INTERRUPTs mapping in Can_Irq.c file.
 *
 */
-#define CAN_A_FIFO_EN (STD_OFF)
+#define CAN_A_FIFO_EN (STD_ON)
 
 /*
 * @brief          Error notification enabled/disabled.

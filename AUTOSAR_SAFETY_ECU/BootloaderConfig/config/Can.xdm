@@ -99,7 +99,7 @@
                       <a:a name="IMPORTER_INFO" value="@DEF"/>
                     </d:ref>
                     <d:var name="CanControllerRxFifoEnable" type="BOOLEAN" 
-                           value="false"/>
+                           value="true"/>
                     <d:var name="CanRxFifoWarningNotification" 
                            type="FUNCTION-NAME" value="NULL_PTR">
                       <a:a name="IMPORTER_INFO" value="@DEF"/>
@@ -260,7 +260,168 @@
                              value="2047">
                         <a:a name="IMPORTER_INFO" value="@DEF"/>
                       </d:var>
-                      <d:lst name="CanRxFifoTable" type="MAP"/>
+                      <d:lst name="CanRxFifoTable" type="MAP">
+                        <d:ctr name="CanRxFifoTable_0" type="IDENTIFIABLE">
+                          <d:var name="CanIDValue0" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue1" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue2" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue3" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanTableIDType" type="ENUMERATION" 
+                                 value="Standard">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanMBFilterMaskValue" type="INTEGER" 
+                                 value="0"/>
+                        </d:ctr>
+                        <d:ctr name="CanRxFifoTable_1" type="IDENTIFIABLE">
+                          <d:var name="CanIDValue0" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue1" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue2" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue3" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanTableIDType" type="ENUMERATION" 
+                                 value="Standard">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanMBFilterMaskValue" type="INTEGER" 
+                                 value="0"/>
+                        </d:ctr>
+                        <d:ctr name="CanRxFifoTable_2" type="IDENTIFIABLE">
+                          <d:var name="CanIDValue0" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue1" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue2" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue3" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanTableIDType" type="ENUMERATION" 
+                                 value="Standard">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanMBFilterMaskValue" type="INTEGER" 
+                                 value="0"/>
+                        </d:ctr>
+                        <d:ctr name="CanRxFifoTable_3" type="IDENTIFIABLE">
+                          <d:var name="CanIDValue0" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue1" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue2" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue3" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanTableIDType" type="ENUMERATION" 
+                                 value="Standard">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanMBFilterMaskValue" type="INTEGER" 
+                                 value="0"/>
+                        </d:ctr>
+                        <d:ctr name="CanRxFifoTable_4" type="IDENTIFIABLE">
+                          <d:var name="CanIDValue0" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue1" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue2" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue3" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanTableIDType" type="ENUMERATION" 
+                                 value="Standard">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanMBFilterMaskValue" type="INTEGER" 
+                                 value="0"/>
+                        </d:ctr>
+                        <d:ctr name="CanRxFifoTable_5" type="IDENTIFIABLE">
+                          <d:var name="CanIDValue0" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue1" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue2" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue3" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanTableIDType" type="ENUMERATION" 
+                                 value="Standard">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanMBFilterMaskValue" type="INTEGER" 
+                                 value="0"/>
+                        </d:ctr>
+                        <d:ctr name="CanRxFifoTable_6" type="IDENTIFIABLE">
+                          <d:var name="CanIDValue0" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue1" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue2" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue3" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanTableIDType" type="ENUMERATION" 
+                                 value="Standard">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanMBFilterMaskValue" type="INTEGER" 
+                                 value="0"/>
+                        </d:ctr>
+                        <d:ctr name="CanRxFifoTable_7" type="IDENTIFIABLE">
+                          <d:var name="CanIDValue0" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue1" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue2" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanIDValue3" type="INTEGER" value="255">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanTableIDType" type="ENUMERATION" 
+                                 value="Standard">
+                            <a:a name="IMPORTER_INFO" value="@DEF"/>
+                          </d:var>
+                          <d:var name="CanMBFilterMaskValue" type="INTEGER" 
+                                 value="0"/>
+                        </d:ctr>
+                      </d:lst>
                     </d:ctr>
                     <d:ctr name="CanTTController" type="IDENTIFIABLE">
                       <a:a name="ENABLE" value="false"/>

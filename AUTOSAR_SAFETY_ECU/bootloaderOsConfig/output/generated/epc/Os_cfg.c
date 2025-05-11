@@ -25,7 +25,7 @@
 const    OSAPP   OsAppCfgTable[OSNAPPS] = 
 {
     {
-        0x80000000U, /* all tasks of the application, priority-wise */
+        0xc0000000U, /* all tasks of the application, priority-wise */
     }, /* OsApplication_1 */
 };
 
@@ -34,9 +34,16 @@ const    OSTSK   OsTaskCfgTable[OSNTSKS] =
 {
     {
         1U, /* Application identification mask value */
+        (OSTASKENTRY) &FuncOsTask2_Core0, /* entry point of task */
+        0U, /* properties of task OSTSKACTIVATE, OSTSKEXTENDED, OSTSKNONPREMPT */
+        0U, /* task id (task number in the task table) */
+        0U, /* application identification value */
+    }, /* OsTask2_Core0 */
+    {
+        1U, /* Application identification mask value */
         (OSTASKENTRY) &FuncOsTask_Core0, /* entry point of task */
         0U | OSTSKACTIVATE, /* properties of task OSTSKACTIVATE, OSTSKEXTENDED, OSTSKNONPREMPT */
-        0U, /* task id (task number in the task table) */
+        1U, /* task id (task number in the task table) */
         0U, /* application identification value */
     }, /* OsTask_Core0 */
 };
@@ -146,11 +153,29 @@ const    OSALM   OsAlarmsCfg[OSNUSERALMS] =
 {
     {
         1U, /* appMask */
+        0U, /* task to notify */
+        0U, /* attached Counter ID */
+        0U, /* Alarms' hook entry */
+        0U, /* application identification value */
+    }, /* task2WakeupAlarm */
+    {
+        1U, /* appMask */
         0U, /* Task to start or to set Event */
         0U, /* attached Counter ID */
         (OSCALLBACK) &canTpOsAlarmCallback, /* Alarms' hook entry */
         0U, /* application identification value */
     }, /* canTp_OsAlarm */
+};
+
+/* Auto started Alarms */
+const    OSALMAUTOTYPE   OsAutoAlarms[OSNAUTOALMS] = 
+{
+    {
+        &OsAlarms[0U], /* Reference to alarm */
+        (TickType)8U, /* Time to start (relative) */
+        (TickType)8U, /* Alarm cycle, 0U for non-cycled */
+        OSALMRELATIVE, /* The type of autostart alarm */
+    }, /* task2WakeupAlarm */
 };
 
 /* Counter table */

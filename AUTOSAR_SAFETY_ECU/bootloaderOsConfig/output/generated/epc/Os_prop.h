@@ -47,7 +47,7 @@
 #define OSNCORES 1U                        /* The number of cores in the system */
 #define OS_MASTER_CORE 0U                  /* The Master Core number */
 #define OSNSPINLOCKS 0U                    /* The number number of spinlocks */
-#define OSNTASKSCORE0 1U                   /* The number of tasks assigned to core 0 */
+#define OSNTASKSCORE0 2U                   /* The number of tasks assigned to core 0 */
 #define OSNTASKSCORE1 0U                   /* The number of tasks assigned to core 1 */
 #define OSNISRCORE0 0U                     /* equal to summ of number ISR, system timers and TPTimer */
 #define OSNISRCORE1 0U                     /* equal to summ of number ISR, system timers and TPTimer */
@@ -133,21 +133,23 @@
 #define OSNSYSTMRS 1U                      /* The number of timers, excluding TP Timer */
 #define OSTIMeMIOS                         /* Hardware for System/Second timer */
 #define OSTIMCHAN 0U                       /* Hardware channel for System timer */
-#define OSeMIOSGLOBALPRESCALER 124U        /* value of eMIOS.GlobalMIOSPrescaler or eMIOS0.GlobalMIOSPrescaler */
+#define OSeMIOSGLOBALPRESCALER 249U        /* value of eMIOS.GlobalMIOSPrescaler or eMIOS0.GlobalMIOSPrescaler */
+#define OSSYSTIMFREEZE                     /* Freeze in SysTimer is set to TRUE */
 #define OSTIMPRESCALER 3U                  /* The Prescaler value of the timer */
+#define OSALMACTIVTASK                     /* at least one alarm has the ACTION = ACTIVATETASK */
 #define OSALMCALLBACK                      /* at least one alarm has the  the ACTION = ALARMCALLBACK */
 #define OSNAPPMODES 1U                     /* equal to number of APPMODES objects */
-#define OSNTSKS 1U                         /* equal to number of TASK objects */
+#define OSNTSKS 2U                         /* equal to number of TASK objects */
 #define OSNXTSKS 0U                        /* equal to number of extended TASK objects */
 #define OSNISRRESS 0U                      /* number of RESOURCEs which are used by ISRs */
 #define OSNRESS 1U                         /* The number of RESOURCEs with task priority, STANDARD or LINKED plus resscheduler */
 #define OSRESOURCE                         /* at least one resource with task priority and RESOURCEPROPERTY = STANDARD (including RES_SCHEDULER) is defined */
 #define OSNCTRS 1U                         /* equal to number of COUNTER objects */
 #define OSCOUNTER                          /* defined if at least one COUNTER object defined  */
-#define OSNUSERALMS 1U                     /* equal to number of ALARM objects */
-#define OSNALMS 1U                         /* equal to number of ALARM and SCHEDULETABLES objects */
+#define OSNUSERALMS 2U                     /* equal to number of ALARM objects */
+#define OSNALMS 2U                         /* equal to number of ALARM and SCHEDULETABLES objects */
 #define OSALARM                            /* at least one ALARM object defined */
-#define OSNAUTOALMS 0U                     /* equal to number of auto-start alarms */
+#define OSNAUTOALMS 1U                     /* equal to number of auto-start alarms */
 #define OSNMSGS 0U                         /* equal to the number of MESSAGE objects */
 #define OSNNONTRUSTEDTSKS 0U               /* Number of tasks which belongs to nontrusted applications  */
 #define OSNNONTRUSTEDISR 0U                /* Number of user's ISR2 which belongs to nontrusted applications  */

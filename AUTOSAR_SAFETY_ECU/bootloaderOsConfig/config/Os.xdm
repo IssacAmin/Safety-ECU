@@ -66,6 +66,50 @@
                     <d:lst name="OsAlarmAppModeRef"/>
                   </d:ctr>
                 </d:ctr>
+                <d:ctr name="task2WakeupAlarm" type="IDENTIFIABLE">
+                  <d:lst name="OsAlarmAccessingApplication">
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Os/Os/OsApplication_1"/>
+                  </d:lst>
+                  <d:ref name="OsAlarmCounterRef" type="REFERENCE" 
+                         value="ASPath:/Os/Os/SYSTEMTIMER"/>
+                  <d:chc name="OsAlarmAction" type="IDENTIFIABLE" 
+                         value="OsAlarmActivateTask">
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    <d:ctr name="OsAlarmActivateTask" type="IDENTIFIABLE">
+                      <d:ref name="OsAlarmActivateTaskRef" type="REFERENCE" 
+                             value="ASPath:/Os/Os/OsTask2_Core0"/>
+                    </d:ctr>
+                    <d:ctr name="OsAlarmCallback" type="IDENTIFIABLE">
+                      <d:var name="OsAlarmCallbackName" type="FUNCTION-NAME" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:var>
+                    </d:ctr>
+                    <d:ctr name="OsAlarmIncrementCounter" type="IDENTIFIABLE">
+                      <d:ref name="OsAlarmIncrementCounterRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                    </d:ctr>
+                    <d:ctr name="OsAlarmSetEvent" type="IDENTIFIABLE">
+                      <d:ref name="OsAlarmSetEventRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                      <d:ref name="OsAlarmSetEventTaskRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                    </d:ctr>
+                  </d:chc>
+                  <d:ctr name="OsAlarmAutostart" type="IDENTIFIABLE">
+                    <a:a name="ENABLE" value="true"/>
+                    <d:var name="OsAlarmAlarmTime" type="INTEGER" value="8"/>
+                    <d:var name="OsAlarmAutostartType" type="ENUMERATION" 
+                           value="RELATIVE"/>
+                    <d:var name="OsAlarmCycleTime" type="INTEGER" value="8"/>
+                    <d:lst name="OsAlarmAppModeRef">
+                      <d:ref type="REFERENCE" value="ASPath:/Os/Os/OsAppMode_0"/>
+                    </d:lst>
+                  </d:ctr>
+                </d:ctr>
               </d:lst>
               <d:lst name="OsAppMode" type="MAP">
                 <d:ctr name="OsAppMode_0" type="IDENTIFIABLE"/>
@@ -91,6 +135,8 @@
                   </d:var>
                   <d:lst name="OsAppAlarmRef">
                     <d:ref type="REFERENCE" value="ASPath:/Os/Os/canTp_OsAlarm"/>
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Os/Os/task2WakeupAlarm"/>
                   </d:lst>
                   <d:lst name="OsAppCounterRef">
                     <d:ref type="REFERENCE" value="ASPath:/Os/Os/SYSTEMTIMER"/>
@@ -103,6 +149,7 @@
                   <d:lst name="OsAppScheduleTableRef"/>
                   <d:lst name="OsAppTaskRef">
                     <d:ref type="REFERENCE" value="ASPath:/Os/Os/OsTask_Core0"/>
+                    <d:ref type="REFERENCE" value="ASPath:/Os/Os/OsTask2_Core0"/>
                   </d:lst>
                   <d:ref name="OsRestartTask" type="REFERENCE" >
                     <a:a name="ENABLE" value="false"/>
@@ -126,7 +173,7 @@
                          value="1000"/>
                   <d:var name="OsCounterType" type="ENUMERATION" 
                          value="HARDWARE"/>
-                  <d:var name="OsSecondsPerTick" type="FLOAT" value="0.001">
+                  <d:var name="OsSecondsPerTick" type="FLOAT" value="1.25E-5">
                     <a:a name="ENABLE" value="true"/>
                   </d:var>
                   <d:lst name="OsCounterAccessingApplication">
@@ -156,7 +203,7 @@
                 <d:var name="OsScalabilityClass" type="ENUMERATION" value="SC1">
                   <a:a name="ENABLE" value="true"/>
                 </d:var>
-                <d:var name="OsStackMonitoring" type="BOOLEAN" value="false"/>
+                <d:var name="OsStackMonitoring" type="BOOLEAN" value="true"/>
                 <d:var name="OsStatus" type="ENUMERATION" value="STANDARD"/>
                 <d:var name="OsUseGetServiceId" type="BOOLEAN" value="true"/>
                 <d:var name="OsUseParameterAccess" type="BOOLEAN" value="false"/>
@@ -228,10 +275,10 @@
                 </d:ctr>
                 <d:chc name="OsTargetMCU" type="IDENTIFIABLE" value="MPC5748G">
                   <d:ctr name="MPC5748G" type="IDENTIFIABLE">
-                    <d:var name="OsClockDivider" type="INTEGER" value="80">
+                    <d:var name="OsClockDivider" type="INTEGER" value="1">
                       <a:a name="ENABLE" value="true"/>
                     </d:var>
-                    <d:var name="OsClockFrequency" type="INTEGER" value="160000">
+                    <d:var name="OsClockFrequency" type="INTEGER" value="80000">
                       <a:a name="ENABLE" value="true"/>
                     </d:var>
                     <d:var name="OsClockMultiplier" type="INTEGER" value="1">
@@ -1365,7 +1412,7 @@
                       <d:ctr name="NONE" type="IDENTIFIABLE"/>
                       <d:ctr name="HWCOUNTER" type="IDENTIFIABLE">
                         <d:var name="OsIsrPriority" type="INTEGER" value="1"/>
-                        <d:var name="OsPeriod" type="INTEGER" value="1000000">
+                        <d:var name="OsPeriod" type="INTEGER" value="12500">
                           <a:a name="ENABLE" value="true"/>
                         </d:var>
                         <d:ref name="OsCounter" type="REFERENCE" 
@@ -1454,20 +1501,19 @@
                           </d:ctr>
                           <d:ctr name="eMIOS0" type="IDENTIFIABLE">
                             <d:var name="OsChannel" type="INTEGER" value="0"/>
-                            <d:var name="OsFreeze" type="BOOLEAN" value="false">
-                              <a:a name="ENABLE" value="false"/>
-                              <a:a name="IMPORTER_INFO" value="@DEF"/>
+                            <d:var name="OsFreeze" type="BOOLEAN" value="true">
+                              <a:a name="ENABLE" value="true"/>
                             </d:var>
                             <d:var name="OsPeripheralClockDivider" 
-                                   type="INTEGER" value="4">
+                                   type="INTEGER" value="1">
                               <a:a name="ENABLE" value="true"/>
                             </d:var>
                             <d:chc name="OsGlobalMIOSPrescaler" 
                                    type="IDENTIFIABLE" value="OS">
                               <a:a name="IMPORTER_INFO" value="@DEF"/>
                               <d:ctr name="OS" type="IDENTIFIABLE">
-                                <d:var name="OsValue" type="INTEGER" value="200">
-                                  <a:a name="ENABLE" value="false"/>
+                                <d:var name="OsValue" type="INTEGER" value="249">
+                                  <a:a name="ENABLE" value="true"/>
                                 </d:var>
                               </d:ctr>
                               <d:ctr name="USER" type="IDENTIFIABLE">
@@ -1478,16 +1524,13 @@
                             </d:chc>
                             <d:chc name="OsPrescaler" type="IDENTIFIABLE" 
                                    value="OS">
-                              <a:a name="IMPORTER_INFO" value="@DEF"/>
                               <d:ctr name="OS" type="IDENTIFIABLE">
                                 <d:var name="OsValue" type="INTEGER" value="3">
                                   <a:a name="ENABLE" value="false"/>
                                 </d:var>
                               </d:ctr>
                               <d:ctr name="USER" type="IDENTIFIABLE">
-                                <d:var name="OsValue" type="INTEGER" >
-                                  <a:a name="IMPORTER_INFO" value="@DEF"/>
-                                </d:var>
+                                <d:var name="OsValue" type="INTEGER" value="3"/>
                               </d:ctr>
                             </d:chc>
                           </d:ctr>
@@ -4107,7 +4150,7 @@
               <d:lst name="OsTask" type="MAP">
                 <d:ctr name="OsTask_Core0" type="IDENTIFIABLE">
                   <d:var name="OsTaskActivation" type="INTEGER" value="1"/>
-                  <d:var name="OsTaskPriority" type="INTEGER" value="2"/>
+                  <d:var name="OsTaskPriority" type="INTEGER" value="1"/>
                   <d:var name="OsTaskSchedule" type="ENUMERATION" value="FULL"/>
                   <d:var name="OsStackSize" type="INTEGER" value="256">
                     <a:a name="ENABLE" value="false"/>
@@ -4123,6 +4166,42 @@
                     <d:lst name="OsTaskAppModeRef">
                       <d:ref type="REFERENCE" value="ASPath:/Os/Os/OsAppMode_0"/>
                     </d:lst>
+                  </d:ctr>
+                  <d:ctr name="OsTaskTimingProtection" type="IDENTIFIABLE">
+                    <a:a name="ENABLE" value="false"/>
+                    <d:var name="OsTaskAllInterruptLockBudget" type="FLOAT" >
+                      <a:a name="ENABLE" value="false"/>
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="OsTaskExecutionBudget" type="FLOAT" >
+                      <a:a name="ENABLE" value="false"/>
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="OsTaskOsInterruptLockBudget" type="FLOAT" >
+                      <a:a name="ENABLE" value="false"/>
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="OsTaskTimeFrame" type="FLOAT" >
+                      <a:a name="ENABLE" value="false"/>
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:lst name="OsTaskResourceLock" type="MAP"/>
+                  </d:ctr>
+                </d:ctr>
+                <d:ctr name="OsTask2_Core0" type="IDENTIFIABLE">
+                  <d:var name="OsTaskActivation" type="INTEGER" value="1"/>
+                  <d:var name="OsTaskPriority" type="INTEGER" value="2"/>
+                  <d:var name="OsTaskSchedule" type="ENUMERATION" value="FULL"/>
+                  <d:var name="OsStackSize" type="INTEGER" >
+                    <a:a name="ENABLE" value="false"/>
+                    <a:a name="IMPORTER_INFO" value="@DEF"/>
+                  </d:var>
+                  <d:lst name="OsTaskAccessingApplication"/>
+                  <d:lst name="OsTaskEventRef"/>
+                  <d:lst name="OsTaskResourceRef"/>
+                  <d:ctr name="OsTaskAutostart" type="IDENTIFIABLE">
+                    <a:a name="ENABLE" value="false"/>
+                    <d:lst name="OsTaskAppModeRef"/>
                   </d:ctr>
                   <d:ctr name="OsTaskTimingProtection" type="IDENTIFIABLE">
                     <a:a name="ENABLE" value="false"/>

@@ -42,6 +42,7 @@ int main(void)
 	MemIf_JobResultType jobResult;
 	meta_data meta_data_instance;
 
+	/*TODO*/
 	flags flags_instance = {
 			.programming_session = 0,
 			.current_app = 0,
@@ -88,6 +89,7 @@ int main(void)
 	/* Jump to BL if programming_session flag is set or current APP is invalid*/
 	if(flags_instance.programming_session)
 	{
+		/*Shouldnt we reset the flag ?*/
 		Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_HIGH);
 		ptr_to_bootloader();
 	}

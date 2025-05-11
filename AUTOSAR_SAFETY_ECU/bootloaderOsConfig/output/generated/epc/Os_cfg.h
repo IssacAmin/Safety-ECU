@@ -34,7 +34,9 @@
 /* Common stack */
 
 /* Task definitions */
-#define OsTask_Core0 ((TaskType)OS_MKOBJID(OBJECT_TASK, 0U)) /* Task ID */
+#define OsTask2_Core0 ((TaskType)OS_MKOBJID(OBJECT_TASK, 0U)) /* Task ID */
+extern void FuncOsTask2_Core0(void); /* Task entry point */
+#define OsTask_Core0 ((TaskType)OS_MKOBJID(OBJECT_TASK, 1U)) /* Task ID */
 extern void FuncOsTask_Core0(void); /* Task entry point */
 
 /* ISR functions */
@@ -49,7 +51,8 @@ extern void FuncOsTask_Core0(void); /* Task entry point */
 /* Events definition */
 
 /* Alarms identification */
-#define canTp_OsAlarm ((AlarmType)OS_MKOBJID(OBJECT_ALARM, 0U)) /* Alarm ID */
+#define task2WakeupAlarm ((AlarmType)OS_MKOBJID(OBJECT_ALARM, 0U)) /* Alarm ID */
+#define canTp_OsAlarm ((AlarmType)OS_MKOBJID(OBJECT_ALARM, 1U)) /* Alarm ID */
 void canTpOsAlarmCallback(void); /* callback function of canTp_OsAlarm */
 
 /* Counters identification */
@@ -57,14 +60,14 @@ void canTpOsAlarmCallback(void); /* callback function of canTp_OsAlarm */
 #define OSMINCYCLE_SYSTEMTIMER ((TickType)0x1U) /* SYSTEMTIMER */
 #define OSMAXALLOWEDVALUE_SYSTEMTIMER ((TickType)0xffffU) /* SYSTEMTIMER */
 #define OSTICKSPERBASE_SYSTEMTIMER 1000UL  /* SYSTEMTIMER */
-#define OS_TICKS2NS_SYSTEMTIMER(ticks) (PhysicalTimeType)(ticks*1000000U) /*  */
-#define OS_TICKS2US_SYSTEMTIMER(ticks) (PhysicalTimeType)((OSQWORD)(ticks)*1000000ULL/1000UL) /*  */
-#define OS_TICKS2MS_SYSTEMTIMER(ticks) (PhysicalTimeType)((OSQWORD)(ticks)*1000000ULL/1000000UL) /*  */
-#define OS_TICKS2SEC_SYSTEMTIMER(ticks) (PhysicalTimeType)((OSQWORD)(ticks)*1000000ULL/1000000000UL) /*  */
+#define OS_TICKS2NS_SYSTEMTIMER(ticks) (PhysicalTimeType)(ticks*12500U) /*  */
+#define OS_TICKS2US_SYSTEMTIMER(ticks) (PhysicalTimeType)((OSQWORD)(ticks)*12500ULL/1000UL) /*  */
+#define OS_TICKS2MS_SYSTEMTIMER(ticks) (PhysicalTimeType)((OSQWORD)(ticks)*12500ULL/1000000UL) /*  */
+#define OS_TICKS2SEC_SYSTEMTIMER(ticks) (PhysicalTimeType)((OSQWORD)(ticks)*12500ULL/1000000000UL) /*  */
 #define OSMINCYCLE ((TickType)0x1U)        /* SysTimer */
 #define OSMAXALLOWEDVALUE ((TickType)0xffffU) /* SysTimer */
 #define OSTICKSPERBASE 1000UL              /* SysTimer */
-#define OSTICKDURATION 1000000UL           /* SysTimer */
+#define OSTICKDURATION 12500UL             /* SysTimer */
 
 /* Messages identification */
 

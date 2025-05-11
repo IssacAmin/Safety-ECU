@@ -40,7 +40,9 @@ typedef enum{
 	CURRENT_APP,
 	FLASHBANK_VALID,
 	RESET_DURING_FLASH,
-	FLASHING_IN_PROGRESS
+	FLASHING_IN_PROGRESS, 
+	FLASHBANK_A_ERASED, 
+	FLASHBANK_B_ERASED
 }UDS_Utils_FLAG;
 /* 
 * Requirements: 
@@ -55,6 +57,7 @@ typedef enum{
 *
 */
 
+extern uint8_t commandToEraseFlashBank, flashErasedFlag;
 void flsWaitUntilJobDone(void);
 
  UDS_Utils_ReturnType modify_flag(UDS_Utils_FLAG flag ,UDS_Utils_ModifyFlag input);

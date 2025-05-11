@@ -7,12 +7,13 @@
 #include "UDS_utils.h"
 
 static flags flags_instance;
-static uint32_t global_dst_address = 0;
+static uint32_t global_dst_address = 0, modifyFlashBankErasedFlagTrigger = 0;
 
 
 UDS_Utils_ReturnType modify_flag(UDS_Utils_FLAG flag ,UDS_Utils_ModifyFlag input){
 	Std_ReturnType fls_ret;
 
+	//leah quad page
 	fls_ret = Fls_Read((Fls_AddressType)FLAGS, (uint8_t *)&flags_instance, (Fls_LengthType)QUAD_PAGE_SIZE);
 	flsWaitUntilJobDone();
 
@@ -60,6 +61,20 @@ UDS_Utils_ReturnType modify_flag(UDS_Utils_FLAG flag ,UDS_Utils_ModifyFlag input
 			flags_instance.reset_during_flash = (input == FLAG_SET)? 1 : 0;
 		}
 		break;
+	case FLASHBANK_A_ERASED:
+		if(input == FLAG_TOGGLE)
+			flags_instance.flashbank_A_Erased = !(flags_instance.flashbank_A_Erased);
+		else{
+			flags_instance.flashbank_A_Erased = (input == FLAG_SET)? 1 : 0;
+		}
+		break;
+	case FLASHBANK_B_ERASED:
+		if(input == FLAG_TOGGLE)
+			flags_instance.flashbank_B_Erased = !(flags_instance.flashbank_B_Erased);
+		else{
+			flags_instance.flashbank_B_Erased = (input == FLAG_SET)? 1 : 0;
+		}
+		break;
 	default:
 		break;
 	}
@@ -94,6 +109,10 @@ uint8_t read_flags(UDS_Utils_FLAG flag){
 		return flags_instance.flashing_in_progress;
 	case RESET_DURING_FLASH:
 		return flags_instance.reset_during_flash;
+	case FLASHBANK_A_ERASED:
+		return flags_instance.flashbank_A_Erased;	
+	case FLASHBANK_B_ERASED:
+		return flags_instance.flashbank_B_Erased;
 	default:
 		return -1; //TODO: return something
 	}
@@ -107,39 +126,36 @@ UDS_Utils_ReturnType erase_flashbank(void){
 
 	if(flags_instance.programming_session && flags_instance.flashing_in_progress)
 	{
-		if(flags_instance.current_app == 0){
-			flags_instance.flashbank_B_valid = 0;
-
-			fls_ret = Fls_Erase(FLAGS, SECTOR_SIZE);
-			flsWaitUntilJobDone();
-
-
-			fls_ret = Fls_Write((Fls_AddressType)FLAGS , (uint8_t *)&flags_instance, (Fls_LengthType)QUAD_PAGE_SIZE);
-			flsWaitUntilJobDone();
-
-
-			fls_ret = Fls_Erase(FLASHBANK_B_LOGICAL_ADDRESS_SECTOR_1, FLASHBANK_SIZE);
-			flsWaitUntilJobDone();
-
+		if(flags_instance.current_app == 0)
+		{
+			if(!flags_instance.flashbank_B_Erased)
+			{
+				modifyFlashBankErasedFlagTrigger = 1;
+				flags_instance.flashbank_B_valid = 0;
+				flags_instance.flashbank_B_Erased = 1;
+				fls_ret = Fls_Erase(FLAGS, SECTOR_SIZE);
+				flsWaitUntilJobDone();
+				fls_ret = Fls_Write((Fls_AddressType)FLAGS , (uint8_t *)&flags_instance, (Fls_LengthType)QUAD_PAGE_SIZE);
+				flsWaitUntilJobDone();
+				fls_ret = Fls_Erase(FLASHBANK_B_LOGICAL_ADDRESS_SECTOR_1, FLASHBANK_SIZE);
+				flsWaitUntilJobDone();
+			}
 			return FLASH_OK;
 		}
 		else
 		{
-			flags_instance.flashbank_A_valid = 0;
-
-
-			fls_ret = Fls_Erase(FLAGS, SECTOR_SIZE);
-			flsWaitUntilJobDone();
-
-
-			fls_ret = Fls_Write((Fls_AddressType)FLAGS , (uint8_t *)&flags_instance, (Fls_LengthType)QUAD_PAGE_SIZE);
-			flsWaitUntilJobDone();
-
-
-
-			fls_ret = Fls_Erase(FLASHBANK_A_LOGICAL_ADDRESS_SECTOR_1, FLASHBANK_SIZE);
-			flsWaitUntilJobDone();
-
+			if(!flags_instance.flashbank_A_Erased)
+			{
+				modifyFlashBankErasedFlagTrigger = 1;
+				flags_instance.flashbank_A_valid = 0;
+				flags_instance.flashbank_A_Erased = 1;
+				fls_ret = Fls_Erase(FLAGS, SECTOR_SIZE);
+				flsWaitUntilJobDone();
+				fls_ret = Fls_Write((Fls_AddressType)FLAGS , (uint8_t *)&flags_instance, (Fls_LengthType)QUAD_PAGE_SIZE);
+				flsWaitUntilJobDone();
+				fls_ret = Fls_Erase(FLASHBANK_A_LOGICAL_ADDRESS_SECTOR_1, FLASHBANK_SIZE);
+				flsWaitUntilJobDone();
+			}
 			return FLASH_OK;
 		}
 	}
@@ -326,7 +342,18 @@ void reset_ecu(void){
 
 UDS_Utils_ReturnType parse_data(uint8_t* data, uint32_t data_length){
 	UDS_Utils_ReturnType utils_ret;
-
+	if(modifyFlashBankErasedFlagTrigger == 1)
+	{
+		if(read_flags(CURRENT_APP) == 0)
+		{
+			modify_flag(FLASHBANK_B_ERASED, FLAG_CLEAR);
+		}
+		else
+		{
+			modify_flag(FLASHBANK_A_ERASED, FLAG_CLEAR);
+		}
+		modifyFlashBankErasedFlagTrigger = 0;
+	}
 	if(data_length == 0)
 		return PARAMETERS_INVALID;
 	if((data[0] == JUMP_SEGMENT_BYTE_CODE || data[0] == COPY_SEGMENT_BYTE_CODE ) && data_length != 9)
@@ -348,7 +375,7 @@ UDS_Utils_ReturnType parse_data(uint8_t* data, uint32_t data_length){
 		start_address = (data[1] << 24) | (data[2] << 16) | (data[3] << 8) | data[4];
 		segment_length = (data[5] << 24) | (data[6] << 16) | (data[7] << 8) | data[8];
 	}
-	else{
+else{
 		crc = (data[1] << 8) | data[2];
 		app_length = (data[3] << 24) | (data[4] << 16) | (data[5] << 8) | data[6];
 	}
@@ -377,7 +404,19 @@ UDS_Utils_ReturnType parse_data(uint8_t* data, uint32_t data_length){
 	return FLASH_OK;
 }
 
-
+void UDSUtils_MainFunction(void)
+{
+	uint8_t i = 0;
+	UDS_Utils_ReturnType ret;
+	if(commandToEraseFlashBank == 1)
+	{
+		commandToEraseFlashBank = 0;
+		for(;i<5;i++)
+		{
+			ret = erase_flashbank();
+		}
+	}
+}
 
 void flsWaitUntilJobDone(void)
 {

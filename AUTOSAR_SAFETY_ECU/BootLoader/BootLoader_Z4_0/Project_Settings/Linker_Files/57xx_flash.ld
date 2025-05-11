@@ -27,10 +27,10 @@ SECTIONS
     } > m_text
     
     .vects : ALIGN(0x100)
-     {
+    {
     	*(.vects)
     	*(.vects_vle)
-	} > m_text
+	  } > m_text
       
     .text : 
     {
@@ -179,6 +179,8 @@ __SDATA_SIZE  = SIZEOF(.sdata);
 __DATA_ROM_ADDR  = LOADADDR(.data);
 __SDATA_ROM_ADDR = LOADADDR(.sdata);
    
+OS_MAIN_STACK_MIN = _stack_end;
+OS_MAIN_STACK_MAX = _stack_addr;
 /* Labels Used for Initialising SRAM ECC */
 __SRAM_SIZE = SRAM_SIZE;
 __SRAM_BASE_ADDR = SRAM_BASE_ADDR;

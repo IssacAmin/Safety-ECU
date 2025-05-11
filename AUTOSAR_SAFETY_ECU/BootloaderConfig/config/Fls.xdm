@@ -56,9 +56,8 @@
                   <a:a name="IMPORTER_INFO" value="@DEF"/>
                 </d:var>
                 <d:var name="FlsJobEndNotification" type="FUNCTION-NAME" 
-                       value="Fee_JobEndNotification">
-                  <a:a name="ENABLE" value="false"/>
-                  <a:a name="IMPORTER_INFO" value="@DEF"/>
+                       value="Fls_JobEndNotification">
+                  <a:a name="ENABLE" value="true"/>
                 </d:var>
                 <d:var name="FlsJobErrorNotification" type="FUNCTION-NAME" 
                        value="Fee_JobErrorNotification">

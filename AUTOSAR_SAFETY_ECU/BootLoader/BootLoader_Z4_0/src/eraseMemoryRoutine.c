@@ -8,29 +8,35 @@
 #include "uds_routines_types.h"
 #include "UDS_utils.h"
 
-uint8_t flashErasedFlag = 0;
-uint8_t rid_0001_start(uint8_t* data,uint8_t dataLen)
+uint8_t flashErasedFlag = 0, commandToEraseFlashBank = 0;
+uint8_t rid_FF00_start(uint8_t* data,uint8_t dataLen)
 {
-	UDS_Utils_ReturnType ret;
-	uint8_t i = 0;
-	for(;i<5;i++)
-	{
-		ret = erase_flashbank();
-		if(FLASH_OK == ret)
-		{
-			flashErasedFlag = 1;
-			return 1U;
-		}
-	}
-	return 0U;
+	/*Queue the task for the fls*/
+	commandToEraseFlashBank = 1;
+	return 1U;
 }
+
+uint8_t rid_FF00_checkRes(uint8_t* data,uint8_t dataLen)
+{
+	if(read_flags(CURRENT_APP) == 0)
+	{
+		return read_flags(FLASHBANK_A_ERASED);
+	}
+	else
+	{
+		return read_flags(FLASHBANK_B_ERASED);
+	}
+}
+
 
 uint8_t preFlashConditionsChecks(void)
 {
-	if(1U==flashErasedFlag)
+	if(read_flags(CURRENT_APP) == 0)
 	{
-		flashErasedFlag = 0U;
-		return 1;
+		return read_flags(FLASHBANK_A_ERASED);
 	}
-	return 0U;
+	else
+	{
+		return read_flags(FLASHBANK_B_ERASED);
+	}
 }
