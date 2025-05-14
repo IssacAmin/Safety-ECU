@@ -9,6 +9,7 @@
 #define UDS_SESSION_CFG_H
 
 #include "uds_types.h"
+#include "uds_server_cfg.h"
 #include "uds_sid_cfg.h"
 #include "uds_helpers.h"
 
@@ -23,13 +24,6 @@ extern UDS_Session_t serverSessions[];
 #define UDS_FBL_MAX_NORIFTY_TRY_COUNT           5U
 #define UDS_NUMBER_OF_SESSIONS                  3
 
-/* 
- * Maps starting the timeout function to SID 0x10 Timeout function to a custom function handling
- * the timeout of SID 0x10 that encapsulates any needed OS calls
- */
-#define START_TIMEOUT_FUNC SID_10_startTimeout
-void SID_10_startTimeout(uint16_t t);
-
 
 /*This part only if there is a programming session*/
 #define UDS_PROGRAMMING_SESSION_ENABLED
@@ -39,16 +33,18 @@ void SID_10_startTimeout(uint16_t t);
 
 /* Default Session Parameters */
 #define UDS_DEFAULT_SESSION_ID                              0x1
-#define UDS_DEFAULT_SESSION_P2_SERVER_MAX                   5
-#define UDS_DEFAULT_SESSION_P2_SERVER_START_MAX             5
+#define UDS_DEFAULT_SESSION_P2_SERVER_MAX                   50
+#define UDS_DEFAULT_SESSION_P2_SERVER_START_MAX             3000
+#define UDS_DEFAULT_SESSION_S3_SESSION_TIMEOUT              0
 #define UDS_DEFAULT_SESSION_SUPPORTED_SID_MASK              {0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff}
 
 
 
 /* Programming Session parameters */
-#define UDS_PROGRAMMING_SESSION_ID                          0x1
-#define UDS_PROGRAMMING_SESSION_P2_SERVER_MAX               6
-#define UDS_PROGRAMMING_SESSION_P2_SERVER_START_MAX         6
+#define UDS_PROGRAMMING_SESSION_ID                          0x2
+#define UDS_PROGRAMMING_SESSION_P2_SERVER_MAX               80
+#define UDS_PROGRAMMING_SESSION_P2_SERVER_START_MAX         5000
+#define UDS_PROGRAMMING_SESSION_S3_SESSION_TIMEOUT          30000  
 #define UDS_PROGRAMMING_SESSION_SUPPORTED_SID_MASK          {0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff}
 
 
