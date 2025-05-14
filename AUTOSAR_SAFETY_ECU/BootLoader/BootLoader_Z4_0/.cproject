@@ -43,6 +43,7 @@
 								<option id="gnu.c.compiler.option.include.paths.2094590694" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../MPC574XG_MCAL4_0_RTM_1_0_5\eclipse\plugins\MemIf_TS_T2D35M10I5R0\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../UDS_C_SERVER\server_main\inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../BootloaderConfig/udsConfig/inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../UDS_C_SERVER\srv_handlers\RequestDownload\inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../UDS_C_SERVER\srv_handlers\ECUReset\inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../UDS_C_SERVER\srv_handlers\ReadWriteDID\inc&quot;"/>

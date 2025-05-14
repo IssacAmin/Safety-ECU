@@ -18,14 +18,15 @@
 #include "CanTp.h"
 #include "CanIf.h"
 
-#define UDS_TX_NPDUID 0
-#define UDS_RX_NPDUID 1
+
+
+uint8_t canTpTxConfirmationFlag = 1;
 
 FUNC(void,CAN_CODE) canErrorNotification( void)
-{
+																{
 	Dio_WriteChannel(DioConf_DioChannel_LED_5, STD_LOW);
 	return;
-}
+																}
 
 void UDS_setSecurityLvlAfterProgSessionReset(UDS_SecurityLevel_t* lvlRecord);
 
@@ -35,11 +36,9 @@ static void BL_InitUDS(void)
 	/*Initialize The server*/
 	UDS_serverInit();
 
-	/*Is theere a programming session request pending ?*/
+	/*Is there a programming session request pending ?*/
 	if(read_flags(PROGRAMMING_SESSION))
 	{
-		/*Set the bootloader flag for the UDS*/
-		set_BootLoader_ActiveFlag();
 
 		/*Force The Security Level*/
 		/*get the last security level*/
@@ -70,6 +69,7 @@ void (*ptr_to_bootloader)(void);
 void (*ptr_to_flashbank_A)(void);
 void (*ptr_to_flashbank_B)(void) = 0x1200000;
 
+uint32_t x = 1000;
 int main(void)
 {
 	/*Initialize Core Peripherals */
@@ -105,6 +105,10 @@ int main(void)
 
 	//	 	testcantpSenderWithCanFrames();
 
+	init_flags();
+	/*Set the bootloader flag for the UDS*/
+	set_BootLoader_ActiveFlag();
+
 	BL_InitUDS();
 
 	//	testFlashingSequenceWithCanFrames();
@@ -130,47 +134,28 @@ void func(void)
 }
 
 
-uint8_t UDS_sendResponse(UDS_RES_t *response)
+TASK(OsTask3_Core0)
 {
-	PduInfoType PduInfo;
-
-	//TODO: add application layer addressing info to data payload
-	PduInfo.SduDataPtr = response->data;
-	PduInfo.SduLength = response->udsDataLen;
-	CanTp_Transmit(UDS_TX_NPDUID, &PduInfo);
-	return 1;
-}
-
-void PduR_CantpReception(PduIdType NPduId, PduInfoType* info)
-{
-	//decide the upper layer based on the NPduId
-	if(1 == NPduId)
-	{
-		UDS_REQ_t req;
-		req.data = info->SduDataPtr;
-		req.udsDataLen = info->SduLength;
-		req.msgType = UDS_MType_Diagnostics;
-		req.trgAddType = UDS_A_TA_PHYSICAL;
-		req.srcAdd = 0x55;
-		req.trgAdd = 0xAA;
-		req.status = UDS_REQUEST_STATUS_NOT_SERVED;
-		UDS_RequestIndication(&req);
-	}
-}
-
-TASK(OsTask2_Core0)
-{
+	uint8_t uds_waitFlag = 0;
 	StatusType ret;
 	static uint32_t count = 0;
+
+	//	CancelAlarm(task3WakeupAlarm);
 
 	count++;
 	if(count == 500)
 	{
 		count = 0;
-		Dio_FlipChannel(DioConf_DioChannel_LED_5);
+		Dio_FlipChannel(DioConf_DioChannel_LED_4);
 	}
 
-	UDS_mainFunction();
+//	uint8_t bytesT[] = {1, 2, 3, 4, 5, 6, 7, 8};
+//	Can_PduType CanMessage;
+//	CanMessage.length = 8;
+//	CanMessage.swPduHandle = 0;
+//	CanMessage.id = 0x456;
+//	CanMessage.sdu = bytesT;
+//	Can_Write(CanHardwareObject_1, &CanMessage);
 
 	Can_MainFunction_Write();
 	Can_MainFunction_Read();
@@ -179,16 +164,41 @@ TASK(OsTask2_Core0)
 
 	CanTp_MainFunction();
 
-	ret = SetRelAlarm(task2WakeupAlarm, 8, 0);
+	ret = SetRelAlarm(task3WakeupAlarm, x, 0);
 	ret = TerminateTask();
-	/*should never get here*/
-	while(1);
+}
+TASK(OsTask2_Core0)
+{
+	uint8_t uds_waitFlag = 0;
+	StatusType ret;
+	static uint32_t count = 0;
+
+	while(1)
+	{
+		count++;
+		if(count == 500)
+		{
+			count = 0;
+			Dio_FlipChannel(DioConf_DioChannel_LED_5);
+		}
+
+		uds_waitFlag = UDS_mainFunction();
+
+		if(uds_waitFlag)
+		{
+			uds_waitFlag = 0;
+			//			ret = SetRelAlarm(task2WakeupAlarm, 20, 0);
+			//			ret = TerminateTask();
+		}
+
+		ret = SetRelAlarm(task2WakeupAlarm, 20, 0);
+		ret = TerminateTask();
+	}
 }
 
 TASK(OsTask_Core0)
 {
 	StatusType ret;
-	uint8_t bytesT[] = {1, 2, 3};
 
 	static TickType previousTicks = 0;
 	TickType diff, ticksBuff;
@@ -200,12 +210,6 @@ TASK(OsTask_Core0)
 	for(;;)                                  /* main endless loop */
 	{
 		//		if(sendVar == true){
-		//			Can_PduType CanMessage;
-		//			CanMessage.length = 3;
-		//			CanMessage.swPduHandle = 0;
-		//			CanMessage.id = 1;
-		//			CanMessage.sdu = bytesT;
-		//			Can_Write(CanHardwareObject_1, &CanMessage);
 		//		}
 
 		ticksBuff = previousTicks;
@@ -215,14 +219,11 @@ TASK(OsTask_Core0)
 			ret = GetCounterValue(SYSTEMTIMER, &previousTicks);
 			Dio_FlipChannel(DioConf_DioChannel_LED_6);
 		}
-		
 
-		//check for incoming messages
-		
+		BLUtil_mainFunction();
+
 	}
 
-	BLUtil_mainFunction();
-	while(1);
 }
 
 

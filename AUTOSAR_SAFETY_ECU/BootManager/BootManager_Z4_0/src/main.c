@@ -43,22 +43,26 @@ int main(void)
 	meta_data meta_data_instance;
 
 	/*TODO*/
-	flags flags_instance = {
-			.programming_session = 0,
-			.current_app = 0,
-			.flashbank_A_valid = 1,
-			.flashbank_B_valid = 0,
-			.flashing_in_progress = 0,
-			.reset_during_flash = 0,
-	};
+	// flags flags_instance = {
+	// 		.programming_session = 0,
+	// 		.current_app = 0,
+	// 		.flashbank_A_valid = 1,
+	// 		.flashbank_B_valid = 0,
+	// 		.flashing_in_progress = 0,
+	// 		.reset_during_flash = 0,
+	// };
 
-	fls_ret = Fls_Erase(0, FLAGS_SECTOR_SIZE);
+	flags flags_instance;
+	fls_ret = Fls_Read(FLAGS, &flags_instance, QUAD_PAGE_SIZE);
 	flsWaitUntilJobDone();
-	jobResult = Fls_GetJobResult();
 
-	fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
-	flsWaitUntilJobDone();
-	jobResult = Fls_GetJobResult();
+	// fls_ret = Fls_Erase(0, FLAGS_SECTOR_SIZE);
+	// flsWaitUntilJobDone();
+	// jobResult = Fls_GetJobResult();
+
+	// fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
+	// flsWaitUntilJobDone();
+	// jobResult = Fls_GetJobResult();
 	/* Turn On on board LED1 to indicate Boot Manager state*/
 
 	Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_LOW);

@@ -47,7 +47,7 @@
 #define OSNCORES 1U                        /* The number of cores in the system */
 #define OS_MASTER_CORE 0U                  /* The Master Core number */
 #define OSNSPINLOCKS 0U                    /* The number number of spinlocks */
-#define OSNTASKSCORE0 2U                   /* The number of tasks assigned to core 0 */
+#define OSNTASKSCORE0 3U                   /* The number of tasks assigned to core 0 */
 #define OSNTASKSCORE1 0U                   /* The number of tasks assigned to core 1 */
 #define OSNISRCORE0 0U                     /* equal to summ of number ISR, system timers and TPTimer */
 #define OSNISRCORE1 0U                     /* equal to summ of number ISR, system timers and TPTimer */
@@ -78,6 +78,7 @@
 #define OSMPC5748G                         /* Target MCU */
 
 #endif
+#define OSSTKSIZE 10248U                   /* Common stack size */
 
 /* Applications */
 
@@ -96,7 +97,7 @@
 
 /* Conformance Class */
 
-#define OSBCC1                             /* Conformance Class */
+#define OSECC1                             /* Conformance Class */
 
 /* Scheduler Policy */
 
@@ -104,6 +105,9 @@
 #define OSNOFASTTERMINATE                  /* FastTerminate attribute is set to FALSE */
 #define OSRES_SCHEDULER                    /* USERESSCHEDULER attribute has TRUE value */
 #define OSORTIDEBUGLEVEL 0U                /* value of DEBUG_LEVEL attribute */
+#define OSSTKCHECK                         /* attribute StackOverflowCheck is set to TRUE */
+#define OSSTKCHECKPATTERN 0x55555555U      /* equal to StackOverflowCheck/Pattern */
+#define OSSTKCHECKPATTERNSIZE 1U           /* equal to StackOverflowCheck/PatternSize */
 
 /* Hook routines */
 
@@ -113,6 +117,7 @@
 
 #define OSNOISR1                           /* no defined ISR category 1 */
 #define OSNOISR2                           /* no defined ISR category 2 */
+#define OSISRSTACKSIZE 513U                /* ISRs stack size */
 
 /* Interrupt management */
 
@@ -139,17 +144,17 @@
 #define OSALMACTIVTASK                     /* at least one alarm has the ACTION = ACTIVATETASK */
 #define OSALMCALLBACK                      /* at least one alarm has the  the ACTION = ALARMCALLBACK */
 #define OSNAPPMODES 1U                     /* equal to number of APPMODES objects */
-#define OSNTSKS 2U                         /* equal to number of TASK objects */
-#define OSNXTSKS 0U                        /* equal to number of extended TASK objects */
+#define OSNTSKS 3U                         /* equal to number of TASK objects */
+#define OSNXTSKS 1U                        /* equal to number of extended TASK objects */
 #define OSNISRRESS 0U                      /* number of RESOURCEs which are used by ISRs */
 #define OSNRESS 1U                         /* The number of RESOURCEs with task priority, STANDARD or LINKED plus resscheduler */
 #define OSRESOURCE                         /* at least one resource with task priority and RESOURCEPROPERTY = STANDARD (including RES_SCHEDULER) is defined */
 #define OSNCTRS 1U                         /* equal to number of COUNTER objects */
 #define OSCOUNTER                          /* defined if at least one COUNTER object defined  */
-#define OSNUSERALMS 2U                     /* equal to number of ALARM objects */
-#define OSNALMS 2U                         /* equal to number of ALARM and SCHEDULETABLES objects */
+#define OSNUSERALMS 3U                     /* equal to number of ALARM objects */
+#define OSNALMS 3U                         /* equal to number of ALARM and SCHEDULETABLES objects */
 #define OSALARM                            /* at least one ALARM object defined */
-#define OSNAUTOALMS 1U                     /* equal to number of auto-start alarms */
+#define OSNAUTOALMS 2U                     /* equal to number of auto-start alarms */
 #define OSNMSGS 0U                         /* equal to the number of MESSAGE objects */
 #define OSNNONTRUSTEDTSKS 0U               /* Number of tasks which belongs to nontrusted applications  */
 #define OSNNONTRUSTEDISR 0U                /* Number of user's ISR2 which belongs to nontrusted applications  */

@@ -1,4 +1,5 @@
 #include "CanTp_Types.h"
+#include "Os.h"
 
 #define CANTP_SINGLEFRAME_LENGTH 8
 #define CANTP_FIRSTFRAME_LENGTH 8
@@ -541,6 +542,7 @@ void canTpOsAlarmCallback(void)
 void CanTp_TxConfirmation(PduIdType CanTpPduId, Std_ReturnType ret)
 {
 	//TODO: translate the LPduId to NPduId and notify PduR
+	SetEvent(1, canTpTxConfirmationEvent);
 }
 
 

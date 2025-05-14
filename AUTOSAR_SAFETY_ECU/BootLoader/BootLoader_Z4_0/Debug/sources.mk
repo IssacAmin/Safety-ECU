@@ -45,4 +45,5 @@ src/eclipse/plugins/Rte_TS_T2D35M10I1R0/src \
 src/generated/src \
 src/output/generated/epc \
 src/src \
+src/udsConfig/src \
 

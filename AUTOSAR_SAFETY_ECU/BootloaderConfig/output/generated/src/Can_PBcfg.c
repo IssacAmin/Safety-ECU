@@ -324,28 +324,28 @@ static CONST(Can_ControllerBaudrateConfigType, CAN_CONST) ControllerBaudrateCfgS
     =================================================
     Clock Size = 4.0E7 Hz - Clock from external OSC.
 
-    Clock Prescaler = 5 (1..256)
+    Clock Prescaler = 10 (1..256)
 
     CanBitRate = 500 Kbps (1bps..1Mbps)
-    Number CANTimeQuantas per bit = 16 (8..25)
+    Number CANTimeQuantas per bit = 8 (8..25)
 
     CTRL Register Fields:
-    PSEG1 =3(0..7)
-    PSEG2 =3(1..7)
-    PROPSEG =6(0..7)
-    RJW =3(0..3)
+    PSEG1 =2(0..7)
+    PSEG2 =1(1..7)
+    PROPSEG =1(0..7)
+    RJW =0(0..3)
     =================================================
     */
     /* Configuration for CanController ID0 == FlexCAN_A */
     {
         /* ===== Control Register - CTRL ===== */
         (uint32)( 
-                    ((uint32)4 << FLEXCAN_CTRL_PRESDIV_SHIFT_U8) |    /* CTRL[PRESDIV] - Clock Prescaler */
-                    ((uint32)3 << FLEXCAN_CTRL_RJW_SHIFT_U8) |     /* CTRL[RJW] - Resynchronization Jump Width */
-                    ((uint32)3 << FLEXCAN_CTRL_PSEG1_SHIFT_U8) |      /* CTRL[PSEG1] - Segment 1 */
-                    ((uint32)3 << FLEXCAN_CTRL_PSEG2_SHIFT_U8) |    /* CTRL[PSEG2] - Segment 2 */
+                    ((uint32)9 << FLEXCAN_CTRL_PRESDIV_SHIFT_U8) |    /* CTRL[PRESDIV] - Clock Prescaler */
+                    ((uint32)0 << FLEXCAN_CTRL_RJW_SHIFT_U8) |     /* CTRL[RJW] - Resynchronization Jump Width */
+                    ((uint32)2 << FLEXCAN_CTRL_PSEG1_SHIFT_U8) |      /* CTRL[PSEG1] - Segment 1 */
+                    ((uint32)1 << FLEXCAN_CTRL_PSEG2_SHIFT_U8) |    /* CTRL[PSEG2] - Segment 2 */
                     ((uint32)0 << FLEXCAN_CTRL_CLKSRC_SHIFT_U8) |
-                    6U   /* CTRL[PROPSEG] - Propagation segment */
+                    1U   /* CTRL[PROPSEG] - Propagation segment */
                 ),
         (uint8)12U, /* CTRL2[TASD] Tx Arbitration Start Delay */
         

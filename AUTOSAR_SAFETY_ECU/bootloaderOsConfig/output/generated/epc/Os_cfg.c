@@ -25,7 +25,7 @@
 const    OSAPP   OsAppCfgTable[OSNAPPS] = 
 {
     {
-        0xc0000000U, /* all tasks of the application, priority-wise */
+        0xe0000000U, /* all tasks of the application, priority-wise */
     }, /* OsApplication_1 */
 };
 
@@ -34,16 +34,29 @@ const    OSTSK   OsTaskCfgTable[OSNTSKS] =
 {
     {
         1U, /* Application identification mask value */
-        (OSTASKENTRY) &FuncOsTask2_Core0, /* entry point of task */
-        0U, /* properties of task OSTSKACTIVATE, OSTSKEXTENDED, OSTSKNONPREMPT */
+        (OSTASKENTRY) &FuncOsTask3_Core0, /* entry point of task */
+        0U, /* top of task stack */
+        0U, /* bottom of task stack */
+        0U | OSTSKACTIVATE, /* properties of task OSTSKACTIVATE, OSTSKEXTENDED, OSTSKNONPREMPT */
         0U, /* task id (task number in the task table) */
+        0U, /* application identification value */
+    }, /* OsTask3_Core0 */
+    {
+        1U, /* Application identification mask value */
+        (OSTASKENTRY) &FuncOsTask2_Core0, /* entry point of task */
+        OSOsTask2_Core0STKTOS, /* top of task stack */
+        OSOsTask2_Core0STKBOS, /* bottom of task stack */
+        0U | OSTSKEXTENDED, /* properties of task OSTSKACTIVATE, OSTSKEXTENDED, OSTSKNONPREMPT */
+        1U, /* task id (task number in the task table) */
         0U, /* application identification value */
     }, /* OsTask2_Core0 */
     {
         1U, /* Application identification mask value */
         (OSTASKENTRY) &FuncOsTask_Core0, /* entry point of task */
+        0U, /* top of task stack */
+        0U, /* bottom of task stack */
         0U | OSTSKACTIVATE, /* properties of task OSTSKACTIVATE, OSTSKEXTENDED, OSTSKNONPREMPT */
-        1U, /* task id (task number in the task table) */
+        2U, /* task id (task number in the task table) */
         0U, /* application identification value */
     }, /* OsTask_Core0 */
 };
@@ -153,11 +166,18 @@ const    OSALM   OsAlarmsCfg[OSNUSERALMS] =
 {
     {
         1U, /* appMask */
-        0U, /* task to notify */
+        1U, /* task to notify */
         0U, /* attached Counter ID */
         0U, /* Alarms' hook entry */
         0U, /* application identification value */
     }, /* task2WakeupAlarm */
+    {
+        1U, /* appMask */
+        0U, /* task to notify */
+        0U, /* attached Counter ID */
+        0U, /* Alarms' hook entry */
+        0U, /* application identification value */
+    }, /* task3WakeupAlarm */
     {
         1U, /* appMask */
         0U, /* Task to start or to set Event */
@@ -173,9 +193,15 @@ const    OSALMAUTOTYPE   OsAutoAlarms[OSNAUTOALMS] =
     {
         &OsAlarms[0U], /* Reference to alarm */
         (TickType)8U, /* Time to start (relative) */
-        (TickType)8U, /* Alarm cycle, 0U for non-cycled */
+        (TickType)0U, /* Alarm cycle, 0U for non-cycled */
         OSALMRELATIVE, /* The type of autostart alarm */
     }, /* task2WakeupAlarm */
+    {
+        &OsAlarms[1U], /* Reference to alarm */
+        (TickType)8U, /* Time to start (relative) */
+        (TickType)0U, /* Alarm cycle, 0U for non-cycled */
+        OSALMRELATIVE, /* The type of autostart alarm */
+    }, /* task3WakeupAlarm */
 };
 
 /* Counter table */

@@ -32,11 +32,16 @@
 #define OsAppMode_0 ((AppModeType)0U)      /* AppMode ID */
 
 /* Common stack */
+#define OSOsTask2_Core0STKSIZE 10248U      /* stack size of OsTask2_Core0 */
+#define OSOsTask2_Core0STKBOS OSRUNNABLESTKBEG /* OsTask2_Core0 bos */
+#define OSOsTask2_Core0STKTOS (OSOsTask2_Core0STKBOS + OSOsTask2_Core0STKSIZE/4U) /* OsTask2_Core0 tos */
 
 /* Task definitions */
-#define OsTask2_Core0 ((TaskType)OS_MKOBJID(OBJECT_TASK, 0U)) /* Task ID */
+#define OsTask3_Core0 ((TaskType)OS_MKOBJID(OBJECT_TASK, 0U)) /* Task ID */
+extern void FuncOsTask3_Core0(void); /* Task entry point */
+#define OsTask2_Core0 ((TaskType)OS_MKOBJID(OBJECT_TASK, 1U)) /* Task ID */
 extern void FuncOsTask2_Core0(void); /* Task entry point */
-#define OsTask_Core0 ((TaskType)OS_MKOBJID(OBJECT_TASK, 1U)) /* Task ID */
+#define OsTask_Core0 ((TaskType)OS_MKOBJID(OBJECT_TASK, 2U)) /* Task ID */
 extern void FuncOsTask_Core0(void); /* Task entry point */
 
 /* ISR functions */
@@ -49,10 +54,12 @@ extern void FuncOsTask_Core0(void); /* Task entry point */
 #define RES_SCHEDULER ((ResourceType)OS_MKOBJID(OBJECT_RESOURCE, 0U)) /* Resource ID */
 
 /* Events definition */
+#define canTpTxConfirmationEvent ((EventMaskType)1U) /* Event mask */
 
 /* Alarms identification */
 #define task2WakeupAlarm ((AlarmType)OS_MKOBJID(OBJECT_ALARM, 0U)) /* Alarm ID */
-#define canTp_OsAlarm ((AlarmType)OS_MKOBJID(OBJECT_ALARM, 1U)) /* Alarm ID */
+#define task3WakeupAlarm ((AlarmType)OS_MKOBJID(OBJECT_ALARM, 1U)) /* Alarm ID */
+#define canTp_OsAlarm ((AlarmType)OS_MKOBJID(OBJECT_ALARM, 2U)) /* Alarm ID */
 void canTpOsAlarmCallback(void); /* callback function of canTp_OsAlarm */
 
 /* Counters identification */

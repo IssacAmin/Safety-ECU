@@ -138,7 +138,7 @@
           <a:a name="IMPORTER_INFO" value="@DEF"/>
         </d:var>
         <d:var name="ModuleId" value="Gpt_TS_T2D35M10I2R0"/>
-        <d:var name="Enabled" value="TRUE"/>
+        <d:var name="Enabled" value="FALSE"/>
         <d:var name="Generate" value="TRUE"/>
         <d:var name="LoadExistingConfigurationFile" value="FALSE"/>
         <d:var name="SoftwareVersion" value="1.0.2 RTM"/>

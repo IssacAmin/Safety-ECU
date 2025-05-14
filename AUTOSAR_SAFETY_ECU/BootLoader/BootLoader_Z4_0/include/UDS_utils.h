@@ -16,7 +16,6 @@
 #include "BootLoader_cfg.h"
 #include "Mcu.h"
 
-extern void UDS_BL_UtilsReq_callBack(uint8_t status);
 #define ADD_SEGMENT_BYTE_CODE 		0x00
 #define COPY_SEGMENT_BYTE_CODE		0x11
 #define JUMP_SEGMENT_BYTE_CODE 		0x01
@@ -24,18 +23,21 @@ extern void UDS_BL_UtilsReq_callBack(uint8_t status);
 
 typedef enum
 {
-	BL_UTIL_REQ_NO_REQ,
-	BL_UTIL_REQ_ERASE_FLASH_BANK,
-	BL_UTIL_REQ_PARSE_DATA,
-	BL_UTIL_REQ_VALIDATE_FLASH_BANK
+	BL_UTILS_REQ_NO_REQ,
+	BL_UTILS_REQ_ERASE_FLASH_BANK,
+	BL_UTILS_REQ_PARSE_DATA,
+	BL_UTILS_REQ_VALIDATE_FLASH_BANK
 }BL_UDS_UtilsReq_t;
+
+typedef void (*BL_UTILS_CallBackPtr)(uint8_t);
 
 typedef struct
 {
-	BL_UDS_UtilsReq_t	requestType;
-	uint8_t* 			requestData;
-	uint32_t			requestDataLen;
-	uint8_t				requestTrialCount;
+	BL_UTILS_CallBackPtr 	callBack;
+	BL_UDS_UtilsReq_t		requestType;
+	uint8_t* 				requestData;
+	uint32_t				requestDataLen;
+	uint8_t					requestTrialCount;
 }BL_UDS_UtilsReq_MetaData_t;
 
 typedef enum{
@@ -77,6 +79,7 @@ typedef enum{
 */
 
 void flsWaitUntilJobDone(void);
+UDS_Utils_ReturnType init_flags(void);
 
 UDS_Utils_ReturnType modify_flag(UDS_Utils_FLAG flag ,UDS_Utils_ModifyFlag input);
 
