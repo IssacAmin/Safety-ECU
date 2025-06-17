@@ -9,7 +9,6 @@
 #define UDS_SESSION_CFG_H
 
 #include "uds_types.h"
-#include "uds_server_cfg.h"
 #include "uds_sid_cfg.h"
 #include "uds_helpers.h"
 
@@ -23,6 +22,13 @@ extern UDS_Session_t serverSessions[];
 /************************************************************************Start of Generation************************************************************************/
 #define UDS_FBL_MAX_NORIFTY_TRY_COUNT           5U
 #define UDS_NUMBER_OF_SESSIONS                  3
+
+/* 
+ * Maps starting the timeout function to SID 0x10 Timeout function to a custom function handling
+ * the timeout of SID 0x10 that encapsulates any needed OS calls
+ */
+#define START_TIMEOUT_FUNC SID_10_startTimeout
+void SID_10_startTimeout(uint16_t t);
 
 
 /*This part only if there is a programming session*/

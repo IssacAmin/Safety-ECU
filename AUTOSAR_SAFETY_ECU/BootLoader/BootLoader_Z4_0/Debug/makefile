@@ -20,6 +20,7 @@ RM := rm -rf
 -include src/eclipse/plugins/Det_TS_T2D35M10I1R0/src/subdir.mk
 -include src/eclipse/plugins/Can_TS_T2D35M10I1R0/src/subdir.mk
 -include src/eclipse/plugins/CanIf_TS_T2D35M10I1R0/src/subdir.mk
+-include src/crc/src/subdir.mk
 -include src/UDS_C_SERVER/srv_handlers/TesterPresent/src/subdir.mk
 -include src/UDS_C_SERVER/srv_handlers/SessionCTRL/src/subdir.mk
 -include src/UDS_C_SERVER/srv_handlers/SecurityAccess/src/subdir.mk
@@ -28,6 +29,7 @@ RM := rm -rf
 -include src/UDS_C_SERVER/srv_handlers/ReadWriteDID/src/subdir.mk
 -include src/UDS_C_SERVER/srv_handlers/ECUReset/src/subdir.mk
 -include src/UDS_C_SERVER/server_main/src/subdir.mk
+-include src/UDS_C_SERVER/subdir.mk
 -include src/MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3/src/subdir.mk
 -include src/CanIfConfig/src/subdir.mk
 -include src/subdir.mk

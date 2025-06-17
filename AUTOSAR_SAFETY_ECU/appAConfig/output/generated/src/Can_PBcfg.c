@@ -188,6 +188,56 @@ extern FUNC(void,CAN_CODE) canErrorNotification( void);
 /*==================================================================================================
 *                                      LOCAL VARIABLES
 ==================================================================================================*/
+#if (CAN_RXFIFO_ENABLE == STD_ON)
+/**
+* @brief        Can_RxFiFoTableIdConfigType
+* @details      Identifier FormatA:
+*                   - StandardID: bits [29:19]
+*                   - ExtendedID: bits [29:1]
+*               Identifier FormatB:
+*                   - StandardID: bits [29:19] & [13:3]
+*                   - ExtendedID: bits [29:16] & [13:0] (only 14 MSB)
+*               Identifier FormatC:
+*                   - StandardID: bits [31::24] & [23:16] & [15:8] & [7:0] (only 8 MSB)
+*                   - ExtendedID: bits [31::24] & [23:16] & [15:8] & [7:0] (only 8 MSB)
+*
+*/
+static CONST(Can_RxFiFoTableIdConfigType, CAN_CONST) RxFifoTableID_PBConfig0[CAN_MAXTABLEID_0] =
+{
+    {
+        (uint32)0x07f80000U, /* CanRxFifoTable_0 of type Standard and formatA for FlexCAN_A */
+        (uint32)0xc0000000U  /* Filter Mask (correspond to RXIMR register) */
+    },
+    {
+        (uint32)0x07f80000U, /* CanRxFifoTable_1 of type Standard and formatA for FlexCAN_A */
+        (uint32)0xc0000000U  /* Filter Mask (correspond to RXIMR register) */
+    },
+    {
+        (uint32)0x07f80000U, /* CanRxFifoTable_2 of type Standard and formatA for FlexCAN_A */
+        (uint32)0xc0000000U  /* Filter Mask (correspond to RXIMR register) */
+    },
+    {
+        (uint32)0x07f80000U, /* CanRxFifoTable_3 of type Standard and formatA for FlexCAN_A */
+        (uint32)0xc0000000U  /* Filter Mask (correspond to RXIMR register) */
+    },
+    {
+        (uint32)0x07f80000U, /* CanRxFifoTable_4 of type Standard and formatA for FlexCAN_A */
+        (uint32)0xc0000000U  /* Filter Mask (correspond to RXIMR register) */
+    },
+    {
+        (uint32)0x07f80000U, /* CanRxFifoTable_5 of type Standard and formatA for FlexCAN_A */
+        (uint32)0xc0000000U  /* Filter Mask (correspond to RXIMR register) */
+    },
+    {
+        (uint32)0x07f80000U, /* CanRxFifoTable_6 of type Standard and formatA for FlexCAN_A */
+        (uint32)0xc0000000U  /* Filter Mask (correspond to RXIMR register) */
+    },
+    {
+        (uint32)0x07f80000U, /* CanRxFifoTable_7 of type Standard and formatA for FlexCAN_A */
+        (uint32)0xc0000000U  /* Filter Mask (correspond to RXIMR register) */
+    }
+};
+#endif /* (CAN_RXFIFO_ENABLE == STD_ON) */
 /*==================================================================================================*/
 /**
 * @brief          Filter Masks
@@ -250,9 +300,9 @@ static CONST(Can_MBConfigObjectType, CAN_CONST) MessageBufferConfigs0_PB[CAN_MAX
         /* Read/Write period reference used when POLLING mode is selected for the controller */
         (uint8)0U,    /* HOH reference to CanMainFunctionRWPeriods_0 */
         
-        (uint16)0x0090U,       /* Address of Message Buffer  */
+        (uint16)0x0100U,       /* Address of Message Buffer  */
         (uint8)8U,    /* Payload lenth of Message Buffer */
-        (uint8)1U    /* The index of MB in message buffer memory */
+        (uint8)8U    /* The index of MB in message buffer memory */
         #if (CAN_TRIGGER_TRANSMIT_EN == STD_ON)
         /* The parameter is used to detect the MB which run with trigger transmit feature */
         ,(boolean)FALSE
@@ -274,28 +324,28 @@ static CONST(Can_ControllerBaudrateConfigType, CAN_CONST) ControllerBaudrateCfgS
     =================================================
     Clock Size = 4.0E7 Hz - Clock from external OSC.
 
-    Clock Prescaler = 5 (1..256)
+    Clock Prescaler = 10 (1..256)
 
     CanBitRate = 500 Kbps (1bps..1Mbps)
-    Number CANTimeQuantas per bit = 16 (8..25)
+    Number CANTimeQuantas per bit = 8 (8..25)
 
     CTRL Register Fields:
-    PSEG1 =3(0..7)
-    PSEG2 =3(1..7)
-    PROPSEG =6(0..7)
-    RJW =3(0..3)
+    PSEG1 =2(0..7)
+    PSEG2 =1(1..7)
+    PROPSEG =1(0..7)
+    RJW =0(0..3)
     =================================================
     */
     /* Configuration for CanController ID0 == FlexCAN_A */
     {
         /* ===== Control Register - CTRL ===== */
         (uint32)( 
-                    ((uint32)4 << FLEXCAN_CTRL_PRESDIV_SHIFT_U8) |    /* CTRL[PRESDIV] - Clock Prescaler */
-                    ((uint32)3 << FLEXCAN_CTRL_RJW_SHIFT_U8) |     /* CTRL[RJW] - Resynchronization Jump Width */
-                    ((uint32)3 << FLEXCAN_CTRL_PSEG1_SHIFT_U8) |      /* CTRL[PSEG1] - Segment 1 */
-                    ((uint32)3 << FLEXCAN_CTRL_PSEG2_SHIFT_U8) |    /* CTRL[PSEG2] - Segment 2 */
+                    ((uint32)9 << FLEXCAN_CTRL_PRESDIV_SHIFT_U8) |    /* CTRL[PRESDIV] - Clock Prescaler */
+                    ((uint32)0 << FLEXCAN_CTRL_RJW_SHIFT_U8) |     /* CTRL[RJW] - Resynchronization Jump Width */
+                    ((uint32)2 << FLEXCAN_CTRL_PSEG1_SHIFT_U8) |      /* CTRL[PSEG1] - Segment 1 */
+                    ((uint32)1 << FLEXCAN_CTRL_PSEG2_SHIFT_U8) |    /* CTRL[PSEG2] - Segment 2 */
                     ((uint32)0 << FLEXCAN_CTRL_CLKSRC_SHIFT_U8) |
-                    6U   /* CTRL[PROPSEG] - Propagation segment */
+                    1U   /* CTRL[PROPSEG] - Propagation segment */
                 ),
         (uint8)12U, /* CTRL2[TASD] Tx Arbitration Start Delay */
         
@@ -356,7 +406,7 @@ static CONST(Can_ControlerDescriptorType, CAN_CONST) ControlerDescriptors0_PB[CA
     /* ControlerDescriptor of CanController_0*/
     {
         /* No. of Message Buffers for current controller - u8MaxMBCount */
-        (uint8)2U, /* No. of Message Buffers for current controller - u8MaxMBCount */
+        (uint8)9U, /* No. of Message Buffers for current controller - u8MaxMBCount */
         
         /* No. of BaudRate configured for current controller - u8MaxBaudRateCount */
         (uint8)1U,
@@ -369,9 +419,9 @@ static CONST(Can_ControlerDescriptorType, CAN_CONST) ControlerDescriptors0_PB[CA
         
         #if (CAN_RXFIFO_ENABLE == STD_ON)
         /*Rx Fifo Global mask value - u32RxFifoGlobalMask*/
-        (uint32)0U,
+        (uint32)0x7ffU,
         /* Number of MBs used by Rx Fifo - u8RxFiFoUsedMb */
-        (uint8)0U,
+        (uint8)8U,
         /* Pointer to RxFifo Overflow notification function. - Can_RxFifoOverflowNotification */
         NULL_PTR,
         /* Pointer to RxFifo Warning notification function. - Can_RxFifoWarningNotification */
@@ -388,8 +438,13 @@ static CONST(Can_ControlerDescriptorType, CAN_CONST) ControlerDescriptors0_PB[CA
         #endif
         /* ===== Controller Options ===== -  u32Options*/
         (uint32)(
-                    /* RX Fifo Disabled */ 
+                    CAN_CONTROLLERCONFIG_RXFIFO_U32 | /* RX Fifo Enabled */
                     CAN_CONTROLLERCONFIG_ERR_EN_U32 | /* Error Notification enabled */
+                    #if (CAN_RXFIFO_ENABLE == STD_ON)
+                    /* Rx Fifo Overflow handling disabled */ 
+                    /* Rx Fifo Warning handling disabled */ 
+                    CAN_CONTROLLERCONFIG_IDAM_A_U32 | /* ID Acceptance Mode A */
+                    #endif
                     /* Rx Interrupt was disabled */
                     /* Tx Interrupt was disabled */
                     0U
@@ -417,7 +472,7 @@ CONST(Can_ConfigType, CAN_CONST) CanConfigSet0=
     
     #if (CAN_RXFIFO_ENABLE == STD_ON)
     /* Can_RxFiFoTableIdConfigType - pRxFiFoTableIdConfig */
-    NULL_PTR, /* Rx fifo disabled */
+    RxFifoTableID_PBConfig0,
     #endif  /* (CAN_RXFIFO_ENABLE == STD_ON) */
     
     /* The index of the first HTH configured */

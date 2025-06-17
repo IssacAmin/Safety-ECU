@@ -20,7 +20,7 @@ MEMORY
     m_flags :	org = 0x00fA0000, len = 16K  
     m_appSectorBuffer : org = 0x40032000, len = 300K
     m_data :	org = 0x40000000, len = 200K
-    m_appACRC : org = 0x11fff80, len = 128 /**/
+    m_appAMetaData : org = 0x11fff80, len = 128 
  }
 
 
@@ -32,10 +32,10 @@ SECTIONS
 	} > m_appSectorBuffer
 
 
-	.appACRC	:
+	.appAMetaData	:
 	{
-		KEEP(*(.appACRC))
-	} > m_appACRC
+		KEEP(*(.appAMetaData))
+	} > m_appAMetaData
    
    	.flags	:
 	{

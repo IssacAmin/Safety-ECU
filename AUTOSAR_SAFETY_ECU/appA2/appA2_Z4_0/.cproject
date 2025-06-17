@@ -39,20 +39,26 @@
 								<option id="com.freescale.s32ds.cross.gnu.tool.c.compiler.option.debugging.format.1476058915" name="Debug format" superClass="com.freescale.s32ds.cross.gnu.tool.c.compiler.option.debugging.format" useByScannerDiscovery="true"/>
 								<option id="gnu.c.compiler.option.preprocessor.def.symbols.849565720" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="START_FROM_FLASH"/>
-									<listOptionValue builtIn="false" value="AUTOSAR_OS_NOT_USED"/>
 									<listOptionValue builtIn="false" value="TURN_ON_CPU0"/>
 								</option>
 								<option id="gnu.c.compiler.option.include.paths.1486570639" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../appAConfig\output\generated\include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../UDS_C_SERVER\server_main\inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../UDS_C_SERVER\srv_handlers\RequestDownload\inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../UDS_C_SERVER\srv_handlers\ECUReset\inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../UDS_C_SERVER\srv_handlers\ReadWriteDID\inc&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../UDS_C_SERVER\srv_handlers\RoutineCTRL\inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../UDS_C_SERVER\srv_handlers\SecurityAccess\inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../UDS_C_SERVER\srv_handlers\SessionCTRL\inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../UDS_C_SERVER\srv_handlers\TesterPresent\inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../UDS_C_SERVER\server_main\inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../appAConfig\udsConfig/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3\other_includes&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3\inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../bootloaderOsConfig\output\generated\epc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../CanTp/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../BootloaderConfig/CanIfConfig/inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Can_TS_T2D35M10I1R0\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\CanIf_TS_T2D35M10I1R0\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Dio_TS_T2D35M10I1R0\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Base_TS_T2D35M10I1R0\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Port_TS_T2D35M10I1R0\include&quot;"/>
@@ -61,6 +67,7 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Det_TS_T2D35M10I1R0\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Fls_TS_T2D35M10I1R0\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../MPC574XG_MCAL4_0_RTM_1_0_5\eclipse\plugins\MemIf_TS_T2D35M10I5R0\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\EcuM_TS_T2D35M10I1R0\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${VLE_EWL_DIR}/EWL_C/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${VLE_EWL_DIR}/EWL_C/include/pa&quot;"/>
 								</option>
@@ -206,7 +213,7 @@
 					<sourceEntries>
 						<entry excluding="Linker_Files/57xx_ram.ld|Debugger/appA2_Z4_0_Debug_RAM.launch" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Project_Settings"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="include"/>
-						<entry excluding="udsConfig|UDS_utils.c|UDS_C_SERVER" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="CanTp/src/Can_tpTest.c|Vector.c|MPC57xx__Interrupt_Init.c|intc_SW_mode_isr_vectors_MPC5748G.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -344,7 +351,7 @@
 					<sourceEntries>
 						<entry excluding="Linker_Files/57xx_flash.ld|Debugger/appA2_Z4_0_Debug_RAM.launch" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Project_Settings"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="include"/>
-						<entry excluding="udsConfig|UDS_utils.c|UDS_C_SERVER" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="CanTp/src/Can_tpTest.c|Vector.c|MPC57xx__Interrupt_Init.c|intc_SW_mode_isr_vectors_MPC5748G.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -478,7 +485,7 @@
 					<sourceEntries>
 						<entry excluding="Linker_Files/57xx_flash.ld|Debugger/appA2_Z4_0_Debug.launch" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Project_Settings"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="include"/>
-						<entry excluding="udsConfig|UDS_utils.c|UDS_C_SERVER|flashrchw.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="CanTp/src/Can_tpTest.c|Vector.c|MPC57xx__Interrupt_Init.c|intc_SW_mode_isr_vectors_MPC5748G.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

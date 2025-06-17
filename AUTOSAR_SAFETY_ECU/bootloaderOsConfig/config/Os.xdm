@@ -154,6 +154,146 @@
                     </d:lst>
                   </d:ctr>
                 </d:ctr>
+                <d:ctr name="udsSessionTimeoutAlarm" type="IDENTIFIABLE">
+                  <d:lst name="OsAlarmAccessingApplication">
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Os/Os/OsApplication_1"/>
+                  </d:lst>
+                  <d:ref name="OsAlarmCounterRef" type="REFERENCE" 
+                         value="ASPath:/Os/Os/SYSTEMTIMER"/>
+                  <d:chc name="OsAlarmAction" type="IDENTIFIABLE" 
+                         value="OsAlarmCallback">
+                    <d:ctr name="OsAlarmActivateTask" type="IDENTIFIABLE">
+                      <d:ref name="OsAlarmActivateTaskRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                    </d:ctr>
+                    <d:ctr name="OsAlarmCallback" type="IDENTIFIABLE">
+                      <d:var name="OsAlarmCallbackName" type="FUNCTION-NAME" 
+                             value="UDS_defaultSessionResetCallBack"/>
+                    </d:ctr>
+                    <d:ctr name="OsAlarmIncrementCounter" type="IDENTIFIABLE">
+                      <d:ref name="OsAlarmIncrementCounterRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                    </d:ctr>
+                    <d:ctr name="OsAlarmSetEvent" type="IDENTIFIABLE">
+                      <d:ref name="OsAlarmSetEventRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                      <d:ref name="OsAlarmSetEventTaskRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                    </d:ctr>
+                  </d:chc>
+                  <d:ctr name="OsAlarmAutostart" type="IDENTIFIABLE">
+                    <a:a name="ENABLE" value="false"/>
+                    <d:var name="OsAlarmAlarmTime" type="INTEGER" >
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="OsAlarmAutostartType" type="ENUMERATION" >
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="OsAlarmCycleTime" type="INTEGER" >
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:lst name="OsAlarmAppModeRef"/>
+                  </d:ctr>
+                </d:ctr>
+                <d:ctr name="udsDefaultSecurityLevelResetTimeoutAlarm" 
+                       type="IDENTIFIABLE">
+                  <d:lst name="OsAlarmAccessingApplication">
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Os/Os/OsApplication_1"/>
+                  </d:lst>
+                  <d:ref name="OsAlarmCounterRef" type="REFERENCE" 
+                         value="ASPath:/Os/Os/SYSTEMTIMER"/>
+                  <d:chc name="OsAlarmAction" type="IDENTIFIABLE" 
+                         value="OsAlarmCallback">
+                    <d:ctr name="OsAlarmActivateTask" type="IDENTIFIABLE">
+                      <d:ref name="OsAlarmActivateTaskRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                    </d:ctr>
+                    <d:ctr name="OsAlarmCallback" type="IDENTIFIABLE">
+                      <d:var name="OsAlarmCallbackName" type="FUNCTION-NAME" 
+                             value="UDS_defaultSecurityLevelResetCallack"/>
+                    </d:ctr>
+                    <d:ctr name="OsAlarmIncrementCounter" type="IDENTIFIABLE">
+                      <d:ref name="OsAlarmIncrementCounterRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                    </d:ctr>
+                    <d:ctr name="OsAlarmSetEvent" type="IDENTIFIABLE">
+                      <d:ref name="OsAlarmSetEventRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                      <d:ref name="OsAlarmSetEventTaskRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                    </d:ctr>
+                  </d:chc>
+                  <d:ctr name="OsAlarmAutostart" type="IDENTIFIABLE">
+                    <a:a name="ENABLE" value="false"/>
+                    <d:var name="OsAlarmAlarmTime" type="INTEGER" >
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="OsAlarmAutostartType" type="ENUMERATION" >
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="OsAlarmCycleTime" type="INTEGER" >
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:lst name="OsAlarmAppModeRef"/>
+                  </d:ctr>
+                </d:ctr>
+                <d:ctr name="udsSecurityAccessAttemptCountTimeoutAlarm" 
+                       type="IDENTIFIABLE">
+                  <d:lst name="OsAlarmAccessingApplication">
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Os/Os/OsApplication_1"/>
+                  </d:lst>
+                  <d:ref name="OsAlarmCounterRef" type="REFERENCE" 
+                         value="ASPath:/Os/Os/SYSTEMTIMER"/>
+                  <d:chc name="OsAlarmAction" type="IDENTIFIABLE" 
+                         value="OsAlarmCallback">
+                    <d:ctr name="OsAlarmActivateTask" type="IDENTIFIABLE">
+                      <d:ref name="OsAlarmActivateTaskRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                    </d:ctr>
+                    <d:ctr name="OsAlarmCallback" type="IDENTIFIABLE">
+                      <d:var name="OsAlarmCallbackName" type="FUNCTION-NAME" 
+                             value="uds_secLvl_attempt_callBack"/>
+                    </d:ctr>
+                    <d:ctr name="OsAlarmIncrementCounter" type="IDENTIFIABLE">
+                      <d:ref name="OsAlarmIncrementCounterRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                    </d:ctr>
+                    <d:ctr name="OsAlarmSetEvent" type="IDENTIFIABLE">
+                      <d:ref name="OsAlarmSetEventRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                      <d:ref name="OsAlarmSetEventTaskRef" type="REFERENCE" >
+                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                      </d:ref>
+                    </d:ctr>
+                  </d:chc>
+                  <d:ctr name="OsAlarmAutostart" type="IDENTIFIABLE">
+                    <a:a name="ENABLE" value="false"/>
+                    <d:var name="OsAlarmAlarmTime" type="INTEGER" >
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="OsAlarmAutostartType" type="ENUMERATION" >
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:var name="OsAlarmCycleTime" type="INTEGER" >
+                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                    </d:var>
+                    <d:lst name="OsAlarmAppModeRef"/>
+                  </d:ctr>
+                </d:ctr>
               </d:lst>
               <d:lst name="OsAppMode" type="MAP">
                 <d:ctr name="OsAppMode_0" type="IDENTIFIABLE"/>
@@ -183,6 +323,12 @@
                            value="ASPath:/Os/Os/task2WakeupAlarm"/>
                     <d:ref type="REFERENCE" 
                            value="ASPath:/Os/Os/task3WakeupAlarm"/>
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Os/Os/udsSessionTimeoutAlarm"/>
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Os/Os/udsDefaultSecurityLevelResetTimeoutAlarm"/>
+                    <d:ref type="REFERENCE" 
+                           value="ASPath:/Os/Os/udsSecurityAccessAttemptCountTimeoutAlarm"/>
                   </d:lst>
                   <d:lst name="OsAppCounterRef">
                     <d:ref type="REFERENCE" value="ASPath:/Os/Os/SYSTEMTIMER"/>

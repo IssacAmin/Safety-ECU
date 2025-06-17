@@ -11,33 +11,85 @@
  #define START_SEC_UDS_SEC_CONST_DATA
  #include "uds_memMap.h"
  /*************************************************************************Start of Generation*************************************************************************/
- static const uint8_t rid_0001_sessions[] = {0, 1};
+ static const uint8_t rid_ff00_sessions[] = {1, 2};
  #ifdef UDS_SECURITY_LEVEL_SUPPORTED 
- static const uint8_t rid_0001_security[] = {0, 1};
+ static const uint8_t rid_ff00_security[] = {0, 1};
  #endif
- static const UDS_SubFunctionSupportivity_t rid_0001_supportivity = 
+ static const UDS_SubFunctionSupportivity_t rid_ff00_supportivity = 
  {
-     .supportedSessions = rid_0001_sessions,
+     .supportedSessions = rid_ff00_sessions,
      .supportedSessionsLen = 2U
  #ifdef UDS_SECURITY_LEVEL_SUPPORTED
      ,
-     .supportedSecurityLvl = rid_0001_security,
+     .supportedSecurityLvl = rid_ff00_security,
+     .supportedSecurityLvlLen = 2U
+ #endif
+ };
+
+
+ static const uint8_t rid_ff01_sessions[] = {1, 2};
+ #ifdef UDS_SECURITY_LEVEL_SUPPORTED 
+ static const uint8_t rid_ff01_security[] = {0, 1};
+ #endif
+ static const UDS_SubFunctionSupportivity_t rid_ff01_supportivity = 
+ {
+     .supportedSessions = rid_ff01_sessions,
+     .supportedSessionsLen = 2U
+ #ifdef UDS_SECURITY_LEVEL_SUPPORTED
+     ,
+     .supportedSecurityLvl = rid_ff01_security,
+     .supportedSecurityLvlLen = 2U
+ #endif
+ };
+
+
+ static const uint8_t rid_ff02_sessions[] = {1, 2};
+ #ifdef UDS_SECURITY_LEVEL_SUPPORTED 
+ static const uint8_t rid_ff02_security[] = {0, 1};
+ #endif
+ static const UDS_SubFunctionSupportivity_t rid_ff02_supportivity = 
+ {
+     .supportedSessions = rid_ff02_sessions,
+     .supportedSessionsLen = 2U
+ #ifdef UDS_SECURITY_LEVEL_SUPPORTED
+     ,
+     .supportedSecurityLvl = rid_ff02_security,
      .supportedSecurityLvlLen = 2U
  #endif
  };
  /* Array of DID structure according to configuration */
  UDS_RID_RECORD_t UDS_Routines[UDS_NUM_OF_ROUTINES] =
  {
-     {
-         .rid = 0xff00,
-         .optionRecordSize = 0U,
-         .isRestartable = 0U,
-         .status = ROUTINE_STATUS_STOPPED,
-         .routineStartHandler = rid_FF00_start,
-         .routineStopHandler = NULL,
-         .routineCheckResultsHandler = rid_FF00_checkRes,
-         .SupportivityStruct = &rid_0001_supportivity
-     }
+    {
+        .rid = 0xff00,
+        .optionRecordSize = 0U,
+        .isRestartable = 0U,
+        .status = ROUTINE_STATUS_STOPPED,
+        .routineStartHandler = rid_FF00_start,
+        .routineStopHandler = NULL,
+        .routineCheckResultsHandler = rid_FF00_checkRes,
+        .SupportivityStruct = &rid_ff00_supportivity
+    },
+    {
+        .rid = 0xff01,
+        .optionRecordSize = 1U,
+        .isRestartable = 0U,
+        .status = ROUTINE_STATUS_STOPPED,
+        .routineStartHandler = rid_FF01_start,
+        .routineStopHandler = NULL,
+        .routineCheckResultsHandler = rid_FF01_checkRes,
+        .SupportivityStruct = &rid_ff01_supportivity
+    },
+    {
+        .rid = 0xff02,
+        .optionRecordSize = 0U,
+        .isRestartable = 0U,
+        .status = ROUTINE_STATUS_STOPPED,
+        .routineStartHandler = rid_FF02_start,
+        .routineStopHandler = NULL,
+        .routineCheckResultsHandler = rid_FF02_checkRes,
+        .SupportivityStruct = &rid_ff02_supportivity
+    }
  };
  /**************************************************************************End of Generation**************************************************************************/
 #if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L)

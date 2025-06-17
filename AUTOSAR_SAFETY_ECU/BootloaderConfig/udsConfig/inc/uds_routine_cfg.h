@@ -13,11 +13,19 @@
 #include "uds_routines_types.h"
 
 /*************************************************************************Start of Generation*************************************************************************/
-#define UDS_NUM_OF_ROUTINES 1U
+#define UDS_NUM_OF_ROUTINES 3U
 
 /*Routine FF00 Functions*/
 uint8_t rid_FF00_start(uint8_t* data,uint8_t dataLen);
 uint8_t rid_FF00_checkRes(uint8_t* data,uint8_t dataLen);
+
+/*Routine FF01 Functions*/
+uint8_t rid_FF01_start(uint8_t* data,uint8_t dataLen);
+uint8_t rid_FF01_checkRes(uint8_t* data,uint8_t dataLen);
+
+/*Routine FF02 Functions*/
+uint8_t rid_FF02_start(uint8_t* data,uint8_t dataLen);
+uint8_t rid_FF02_checkRes(uint8_t* data,uint8_t dataLen);
 
 /**************************************************************************End of Generation**************************************************************************/
 

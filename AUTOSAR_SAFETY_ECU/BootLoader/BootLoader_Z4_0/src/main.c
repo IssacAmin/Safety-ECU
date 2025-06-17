@@ -18,7 +18,7 @@
 #include "CanTp.h"
 #include "CanIf.h"
 
-
+uint8_t transmitFlag;
 
 uint8_t canTpTxConfirmationFlag = 1;
 
@@ -48,7 +48,7 @@ static void BL_InitUDS(void)
 		if(NULL != securityLvlRecord)
 		{
 			UDS_setSecurityLvlAfterProgSessionReset(securityLvlRecord);
-			uint8_t progSessReq[] = {0x10,0x1};
+			uint8_t progSessReq[] = {0x10,0x2};
 			UDS_REQ_t req;
 			req.data = &progSessReq;
 			req.udsDataLen = 2;
@@ -59,9 +59,10 @@ static void BL_InitUDS(void)
 			req.trgAdd = 0xAA;
 			req.status = UDS_REQUEST_STATUS_NOT_SERVED;
 			UDS_RequestIndication(&req);
-			UDS_mainFunction();
+//			UDS_mainFunction();
 		}
 		modify_flag(PROGRAMMING_SESSION,FLAG_CLEAR);
+		modify_flag(UDS_LAST_SECURITY_LEVEL,SECURITY_LVL_DEFAULT_ID);
 	}
 }
 
@@ -164,7 +165,7 @@ TASK(OsTask3_Core0)
 
 	CanTp_MainFunction();
 
-	ret = SetRelAlarm(task3WakeupAlarm, x, 0);
+	ret = SetRelAlarm(task3WakeupAlarm, 2000, 0);
 	ret = TerminateTask();
 }
 TASK(OsTask2_Core0)
@@ -172,7 +173,7 @@ TASK(OsTask2_Core0)
 	uint8_t uds_waitFlag = 0;
 	StatusType ret;
 	static uint32_t count = 0;
-
+	uint32_t sleepTime = 0;
 	while(1)
 	{
 		count++;
@@ -187,11 +188,14 @@ TASK(OsTask2_Core0)
 		if(uds_waitFlag)
 		{
 			uds_waitFlag = 0;
-			//			ret = SetRelAlarm(task2WakeupAlarm, 20, 0);
-			//			ret = TerminateTask();
+			sleepTime = 100;
+		}
+		else
+		{
+			sleepTime = 20;
 		}
 
-		ret = SetRelAlarm(task2WakeupAlarm, 20, 0);
+		ret = SetRelAlarm(task2WakeupAlarm, sleepTime, 0);
 		ret = TerminateTask();
 	}
 }
@@ -227,11 +231,3 @@ TASK(OsTask_Core0)
 }
 
 
-void flsWaitUntilJobDone(void)
-{
-	Fls_MainFunction();
-	while(Fls_GetJobResult() == MEMIF_JOB_PENDING)
-	{
-		Fls_MainFunction();
-	}
-}

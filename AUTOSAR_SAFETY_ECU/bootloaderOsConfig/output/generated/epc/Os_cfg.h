@@ -22,6 +22,7 @@
 #define OS_START_SEC_CONST_UNSPECIFIED
 #include    "Os_sections.h"
 
+#include "Os_counter_config.h"
 
 /* Applications */
 #define OsApplication_1 ((ApplicationType)OS_MKOBJID(OBJECT_APPLICATION, 0U)) /* Application ID */
@@ -61,6 +62,12 @@ extern void FuncOsTask_Core0(void); /* Task entry point */
 #define task3WakeupAlarm ((AlarmType)OS_MKOBJID(OBJECT_ALARM, 1U)) /* Alarm ID */
 #define canTp_OsAlarm ((AlarmType)OS_MKOBJID(OBJECT_ALARM, 2U)) /* Alarm ID */
 void canTpOsAlarmCallback(void); /* callback function of canTp_OsAlarm */
+#define udsDefaultSecurityLevelResetTimeoutAlarm ((AlarmType)OS_MKOBJID(OBJECT_ALARM, 3U)) /* Alarm ID */
+void UDS_defaultSecurityLevelResetCallack(void); /* callback function of udsDefaultSecurityLevelResetTimeoutAlarm */
+#define udsSecurityAccessAttemptCountTimeoutAlarm ((AlarmType)OS_MKOBJID(OBJECT_ALARM, 4U)) /* Alarm ID */
+void uds_secLvl_attempt_callBack(void); /* callback function of udsSecurityAccessAttemptCountTimeoutAlarm */
+#define udsSessionTimeoutAlarm ((AlarmType)OS_MKOBJID(OBJECT_ALARM, 5U)) /* Alarm ID */
+void UDS_defaultSessionResetCallBack(void); /* callback function of udsSessionTimeoutAlarm */
 
 /* Counters identification */
 #define SYSTEMTIMER ((CounterType)OS_MKOBJID(OBJECT_COUNTER, 0U)) /* Counter ID */

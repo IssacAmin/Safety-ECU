@@ -151,8 +151,8 @@
 #define OSRESOURCE                         /* at least one resource with task priority and RESOURCEPROPERTY = STANDARD (including RES_SCHEDULER) is defined */
 #define OSNCTRS 1U                         /* equal to number of COUNTER objects */
 #define OSCOUNTER                          /* defined if at least one COUNTER object defined  */
-#define OSNUSERALMS 3U                     /* equal to number of ALARM objects */
-#define OSNALMS 3U                         /* equal to number of ALARM and SCHEDULETABLES objects */
+#define OSNUSERALMS 6U                     /* equal to number of ALARM objects */
+#define OSNALMS 6U                         /* equal to number of ALARM and SCHEDULETABLES objects */
 #define OSALARM                            /* at least one ALARM object defined */
 #define OSNAUTOALMS 2U                     /* equal to number of auto-start alarms */
 #define OSNMSGS 0U                         /* equal to the number of MESSAGE objects */

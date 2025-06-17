@@ -185,6 +185,27 @@ const    OSALM   OsAlarmsCfg[OSNUSERALMS] =
         (OSCALLBACK) &canTpOsAlarmCallback, /* Alarms' hook entry */
         0U, /* application identification value */
     }, /* canTp_OsAlarm */
+    {
+        1U, /* appMask */
+        0U, /* Task to start or to set Event */
+        0U, /* attached Counter ID */
+        (OSCALLBACK) &UDS_defaultSecurityLevelResetCallack, /* Alarms' hook entry */
+        0U, /* application identification value */
+    }, /* udsDefaultSecurityLevelResetTimeoutAlarm */
+    {
+        1U, /* appMask */
+        0U, /* Task to start or to set Event */
+        0U, /* attached Counter ID */
+        (OSCALLBACK) &uds_secLvl_attempt_callBack, /* Alarms' hook entry */
+        0U, /* application identification value */
+    }, /* udsSecurityAccessAttemptCountTimeoutAlarm */
+    {
+        1U, /* appMask */
+        0U, /* Task to start or to set Event */
+        0U, /* attached Counter ID */
+        (OSCALLBACK) &UDS_defaultSessionResetCallBack, /* Alarms' hook entry */
+        0U, /* application identification value */
+    }, /* udsSessionTimeoutAlarm */
 };
 
 /* Auto started Alarms */

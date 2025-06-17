@@ -46,25 +46,8 @@
                     </d:ref>
                   </d:ctr>
                   <d:ctr name="EcuMDriverInitListOne" type="IDENTIFIABLE">
-                    <a:a name="ENABLE" value="true"/>
-                    <d:lst name="EcuMDriverInitItem" type="MAP">
-                      <d:ctr name="EcuMDriverInitItem_0" type="IDENTIFIABLE">
-                        <d:var name="EcuMModuleID" type="STRING" >
-                          <a:a name="ENABLE" value="false"/>
-                          <a:a name="IMPORTER_INFO" value="@DEF"/>
-                        </d:var>
-                        <d:var name="EcuMModuleParameter" type="ENUMERATION" >
-                          <a:a name="IMPORTER_INFO" value="@DEF"/>
-                        </d:var>
-                        <d:var name="EcuMModuleService" type="STRING" >
-                          <a:a name="ENABLE" value="false"/>
-                          <a:a name="IMPORTER_INFO" value="@DEF"/>
-                        </d:var>
-                        <d:ref name="EcuMModuleRef" type="REFERENCE" >
-                          <a:a name="IMPORTER_INFO" value="@DEF"/>
-                        </d:ref>
-                      </d:ctr>
-                    </d:lst>
+                    <a:a name="ENABLE" value="false"/>
+                    <d:lst name="EcuMDriverInitItem" type="MAP"/>
                   </d:ctr>
                   <d:ctr name="EcuMDriverInitListZero" type="IDENTIFIABLE">
                     <a:a name="ENABLE" value="false"/>

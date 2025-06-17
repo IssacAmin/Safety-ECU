@@ -69,7 +69,6 @@
 "./src/MPC574XG_MCAL4_3_RTM_HF8_1_0_1/eclipse/plugins/Rte_TS_T2D35M10I1R0/src/SchM_Wdg.o"
 "./src/MPC57xx__Interrupt_Init.o"
 "./src/Vector.o"
-"./src/crc.o"
 "./src/flags.o"
 "./src/flashrchw.o"
 "./src/intc_SW_mode_isr_vectors_MPC5748G.o"

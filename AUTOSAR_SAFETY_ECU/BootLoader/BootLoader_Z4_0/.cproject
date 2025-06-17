@@ -58,6 +58,7 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Fls_TS_T2D35M10I1R0\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../BootloaderConfig/CanIfConfig/inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../CanTp/inc&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../crc/inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Det_TS_T2D35M10I1R0\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Base_TS_T2D35M10I1R0\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Can_TS_T2D35M10I1R0\include&quot;"/>
@@ -158,7 +159,7 @@
 					<sourceEntries>
 						<entry excluding="Linker_Files/57xx_ram.ld|Debugger/BootLoader_Z4_0_Debug_RAM.launch" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Project_Settings"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="include"/>
-						<entry excluding="src/Can_tp.c|Vector.c|SRC/test_main.c|intc_SW_mode_isr_vectors_MPC5748G.c|Safety_ECU_Can-Tp/src/Can_tp.c|MPC57xx__Interrupt_Init.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="flags.c|testFunctions.c|src/Can_tp.c|Vector.c|SRC/test_main.c|intc_SW_mode_isr_vectors_MPC5748G.c|Safety_ECU_Can-Tp/src/Can_tp.c|MPC57xx__Interrupt_Init.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -296,7 +297,7 @@
 					<sourceEntries>
 						<entry excluding="Debugger/BootLoader_Z4_0_Debug_RAM.launch|Linker_Files/57xx_flash.ld" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Project_Settings"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="include"/>
-						<entry excluding="src/Can_tp.c|Vector.c|SRC/test_main.c|intc_SW_mode_isr_vectors_MPC5748G.c|Safety_ECU_Can-Tp/src/Can_tp.c|MPC57xx__Interrupt_Init.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="flags.c|testFunctions.c|src/Can_tp.c|Vector.c|SRC/test_main.c|intc_SW_mode_isr_vectors_MPC5748G.c|Safety_ECU_Can-Tp/src/Can_tp.c|MPC57xx__Interrupt_Init.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -430,7 +431,7 @@
 					<sourceEntries>
 						<entry excluding="Debugger/BootLoader_Z4_0_Debug.launch|Linker_Files/57xx_flash.ld" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Project_Settings"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="include"/>
-						<entry excluding="src/Can_tp.c|Vector.c|SRC/test_main.c|intc_SW_mode_isr_vectors_MPC5748G.c|Safety_ECU_Can-Tp/src/Can_tp.c|flashrchw.c|MPC57xx__Interrupt_Init.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="flags.c|testFunctions.c|src/Can_tp.c|Vector.c|SRC/test_main.c|intc_SW_mode_isr_vectors_MPC5748G.c|Safety_ECU_Can-Tp/src/Can_tp.c|flashrchw.c|MPC57xx__Interrupt_Init.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -463,4 +464,5 @@
 		</configuration>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>

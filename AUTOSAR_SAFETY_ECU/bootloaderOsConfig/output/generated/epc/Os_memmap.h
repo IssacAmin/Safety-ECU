@@ -35,7 +35,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_STOP_SEC_CONST_8)
@@ -57,7 +57,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_START_SEC_CONST_16)
@@ -79,7 +79,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_STOP_SEC_CONST_16)
@@ -101,7 +101,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_START_SEC_CONST_32)
@@ -123,7 +123,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_STOP_SEC_CONST_32)
@@ -145,7 +145,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_START_SEC_CONST_UNSPECIFIED)
@@ -167,7 +167,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_STOP_SEC_CONST_UNSPECIFIED)
@@ -189,7 +189,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 /*  --- var DATA (in RAM or paged RAM) ---  */
@@ -214,7 +214,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_STOP_SEC_VAR_8)
@@ -237,7 +237,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_START_SEC_VAR_16)
@@ -260,7 +260,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_STOP_SEC_VAR_16)
@@ -283,7 +283,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_START_SEC_VAR_32)
@@ -306,7 +306,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_STOP_SEC_VAR_32)
@@ -329,7 +329,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_START_SEC_VAR_UNSPECIFIED)
@@ -352,7 +352,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_STOP_SEC_VAR_UNSPECIFIED)
@@ -375,7 +375,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 /*  --- FAST DATA (in direct page)  ---  */
@@ -401,7 +401,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_STOP_SEC_VAR_FAST_8)
@@ -425,7 +425,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_START_SEC_VAR_FAST_16)
@@ -449,7 +449,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_STOP_SEC_VAR_FAST_16)
@@ -473,7 +473,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_START_SEC_VAR_FAST_32)
@@ -497,7 +497,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_STOP_SEC_VAR_FAST_32)
@@ -521,7 +521,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_START_SEC_VAR_FAST_UNSPECIFIED)
@@ -545,7 +545,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_STOP_SEC_VAR_FAST_UNSPECIFIED)
@@ -569,7 +569,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 /*  --- FAST CONST DATA (in RAM or paged RAM) ---  */
@@ -594,7 +594,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_STOP_SEC_CONST_FAST_8)
@@ -617,7 +617,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_START_SEC_CONST_FAST_16)
@@ -640,7 +640,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_STOP_SEC_CONST_FAST_16)
@@ -663,7 +663,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_START_SEC_CONST_FAST_32)
@@ -686,7 +686,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_STOP_SEC_CONST_FAST_32)
@@ -709,7 +709,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_START_SEC_CONST_FAST_UNSPECIFIED)
@@ -732,7 +732,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OsApplication_1_STOP_SEC_CONST_FAST_UNSPECIFIED)
@@ -755,7 +755,7 @@
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 /*  --- HOOKS CODE ---  */
@@ -872,7 +872,7 @@ OSASM("    .vle ");
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OSVECTORS_STOP_SEC_CODE)
@@ -895,7 +895,7 @@ OSASM("    .vle ");
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 /*  --- OSVECTORS CODE second core ---  */
@@ -920,7 +920,7 @@ OSASM("    .vle ");
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OSVECTORS2_STOP_SEC_CODE)
@@ -943,7 +943,7 @@ OSASM("    .vle ");
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 /*  --- STARTUP CODE second core ---  */
@@ -968,7 +968,7 @@ OSASM("    .vle ");
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #elif defined(OSSTARTUP2_STOP_SEC_CODE)
@@ -991,7 +991,7 @@ OSASM("    .vle ");
 
 #else
 
-#error Unknown compiler
+#warning Unknown compiler
 #endif /* OSCWPPC */
 
 #endif /* OsApplication_1_START_SEC_CONST_8 */

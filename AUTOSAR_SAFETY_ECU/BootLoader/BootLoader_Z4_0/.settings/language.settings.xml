@@ -5,7 +5,7 @@
 			<provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
 			<provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
 			<provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-			<provider class="com.freescale.s32ds.cross.gnu.CrossGCCBuiltinSpecsDetector" console="false" env-hash="870077604236669168" id="com.freescale.s32ds.cross.gnu.CrossGCCBuiltinSpecsDetector" keep-relative-paths="false" name="CDT S32DS Built-in Compiler Settings" parameter="${COMMAND} ${FLAGS} -E -P -v -dD &quot;${INPUTS}&quot;" prefer-non-shared="true">
+			<provider class="com.freescale.s32ds.cross.gnu.CrossGCCBuiltinSpecsDetector" console="false" env-hash="-892687371349450571" id="com.freescale.s32ds.cross.gnu.CrossGCCBuiltinSpecsDetector" keep-relative-paths="false" name="CDT S32DS Built-in Compiler Settings" parameter="${COMMAND} ${FLAGS} -E -P -v -dD &quot;${INPUTS}&quot;" prefer-non-shared="true">
 				<language-scope id="org.eclipse.cdt.core.gcc"/>
 				<language-scope id="org.eclipse.cdt.core.g++"/>
 			</provider>
@@ -16,7 +16,7 @@
 			<provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
 			<provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
 			<provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-			<provider class="com.freescale.s32ds.cross.gnu.CrossGCCBuiltinSpecsDetector" console="false" env-hash="954254191884252212" id="com.freescale.s32ds.cross.gnu.CrossGCCBuiltinSpecsDetector" keep-relative-paths="false" name="CDT S32DS Built-in Compiler Settings" parameter="${COMMAND} ${FLAGS} -E -P -v -dD &quot;${INPUTS}&quot;" prefer-non-shared="true">
+			<provider class="com.freescale.s32ds.cross.gnu.CrossGCCBuiltinSpecsDetector" console="false" env-hash="-808510783701867527" id="com.freescale.s32ds.cross.gnu.CrossGCCBuiltinSpecsDetector" keep-relative-paths="false" name="CDT S32DS Built-in Compiler Settings" parameter="${COMMAND} ${FLAGS} -E -P -v -dD &quot;${INPUTS}&quot;" prefer-non-shared="true">
 				<language-scope id="org.eclipse.cdt.core.gcc"/>
 				<language-scope id="org.eclipse.cdt.core.g++"/>
 			</provider>
@@ -27,7 +27,7 @@
 			<provider copy-of="extension" id="org.eclipse.cdt.ui.UserLanguageSettingsProvider"/>
 			<provider-reference id="org.eclipse.cdt.core.ReferencedProjectsLanguageSettingsProvider" ref="shared-provider"/>
 			<provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
-			<provider class="com.freescale.s32ds.cross.gnu.CrossGCCBuiltinSpecsDetector" console="false" env-hash="954254191884252212" id="com.freescale.s32ds.cross.gnu.CrossGCCBuiltinSpecsDetector" keep-relative-paths="false" name="CDT S32DS Built-in Compiler Settings" parameter="${COMMAND} ${FLAGS} -E -P -v -dD &quot;${INPUTS}&quot;" prefer-non-shared="true">
+			<provider class="com.freescale.s32ds.cross.gnu.CrossGCCBuiltinSpecsDetector" console="false" env-hash="-808510783701867527" id="com.freescale.s32ds.cross.gnu.CrossGCCBuiltinSpecsDetector" keep-relative-paths="false" name="CDT S32DS Built-in Compiler Settings" parameter="${COMMAND} ${FLAGS} -E -P -v -dD &quot;${INPUTS}&quot;" prefer-non-shared="true">
 				<language-scope id="org.eclipse.cdt.core.gcc"/>
 				<language-scope id="org.eclipse.cdt.core.g++"/>
 			</provider>
