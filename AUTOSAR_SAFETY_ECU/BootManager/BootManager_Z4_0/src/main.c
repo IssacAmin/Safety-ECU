@@ -59,8 +59,10 @@ int main(void)
 	//TODO: eh da????
 	if(flags_instance.flashing_in_progress)
 	{
+		/*TODO: there should be another action here jump to bootloader? notify and log error? eh elklam*/
 		//TODO: use modify flag
 		flags_instance.reset_during_flash = 1;
+		flags_instance.flashing_in_progress = 0;
 
 		fls_ret = Fls_Erase(FLAGS, FLAGS_SECTOR_SIZE);
 		flsWaitUntilJobDone();
@@ -68,34 +70,36 @@ int main(void)
 		fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
 		flsWaitUntilJobDone();
 	}
-
-	/* Jump to BL if programming_session flag is set or current APP is invalid*/
-	if(flags_instance.programming_session)
-	{
-		/*Shouldnt we reset the flag ?*/
-		Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_HIGH);
-		ptr_to_bootloader();
-	}
 	else
 	{
-		if(flags_instance.current_app == 0)
+		/* Jump to BL if programming_session flag is set or current APP is invalid*/
+		if(flags_instance.programming_session)
 		{
-			if(flags_instance.flashbank_A_valid)
-			{
-				Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_HIGH);
-				ptr_to_flashbank_A();
-			}
+			/*Shouldnt we reset the flag ?*/
+			Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_HIGH);
+			ptr_to_bootloader();
 		}
 		else
 		{
-			if(flags_instance.flashbank_B_valid)
+			if(flags_instance.current_app == 0)
 			{
-				Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_HIGH);
-				ptr_to_flashbank_B();
+				if(flags_instance.flashbank_A_valid)
+				{
+					Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_HIGH);
+					ptr_to_flashbank_A();
+				}
 			}
+			else
+			{
+				if(flags_instance.flashbank_B_valid)
+				{
+					Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_HIGH);
+					ptr_to_flashbank_B();
+				}
+			}
+			Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_HIGH);
+			ptr_to_bootloader();
 		}
-		Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_HIGH);
-		ptr_to_bootloader();
 	}
 	/* Loop forever */
 	for(;;) {
