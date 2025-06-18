@@ -15,7 +15,8 @@ const uint32_t flags_section[4096] __attribute__((section(".flags"))) = {
     0x00000000,  /*flash bank B valid*/
     0x00000000,  /*flash bank B erased*/
     0x00000000,  /*flashing in progress*/
-    0x00000000   /*reset during flash*/
+    0x00000000,   /*reset during flash*/
+	0x5a5a5a5a   /*test flag*/
 };
 
 const uint32_t appALength __attribute__((section(".appAMetaData"))) = 0x14e80;

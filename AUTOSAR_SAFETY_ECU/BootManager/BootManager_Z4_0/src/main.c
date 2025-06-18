@@ -41,6 +41,7 @@ int main(void)
 	meta_data meta_data_instance;
 
 	flags flags_instance;
+	//TODO: use the fucking utils
 	fls_ret = Fls_Read(FLAGS, &flags_instance, QUAD_PAGE_SIZE);
 	flsWaitUntilJobDone();
 
@@ -51,10 +52,6 @@ int main(void)
 	ptr_to_bootloader 	= (func_ptr_t) BOOTLOADER_RESET_VECTOR_ADDRESS;
 	ptr_to_flashbank_A	= (func_ptr_t) FLASHBANK_A_ENTRY_POINT;
 	ptr_to_flashbank_B	= (func_ptr_t) FLASHBANK_B_ENTRY_POINT;
-
-	//TODO: use the fucking utils
-	fls_ret = Fls_Read(FLAGS, &flags_instance, QUAD_PAGE_SIZE);
-	flsWaitUntilJobDone();
 
 	//TODO: eh da????
 	if(flags_instance.flashing_in_progress)
@@ -72,11 +69,10 @@ int main(void)
 	}
 	else
 	{
+		Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_HIGH);
 		/* Jump to BL if programming_session flag is set or current APP is invalid*/
 		if(flags_instance.programming_session)
 		{
-			/*Shouldnt we reset the flag ?*/
-			Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_HIGH);
 			ptr_to_bootloader();
 		}
 		else
@@ -85,23 +81,37 @@ int main(void)
 			{
 				if(flags_instance.flashbank_A_valid)
 				{
-					Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_HIGH);
 					ptr_to_flashbank_A();
+				}
+				else if(flags_instance.flashbank_B_valid)
+				{
+					flags_instance.current_app = 0;
+					fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
+					flsWaitUntilJobDone();
+					ptr_to_flashbank_B();
+
 				}
 			}
 			else
 			{
 				if(flags_instance.flashbank_B_valid)
 				{
-					Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_HIGH);
 					ptr_to_flashbank_B();
 				}
+				else if(flags_instance.flashbank_A_valid)
+				{
+					flags_instance.current_app = 1;
+					fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
+					flsWaitUntilJobDone();
+					ptr_to_flashbank_A();
+
+				}
 			}
-			Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_HIGH);
 			ptr_to_bootloader();
 		}
 	}
 	/* Loop forever */
+	Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_LOW);
 	for(;;) {
 	}
 }

@@ -46,11 +46,9 @@ uint8_t routineStart(uint8_t* data,uint8_t dataLen,validateSwitchMemRoutineFlags
     // {
     //     return 0U;
     // }
-    uint8_t i = 0;
-    for(;i<sizeof(FlashBankType);i++)
-    {
-        routineFlags->routineData = data[0];
-    }
+
+    routineFlags->routineData = data[0];
+    
     if(BLUtils_createNewRequest(BL_UtilsReq))
 	{
 		routineFlags->routineRunning = 1;
@@ -62,13 +60,13 @@ uint8_t routineStart(uint8_t* data,uint8_t dataLen,validateSwitchMemRoutineFlags
 
 uint8_t rid_FF01_start(uint8_t* data,uint8_t dataLen)
 {
-    BL_UDS_UtilsReq_MetaData_t BL_UtilsReq = {rid_FF01_callBack,BL_UTILS_REQ_VALIDATE_FLASH_BANK,&(routine_ff01.routineData),sizeof(FlashBankType),5U};
+    BL_UDS_UtilsReq_MetaData_t BL_UtilsReq = {rid_FF01_callBack,BL_UTILS_REQ_VALIDATE_FLASH_BANK,&(routine_ff01.routineData),sizeof(FlashBankType),1U};
     return routineStart(data,dataLen,&routine_ff01,&BL_UtilsReq);
 }
 
 uint8_t rid_FF02_start(uint8_t* data,uint8_t dataLen)
 {
-    BL_UDS_UtilsReq_MetaData_t BL_UtilsReq = {rid_FF02_callBack,BL_UTILS_REQ_VALIDATE_FLASH_BANK,&(routine_ff01.routineData),sizeof(FlashBankType),5U};
+    BL_UDS_UtilsReq_MetaData_t BL_UtilsReq = {rid_FF02_callBack,BL_UTILS_REQ_SWITCH_FLASH_BANK,&(routine_ff02.routineData),sizeof(FlashBankType),1U};
     return routineStart(data,dataLen,&routine_ff02,&BL_UtilsReq);
 }
 

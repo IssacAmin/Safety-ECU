@@ -26,7 +26,8 @@ typedef struct{
 	uint32_t flashbank_B_Erased;
 	uint32_t flashing_in_progress;
 	uint32_t reset_during_flash;
-	uint32_t reserved_section[23];
+	uint32_t testFlag;
+	uint32_t reserved_section[22];
 }flags;
 
 #endif /* FLAGS_H_ */

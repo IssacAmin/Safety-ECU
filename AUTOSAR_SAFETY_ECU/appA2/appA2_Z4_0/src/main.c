@@ -63,7 +63,7 @@ int main(void)
 	canRet = Can_GetControllerMode(0, &controllerState);
 
 	/* Turn On on board LED4 to indicate App state*/
-	Dio_WriteChannel(DioConf_DioChannel_LED_4, STD_LOW);
+	Dio_WriteChannel(DioConf_DioChannel_LED_5, STD_LOW);
 
 	init_flags();
 
@@ -84,7 +84,6 @@ TASK(OsTask3_Core0)
 	if(count == 500)
 	{
 		count = 0;
-		Dio_FlipChannel(DioConf_DioChannel_LED_4);
 	}
 
 
@@ -121,7 +120,6 @@ TASK(OsTask2_Core0)
 		if(count == 500)
 		{
 			count = 0;
-			Dio_FlipChannel(DioConf_DioChannel_LED_5);
 		}
 
 		uds_waitFlag = UDS_mainFunction();
@@ -155,7 +153,6 @@ TASK(OsTask_Core0)
 		if (diff >= 4000)
 		{
 			ret = GetCounterValue(SYSTEMTIMER, &previousTicks);
-			Dio_FlipChannel(DioConf_DioChannel_LED_6);
 		}
 	}
 

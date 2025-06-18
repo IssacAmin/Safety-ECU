@@ -82,7 +82,7 @@
     },
     {
         .rid = 0xff02,
-        .optionRecordSize = 0U,
+        .optionRecordSize = 1U,
         .isRestartable = 0U,
         .status = ROUTINE_STATUS_STOPPED,
         .routineStartHandler = rid_FF02_start,
