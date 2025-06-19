@@ -8,7 +8,3 @@
 
 
 uint32_t flags_section[4096] __attribute__((section(".flags")));
-
-
-
-

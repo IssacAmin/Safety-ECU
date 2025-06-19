@@ -122,7 +122,7 @@ extern "C"{
     #if ((FLS_AR_RELEASE_MAJOR_VERSION_CFG    != MEMIF_AR_RELEASE_MAJOR_VERSION) || \
          (FLS_AR_RELEASE_MINOR_VERSION_CFG    != MEMIF_AR_RELEASE_MINOR_VERSION) \
         )
-        #warning "AutoSar Version Numbers of Fls_Cfg.h and MemIf_Types.h are different"
+        #error "AutoSar Version Numbers of Fls_Cfg.h and MemIf_Types.h are different"
     #endif
 #endif
 
