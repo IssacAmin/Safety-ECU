@@ -17,6 +17,7 @@
 #include "sessionCtrl_bootloader_util.h"
 #include "CanTp.h"
 #include "CanIf.h"
+#include "sign_verify.h"
 
 uint8_t transmitFlag;
 
@@ -111,6 +112,8 @@ int main(void)
 	set_BootLoader_ActiveFlag();
 
 	BL_InitUDS();
+	/*TODO: give the key to the function*/
+	signVerifier_init();
 
 	//	testFlashingSequenceWithCanFrames();
 

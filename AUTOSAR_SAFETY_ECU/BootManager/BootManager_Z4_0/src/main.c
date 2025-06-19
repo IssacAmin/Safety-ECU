@@ -12,6 +12,7 @@
 #include "Fls.h"
 #include "Mcu.h"
 #include "Port.h"
+#include "UDS_utils.h"
 
 
 
@@ -53,6 +54,12 @@ int main(void)
 	ptr_to_flashbank_A	= (func_ptr_t) FLASHBANK_A_ENTRY_POINT;
 	ptr_to_flashbank_B	= (func_ptr_t) FLASHBANK_B_ENTRY_POINT;
 
+	if(flags_instance.bootLoader_update_request)
+	{
+		UDS_Utils_ReturnType ret;
+		ret = updateBootloader(length,&flags_instance);
+	}
+
 	//TODO: eh da????
 	if(flags_instance.flashing_in_progress)
 	{
@@ -81,29 +88,48 @@ int main(void)
 			{
 				if(flags_instance.flashbank_A_valid)
 				{
-					ptr_to_flashbank_A();
+					validate_flashbank(PRIMARY_APP,&flags_instance);
+					fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
+					flsWaitUntilJobDone();
+					if(flags_instance.flashbank_A_valid == 1U)
+					{
+						ptr_to_flashbank_A();
+					}
 				}
 				else if(flags_instance.flashbank_B_valid)
 				{
-					flags_instance.current_app = 0;
-					fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
-					flsWaitUntilJobDone();
-					ptr_to_flashbank_B();
-
+					validate_flashbank(SECONDARY_APP,&flags_instance);
+					if(flags_instance.flashbank_B_valid == 1U)
+					{
+						flags_instance.current_app = 1;
+						fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
+						flsWaitUntilJobDone();
+						ptr_to_flashbank_B();
+					}
 				}
 			}
 			else
 			{
 				if(flags_instance.flashbank_B_valid)
 				{
-					ptr_to_flashbank_B();
+					validate_flashbank(PRIMARY_APP,&flags_instance);
+					fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
+					flsWaitUntilJobDone();
+					if(flags_instance.flashbank_B_valid == 1U)
+					{
+						ptr_to_flashbank_B();
+					}
 				}
 				else if(flags_instance.flashbank_A_valid)
 				{
-					flags_instance.current_app = 1;
-					fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
-					flsWaitUntilJobDone();
-					ptr_to_flashbank_A();
+					validate_flashbank(SECONDARY_APP,&flags_instance);
+					if(flags_instance.flashbank_A_valid == 1U)
+					{
+						flags_instance.current_app = 0;
+						fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
+						flsWaitUntilJobDone();
+						ptr_to_flashbank_A();
+					}
 
 				}
 			}
