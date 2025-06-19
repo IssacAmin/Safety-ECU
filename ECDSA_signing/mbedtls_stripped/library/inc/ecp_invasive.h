@@ -16,6 +16,7 @@
 
 #include "common.h"
 #include "mbedtls/bignum.h"
+<<<<<<< HEAD
 #include "bignum_mod.h"
 #include "mbedtls/ecp.h"
 
@@ -42,6 +43,26 @@ typedef enum {
  */
 MBEDTLS_STATIC_TESTABLE
 mbedtls_ecp_variant mbedtls_ecp_get_variant(void);
+=======
+#include "mbedtls/ecp.h"
+
+#if defined(MBEDTLS_TEST_HOOKS) && defined(MBEDTLS_ECP_C)
+
+#if defined(MBEDTLS_ECP_DP_SECP224R1_ENABLED) ||   \
+    defined(MBEDTLS_ECP_DP_SECP256R1_ENABLED) ||   \
+    defined(MBEDTLS_ECP_DP_SECP384R1_ENABLED)
+/* Preconditions:
+ *   - bits is a multiple of 64 or is 224
+ *   - c is -1 or -2
+ *   - 0 <= N < 2^bits
+ *   - N has room for bits plus one limb
+ *
+ * Behavior:
+ * Set N to c * 2^bits + old_value_of_N.
+ */
+void mbedtls_ecp_fix_negative(mbedtls_mpi *N, signed char c, size_t bits);
+#endif
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 
 #if defined(MBEDTLS_ECP_MONTGOMERY_ENABLED)
 /** Generate a private key on a Montgomery curve (Curve25519 or Curve448).
@@ -72,6 +93,7 @@ int mbedtls_ecp_gen_privkey_mx(size_t high_bit,
 
 #endif /* MBEDTLS_ECP_MONTGOMERY_ENABLED */
 
+<<<<<<< HEAD
 #if defined(MBEDTLS_ECP_DP_SECP192R1_ENABLED)
 
 /** Fast quasi-reduction modulo p192 (FIPS 186-3 D.2.1)
@@ -320,6 +342,8 @@ int mbedtls_ecp_modulus_setup(mbedtls_mpi_mod_modulus *N,
                               const mbedtls_ecp_group_id id,
                               const mbedtls_ecp_modulus_type ctype);
 
+=======
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #endif /* MBEDTLS_TEST_HOOKS && MBEDTLS_ECP_C */
 
 #endif /* MBEDTLS_ECP_INVASIVE_H */

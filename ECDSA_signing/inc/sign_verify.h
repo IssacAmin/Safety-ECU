@@ -12,8 +12,7 @@ typedef struct {
     mbedtls_sha256_context sha256;
 } ecdsa_verifier_t;
 
-
-uint8_t signVerifier_init(const uint8_t *raw_pubkey, size_t raw_pubkey_len);
+uint8_t signVerifier_init(const uint8_t *raw_pubkey, size_t raw_pubkey_len); 
 uint8_t signVerifier_updateHash(const uint8_t *chunk, size_t chunk_len);
 uint8_t signVerifier_finalizeCheckSignature(const uint8_t *sig_der, size_t sig_len);
 void signVerifier_deInit();

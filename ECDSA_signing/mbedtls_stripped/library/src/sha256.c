@@ -10,6 +10,7 @@
  *  http://csrc.nist.gov/publications/fips/fips180-2/fips180-2.pdf
  */
 
+<<<<<<< HEAD
 #if defined(__clang__) &&  (__clang_major__ >= 4)
 
 /* Ideally, we would simply use MBEDTLS_ARCH_IS_ARMV8_A in the following #if,
@@ -51,6 +52,11 @@
 #include "common.h"
 
 #if defined(MBEDTLS_SHA256_C) || defined(MBEDTLS_SHA224_C)
+=======
+#include "common.h"
+
+#if defined(MBEDTLS_SHA256_C)
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 
 #include "mbedtls/sha256.h"
 #include "mbedtls/platform_util.h"
@@ -60,6 +66,7 @@
 
 #include "mbedtls/platform.h"
 
+<<<<<<< HEAD
 #if defined(MBEDTLS_ARCH_IS_ARMV8_A)
 
 #  if defined(MBEDTLS_SHA256_USE_ARMV8_A_CRYPTO_IF_PRESENT) || \
@@ -224,6 +231,18 @@ static int mbedtls_a64_crypto_sha256_determine_support(void)
 
 void mbedtls_sha256_init(mbedtls_sha256_context *ctx)
 {
+=======
+#define SHA256_VALIDATE_RET(cond)                           \
+    MBEDTLS_INTERNAL_VALIDATE_RET(cond, MBEDTLS_ERR_SHA256_BAD_INPUT_DATA)
+#define SHA256_VALIDATE(cond)  MBEDTLS_INTERNAL_VALIDATE(cond)
+
+#if !defined(MBEDTLS_SHA256_ALT)
+
+void mbedtls_sha256_init(mbedtls_sha256_context *ctx)
+{
+    SHA256_VALIDATE(ctx != NULL);
+
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
     memset(ctx, 0, sizeof(mbedtls_sha256_context));
 }
 
@@ -239,12 +258,19 @@ void mbedtls_sha256_free(mbedtls_sha256_context *ctx)
 void mbedtls_sha256_clone(mbedtls_sha256_context *dst,
                           const mbedtls_sha256_context *src)
 {
+<<<<<<< HEAD
+=======
+    SHA256_VALIDATE(dst != NULL);
+    SHA256_VALIDATE(src != NULL);
+
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
     *dst = *src;
 }
 
 /*
  * SHA-256 context setup
  */
+<<<<<<< HEAD
 int mbedtls_sha256_starts(mbedtls_sha256_context *ctx, int is224)
 {
 #if defined(MBEDTLS_SHA224_C) && defined(MBEDTLS_SHA256_C)
@@ -260,12 +286,22 @@ int mbedtls_sha256_starts(mbedtls_sha256_context *ctx, int is224)
         return MBEDTLS_ERR_SHA256_BAD_INPUT_DATA;
     }
 #endif
+=======
+int mbedtls_sha256_starts_ret(mbedtls_sha256_context *ctx, int is224)
+{
+    SHA256_VALIDATE_RET(ctx != NULL);
+    SHA256_VALIDATE_RET(is224 == 0 || is224 == 1);
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 
     ctx->total[0] = 0;
     ctx->total[1] = 0;
 
     if (is224 == 0) {
+<<<<<<< HEAD
 #if defined(MBEDTLS_SHA256_C)
+=======
+        /* SHA-256 */
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
         ctx->state[0] = 0x6A09E667;
         ctx->state[1] = 0xBB67AE85;
         ctx->state[2] = 0x3C6EF372;
@@ -274,9 +310,14 @@ int mbedtls_sha256_starts(mbedtls_sha256_context *ctx, int is224)
         ctx->state[5] = 0x9B05688C;
         ctx->state[6] = 0x1F83D9AB;
         ctx->state[7] = 0x5BE0CD19;
+<<<<<<< HEAD
 #endif
     } else {
 #if defined(MBEDTLS_SHA224_C)
+=======
+    } else {
+        /* SHA-224 */
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
         ctx->state[0] = 0xC1059ED8;
         ctx->state[1] = 0x367CD507;
         ctx->state[2] = 0x3070DD17;
@@ -285,16 +326,33 @@ int mbedtls_sha256_starts(mbedtls_sha256_context *ctx, int is224)
         ctx->state[5] = 0x68581511;
         ctx->state[6] = 0x64F98FA7;
         ctx->state[7] = 0xBEFA4FA4;
+<<<<<<< HEAD
 #endif
     }
 
 #if defined(MBEDTLS_SHA224_C)
     ctx->is224 = is224;
 #endif
+=======
+    }
+
+    ctx->is224 = is224;
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 
     return 0;
 }
 
+<<<<<<< HEAD
+=======
+#if !defined(MBEDTLS_DEPRECATED_REMOVED)
+void mbedtls_sha256_starts(mbedtls_sha256_context *ctx,
+                           int is224)
+{
+    mbedtls_sha256_starts_ret(ctx, is224);
+}
+#endif
+
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #if !defined(MBEDTLS_SHA256_PROCESS_ALT)
 static const uint32_t K[] =
 {
@@ -316,6 +374,7 @@ static const uint32_t K[] =
     0x90BEFFFA, 0xA4506CEB, 0xBEF9A3F7, 0xC67178F2,
 };
 
+<<<<<<< HEAD
 #endif
 
 #if defined(MBEDTLS_SHA256_USE_ARMV8_A_CRYPTO_IF_PRESENT) || \
@@ -456,6 +515,8 @@ int mbedtls_internal_sha256_process_a64_crypto(mbedtls_sha256_context *ctx,
 #if !defined(MBEDTLS_SHA256_PROCESS_ALT) && \
     !defined(MBEDTLS_SHA256_USE_ARMV8_A_CRYPTO_ONLY)
 
+=======
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #define  SHR(x, n) (((x) & 0xFFFFFFFF) >> (n))
 #define ROTR(x, n) (SHR(x, n) | ((x) << (32 - (n))))
 
@@ -482,6 +543,7 @@ int mbedtls_internal_sha256_process_a64_crypto(mbedtls_sha256_context *ctx,
         (d) += local.temp1; (h) = local.temp1 + local.temp2;        \
     } while (0)
 
+<<<<<<< HEAD
 #if defined(MBEDTLS_SHA256_USE_ARMV8_A_CRYPTO_IF_PRESENT)
 /*
  * This function is for internal use only if we are building both C and Armv8
@@ -491,6 +553,10 @@ static
 #endif
 int mbedtls_internal_sha256_process_c(mbedtls_sha256_context *ctx,
                                       const unsigned char data[SHA256_BLOCK_SIZE])
+=======
+int mbedtls_internal_sha256_process(mbedtls_sha256_context *ctx,
+                                    const unsigned char data[64])
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 {
     struct {
         uint32_t temp1, temp2, W[64];
@@ -499,6 +565,12 @@ int mbedtls_internal_sha256_process_c(mbedtls_sha256_context *ctx,
 
     unsigned int i;
 
+<<<<<<< HEAD
+=======
+    SHA256_VALIDATE_RET(ctx != NULL);
+    SHA256_VALIDATE_RET((const unsigned char *) data != NULL);
+
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
     for (i = 0; i < 8; i++) {
         local.A[i] = ctx->state[i];
     }
@@ -574,6 +646,7 @@ int mbedtls_internal_sha256_process_c(mbedtls_sha256_context *ctx,
     return 0;
 }
 
+<<<<<<< HEAD
 #endif /* !MBEDTLS_SHA256_PROCESS_ALT && !MBEDTLS_SHA256_USE_ARMV8_A_CRYPTO_ONLY */
 
 
@@ -638,24 +711,50 @@ int mbedtls_internal_sha256_process(mbedtls_sha256_context *ctx,
 
 #endif /* MBEDTLS_SHA256_USE_ARMV8_A_CRYPTO_IF_PRESENT */
 
+=======
+#if !defined(MBEDTLS_DEPRECATED_REMOVED)
+void mbedtls_sha256_process(mbedtls_sha256_context *ctx,
+                            const unsigned char data[64])
+{
+    mbedtls_internal_sha256_process(ctx, data);
+}
+#endif
+#endif /* !MBEDTLS_SHA256_PROCESS_ALT */
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 
 /*
  * SHA-256 process buffer
  */
+<<<<<<< HEAD
 int mbedtls_sha256_update(mbedtls_sha256_context *ctx,
                           const unsigned char *input,
                           size_t ilen)
+=======
+int mbedtls_sha256_update_ret(mbedtls_sha256_context *ctx,
+                              const unsigned char *input,
+                              size_t ilen)
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 {
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
     size_t fill;
     uint32_t left;
 
+<<<<<<< HEAD
+=======
+    SHA256_VALIDATE_RET(ctx != NULL);
+    SHA256_VALIDATE_RET(ilen == 0 || input != NULL);
+
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
     if (ilen == 0) {
         return 0;
     }
 
     left = ctx->total[0] & 0x3F;
+<<<<<<< HEAD
     fill = SHA256_BLOCK_SIZE - left;
+=======
+    fill = 64 - left;
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 
     ctx->total[0] += (uint32_t) ilen;
     ctx->total[0] &= 0xFFFFFFFF;
@@ -676,6 +775,7 @@ int mbedtls_sha256_update(mbedtls_sha256_context *ctx,
         left = 0;
     }
 
+<<<<<<< HEAD
     while (ilen >= SHA256_BLOCK_SIZE) {
         size_t processed =
             mbedtls_internal_sha256_process_many(ctx, input, ilen);
@@ -685,6 +785,15 @@ int mbedtls_sha256_update(mbedtls_sha256_context *ctx,
 
         input += processed;
         ilen  -= processed;
+=======
+    while (ilen >= 64) {
+        if ((ret = mbedtls_internal_sha256_process(ctx, input)) != 0) {
+            return ret;
+        }
+
+        input += 64;
+        ilen  -= 64;
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
     }
 
     if (ilen > 0) {
@@ -694,16 +803,39 @@ int mbedtls_sha256_update(mbedtls_sha256_context *ctx,
     return 0;
 }
 
+<<<<<<< HEAD
 /*
  * SHA-256 final digest
  */
 int mbedtls_sha256_finish(mbedtls_sha256_context *ctx,
                           unsigned char *output)
+=======
+#if !defined(MBEDTLS_DEPRECATED_REMOVED)
+void mbedtls_sha256_update(mbedtls_sha256_context *ctx,
+                           const unsigned char *input,
+                           size_t ilen)
+{
+    mbedtls_sha256_update_ret(ctx, input, ilen);
+}
+#endif
+
+/*
+ * SHA-256 final digest
+ */
+int mbedtls_sha256_finish_ret(mbedtls_sha256_context *ctx,
+                              unsigned char output[32])
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 {
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
     uint32_t used;
     uint32_t high, low;
+<<<<<<< HEAD
     int truncated = 0;
+=======
+
+    SHA256_VALIDATE_RET(ctx != NULL);
+    SHA256_VALIDATE_RET((unsigned char *) output != NULL);
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 
     /*
      * Add padding: 0x80 then 0x00 until 8 bytes remain for the length
@@ -717,10 +849,17 @@ int mbedtls_sha256_finish(mbedtls_sha256_context *ctx,
         memset(ctx->buffer + used, 0, 56 - used);
     } else {
         /* We'll need an extra block */
+<<<<<<< HEAD
         memset(ctx->buffer + used, 0, SHA256_BLOCK_SIZE - used);
 
         if ((ret = mbedtls_internal_sha256_process(ctx, ctx->buffer)) != 0) {
             goto exit;
+=======
+        memset(ctx->buffer + used, 0, 64 - used);
+
+        if ((ret = mbedtls_internal_sha256_process(ctx, ctx->buffer)) != 0) {
+            return ret;
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
         }
 
         memset(ctx->buffer, 0, 56);
@@ -737,7 +876,11 @@ int mbedtls_sha256_finish(mbedtls_sha256_context *ctx,
     MBEDTLS_PUT_UINT32_BE(low,  ctx->buffer, 60);
 
     if ((ret = mbedtls_internal_sha256_process(ctx, ctx->buffer)) != 0) {
+<<<<<<< HEAD
         goto exit;
+=======
+        return ret;
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
     }
 
     /*
@@ -751,6 +894,7 @@ int mbedtls_sha256_finish(mbedtls_sha256_context *ctx,
     MBEDTLS_PUT_UINT32_BE(ctx->state[5], output, 20);
     MBEDTLS_PUT_UINT32_BE(ctx->state[6], output, 24);
 
+<<<<<<< HEAD
 #if defined(MBEDTLS_SHA224_C)
     truncated = ctx->is224;
 #endif
@@ -765,19 +909,44 @@ exit:
     return ret;
 }
 
+=======
+    if (ctx->is224 == 0) {
+        MBEDTLS_PUT_UINT32_BE(ctx->state[7], output, 28);
+    }
+
+    return 0;
+}
+
+#if !defined(MBEDTLS_DEPRECATED_REMOVED)
+void mbedtls_sha256_finish(mbedtls_sha256_context *ctx,
+                           unsigned char output[32])
+{
+    mbedtls_sha256_finish_ret(ctx, output);
+}
+#endif
+
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #endif /* !MBEDTLS_SHA256_ALT */
 
 /*
  * output = SHA-256( input buffer )
  */
+<<<<<<< HEAD
 int mbedtls_sha256(const unsigned char *input,
                    size_t ilen,
                    unsigned char *output,
                    int is224)
+=======
+int mbedtls_sha256_ret(const unsigned char *input,
+                       size_t ilen,
+                       unsigned char output[32],
+                       int is224)
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 {
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
     mbedtls_sha256_context ctx;
 
+<<<<<<< HEAD
 #if defined(MBEDTLS_SHA224_C) && defined(MBEDTLS_SHA256_C)
     if (is224 != 0 && is224 != 1) {
         return MBEDTLS_ERR_SHA256_BAD_INPUT_DATA;
@@ -803,6 +972,23 @@ int mbedtls_sha256(const unsigned char *input,
     }
 
     if ((ret = mbedtls_sha256_finish(&ctx, output)) != 0) {
+=======
+    SHA256_VALIDATE_RET(is224 == 0 || is224 == 1);
+    SHA256_VALIDATE_RET(ilen == 0 || input != NULL);
+    SHA256_VALIDATE_RET((unsigned char *) output != NULL);
+
+    mbedtls_sha256_init(&ctx);
+
+    if ((ret = mbedtls_sha256_starts_ret(&ctx, is224)) != 0) {
+        goto exit;
+    }
+
+    if ((ret = mbedtls_sha256_update_ret(&ctx, input, ilen)) != 0) {
+        goto exit;
+    }
+
+    if ((ret = mbedtls_sha256_finish_ret(&ctx, output)) != 0) {
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
         goto exit;
     }
 
@@ -812,22 +998,44 @@ exit:
     return ret;
 }
 
+<<<<<<< HEAD
+=======
+#if !defined(MBEDTLS_DEPRECATED_REMOVED)
+void mbedtls_sha256(const unsigned char *input,
+                    size_t ilen,
+                    unsigned char output[32],
+                    int is224)
+{
+    mbedtls_sha256_ret(input, ilen, output, is224);
+}
+#endif
+
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #if defined(MBEDTLS_SELF_TEST)
 /*
  * FIPS-180-2 test vectors
  */
+<<<<<<< HEAD
 static const unsigned char sha_test_buf[3][57] =
+=======
+static const unsigned char sha256_test_buf[3][57] =
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 {
     { "abc" },
     { "abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq" },
     { "" }
 };
 
+<<<<<<< HEAD
 static const size_t sha_test_buflen[3] =
+=======
+static const size_t sha256_test_buflen[3] =
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 {
     3, 56, 1000
 };
 
+<<<<<<< HEAD
 typedef const unsigned char (sha_test_sum_t)[32];
 
 /*
@@ -836,6 +1044,13 @@ typedef const unsigned char (sha_test_sum_t)[32];
 #if defined(MBEDTLS_SHA224_C)
 static sha_test_sum_t sha224_test_sum[] =
 {
+=======
+static const unsigned char sha256_test_sum[6][32] =
+{
+    /*
+     * SHA-224 test vectors
+     */
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
     { 0x23, 0x09, 0x7D, 0x22, 0x34, 0x05, 0xD8, 0x22,
       0x86, 0x42, 0xA4, 0x77, 0xBD, 0xA2, 0x55, 0xB3,
       0x2A, 0xAD, 0xBC, 0xE4, 0xBD, 0xA0, 0xB3, 0xF7,
@@ -847,6 +1062,7 @@ static sha_test_sum_t sha224_test_sum[] =
     { 0x20, 0x79, 0x46, 0x55, 0x98, 0x0C, 0x91, 0xD8,
       0xBB, 0xB4, 0xC1, 0xEA, 0x97, 0x61, 0x8A, 0x4B,
       0xF0, 0x3F, 0x42, 0x58, 0x19, 0x48, 0xB2, 0xEE,
+<<<<<<< HEAD
       0x4E, 0xE7, 0xAD, 0x67 }
 };
 #endif
@@ -857,6 +1073,13 @@ static sha_test_sum_t sha224_test_sum[] =
 #if defined(MBEDTLS_SHA256_C)
 static sha_test_sum_t sha256_test_sum[] =
 {
+=======
+      0x4E, 0xE7, 0xAD, 0x67 },
+
+    /*
+     * SHA-256 test vectors
+     */
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
     { 0xBA, 0x78, 0x16, 0xBF, 0x8F, 0x01, 0xCF, 0xEA,
       0x41, 0x41, 0x40, 0xDE, 0x5D, 0xAE, 0x22, 0x23,
       0xB0, 0x03, 0x61, 0xA3, 0x96, 0x17, 0x7A, 0x9C,
@@ -870,18 +1093,28 @@ static sha_test_sum_t sha256_test_sum[] =
       0xF1, 0x80, 0x9A, 0x48, 0xA4, 0x97, 0x20, 0x0E,
       0x04, 0x6D, 0x39, 0xCC, 0xC7, 0x11, 0x2C, 0xD0 }
 };
+<<<<<<< HEAD
 #endif
+=======
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 
 /*
  * Checkup routine
  */
+<<<<<<< HEAD
 static int mbedtls_sha256_common_self_test(int verbose, int is224)
 {
     int i, buflen, ret = 0;
+=======
+int mbedtls_sha256_self_test(int verbose)
+{
+    int i, j, k, buflen, ret = 0;
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
     unsigned char *buf;
     unsigned char sha256sum[32];
     mbedtls_sha256_context ctx;
 
+<<<<<<< HEAD
 #if defined(MBEDTLS_SHA224_C) && defined(MBEDTLS_SHA256_C)
     sha_test_sum_t *sha_test_sum = (is224) ? sha224_test_sum : sha256_test_sum;
 #elif defined(MBEDTLS_SHA256_C)
@@ -890,6 +1123,8 @@ static int mbedtls_sha256_common_self_test(int verbose, int is224)
     sha_test_sum_t *sha_test_sum = sha224_test_sum;
 #endif
 
+=======
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
     buf = mbedtls_calloc(1024, sizeof(unsigned char));
     if (NULL == buf) {
         if (verbose != 0) {
@@ -901,6 +1136,7 @@ static int mbedtls_sha256_common_self_test(int verbose, int is224)
 
     mbedtls_sha256_init(&ctx);
 
+<<<<<<< HEAD
     for (i = 0; i < 3; i++) {
         if (verbose != 0) {
             mbedtls_printf("  SHA-%d test #%d: ", 256 - is224 * 32, i + 1);
@@ -915,25 +1151,57 @@ static int mbedtls_sha256_common_self_test(int verbose, int is224)
 
             for (int j = 0; j < 1000; j++) {
                 ret = mbedtls_sha256_update(&ctx, buf, buflen);
+=======
+    for (i = 0; i < 6; i++) {
+        j = i % 3;
+        k = i < 3;
+
+        if (verbose != 0) {
+            mbedtls_printf("  SHA-%d test #%d: ", 256 - k * 32, j + 1);
+        }
+
+        if ((ret = mbedtls_sha256_starts_ret(&ctx, k)) != 0) {
+            goto fail;
+        }
+
+        if (j == 2) {
+            memset(buf, 'a', buflen = 1000);
+
+            for (j = 0; j < 1000; j++) {
+                ret = mbedtls_sha256_update_ret(&ctx, buf, buflen);
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
                 if (ret != 0) {
                     goto fail;
                 }
             }
 
         } else {
+<<<<<<< HEAD
             ret = mbedtls_sha256_update(&ctx, sha_test_buf[i],
                                         sha_test_buflen[i]);
+=======
+            ret = mbedtls_sha256_update_ret(&ctx, sha256_test_buf[j],
+                                            sha256_test_buflen[j]);
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
             if (ret != 0) {
                 goto fail;
             }
         }
 
+<<<<<<< HEAD
         if ((ret = mbedtls_sha256_finish(&ctx, sha256sum)) != 0) {
+=======
+        if ((ret = mbedtls_sha256_finish_ret(&ctx, sha256sum)) != 0) {
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
             goto fail;
         }
 
 
+<<<<<<< HEAD
         if (memcmp(sha256sum, sha_test_sum[i], 32 - is224 * 4) != 0) {
+=======
+        if (memcmp(sha256sum, sha256_test_sum[i], 32 - k * 4) != 0) {
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
             ret = 1;
             goto fail;
         }
@@ -961,6 +1229,7 @@ exit:
     return ret;
 }
 
+<<<<<<< HEAD
 #if defined(MBEDTLS_SHA256_C)
 int mbedtls_sha256_self_test(int verbose)
 {
@@ -978,3 +1247,8 @@ int mbedtls_sha224_self_test(int verbose)
 #endif /* MBEDTLS_SELF_TEST */
 
 #endif /* MBEDTLS_SHA256_C || MBEDTLS_SHA224_C */
+=======
+#endif /* MBEDTLS_SELF_TEST */
+
+#endif /* MBEDTLS_SHA256_C */
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7

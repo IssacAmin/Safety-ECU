@@ -7,22 +7,32 @@
 
 #include "common.h"
 
+<<<<<<< HEAD
 #if !defined(MBEDTLS_ECP_WITH_MPI_UINT)
 
 #if defined(MBEDTLS_ECP_LIGHT)
+=======
+#if defined(MBEDTLS_ECP_C)
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 
 #include "mbedtls/ecp.h"
 #include "mbedtls/platform_util.h"
 #include "mbedtls/error.h"
+<<<<<<< HEAD
 
 #include "bn_mul.h"
 #include "bignum_core.h"
+=======
+#include "mbedtls/bn_mul.h"
+
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #include "ecp_invasive.h"
 
 #include <string.h>
 
 #if !defined(MBEDTLS_ECP_ALT)
 
+<<<<<<< HEAD
 #define ECP_MPI_INIT(_p, _n) { .p = (mbedtls_mpi_uint *) (_p), .s = 1, .n = (_n) }
 
 #define ECP_MPI_INIT_ARRAY(x)   \
@@ -48,6 +58,18 @@
 #define ECP_LOAD_GROUP
 static const mbedtls_mpi_uint mpi_one[] = { 1 };
 #endif
+=======
+/* Parameter validation macros based on platform_util.h */
+#define ECP_VALIDATE_RET(cond)    \
+    MBEDTLS_INTERNAL_VALIDATE_RET(cond, MBEDTLS_ERR_ECP_BAD_INPUT_DATA)
+#define ECP_VALIDATE(cond)        \
+    MBEDTLS_INTERNAL_VALIDATE(cond)
+
+#define ECP_MPI_INIT(s, n, p) { s, (n), (mbedtls_mpi_uint *) (p) }
+
+#define ECP_MPI_INIT_ARRAY(x)   \
+    ECP_MPI_INIT(1, sizeof(x) / sizeof(mbedtls_mpi_uint), x)
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 
 /*
  * Note: the constants are in little-endian order
@@ -83,6 +105,7 @@ static const mbedtls_mpi_uint secp192r1_n[] = {
     MBEDTLS_BYTES_TO_T_UINT_8(0x36, 0xF8, 0xDE, 0x99, 0xFF, 0xFF, 0xFF, 0xFF),
     MBEDTLS_BYTES_TO_T_UINT_8(0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF),
 };
+<<<<<<< HEAD
 #if MBEDTLS_ECP_FIXED_POINT_OPTIM == 1
 static const mbedtls_mpi_uint secp192r1_T_0_X[] = {
     MBEDTLS_BYTES_TO_T_UINT_8(0x12, 0x10, 0xFF, 0x82, 0xFD, 0x0A, 0xFF, 0xF4),
@@ -265,6 +288,8 @@ static const mbedtls_ecp_point secp192r1_T[16] = {
 #else
 #define secp192r1_T NULL
 #endif
+=======
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #endif /* MBEDTLS_ECP_DP_SECP192R1_ENABLED */
 
 /*
@@ -301,6 +326,7 @@ static const mbedtls_mpi_uint secp224r1_n[] = {
     MBEDTLS_BYTES_TO_T_UINT_8(0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF),
     MBEDTLS_BYTES_TO_T_UINT_4(0xFF, 0xFF, 0xFF, 0xFF),
 };
+<<<<<<< HEAD
 #if MBEDTLS_ECP_FIXED_POINT_OPTIM == 1
 static const mbedtls_mpi_uint secp224r1_T_0_X[] = {
     MBEDTLS_BYTES_TO_T_UINT_8(0x21, 0x1D, 0x5C, 0x11, 0xD6, 0x80, 0x32, 0x34),
@@ -515,6 +541,8 @@ static const mbedtls_ecp_point secp224r1_T[16] = {
 #else
 #define secp224r1_T NULL
 #endif
+=======
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #endif /* MBEDTLS_ECP_DP_SECP224R1_ENABLED */
 
 /*
@@ -551,6 +579,7 @@ static const mbedtls_mpi_uint secp256r1_n[] = {
     MBEDTLS_BYTES_TO_T_UINT_8(0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF),
     MBEDTLS_BYTES_TO_T_UINT_8(0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF),
 };
+<<<<<<< HEAD
 #if MBEDTLS_ECP_FIXED_POINT_OPTIM == 1
 static const mbedtls_mpi_uint secp256r1_T_0_X[] = {
     MBEDTLS_BYTES_TO_T_UINT_8(0x96, 0xC2, 0x98, 0xD8, 0x45, 0x39, 0xA1, 0xF4),
@@ -766,6 +795,8 @@ static const mbedtls_ecp_point secp256r1_T[16] = {
 #define secp256r1_T NULL
 #endif
 
+=======
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #endif /* MBEDTLS_ECP_DP_SECP256R1_ENABLED */
 
 /*
@@ -812,6 +843,7 @@ static const mbedtls_mpi_uint secp384r1_n[] = {
     MBEDTLS_BYTES_TO_T_UINT_8(0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF),
     MBEDTLS_BYTES_TO_T_UINT_8(0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF),
 };
+<<<<<<< HEAD
 #if MBEDTLS_ECP_FIXED_POINT_OPTIM == 1
 static const mbedtls_mpi_uint secp384r1_T_0_X[] = {
     MBEDTLS_BYTES_TO_T_UINT_8(0xB7, 0x0A, 0x76, 0x72, 0x38, 0x5E, 0x54, 0x3A),
@@ -1363,6 +1395,8 @@ static const mbedtls_ecp_point secp384r1_T[32] = {
 #define secp384r1_T NULL
 #endif
 
+=======
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #endif /* MBEDTLS_ECP_DP_SECP384R1_ENABLED */
 
 /*
@@ -1424,6 +1458,7 @@ static const mbedtls_mpi_uint secp521r1_n[] = {
     MBEDTLS_BYTES_TO_T_UINT_8(0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF),
     MBEDTLS_BYTES_TO_T_UINT_2(0xFF, 0x01),
 };
+<<<<<<< HEAD
 #if MBEDTLS_ECP_FIXED_POINT_OPTIM == 1
 static const mbedtls_mpi_uint secp521r1_T_0_X[] = {
     MBEDTLS_BYTES_TO_T_UINT_8(0x66, 0xBD, 0xE5, 0xC2, 0x31, 0x7E, 0x7E, 0xF9),
@@ -2166,6 +2201,8 @@ static const mbedtls_ecp_point secp521r1_T[32] = {
 #else
 #define secp521r1_T NULL
 #endif
+=======
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #endif /* MBEDTLS_ECP_DP_SECP521R1_ENABLED */
 
 #if defined(MBEDTLS_ECP_DP_SECP192K1_ENABLED)
@@ -2195,6 +2232,7 @@ static const mbedtls_mpi_uint secp192k1_n[] = {
     MBEDTLS_BYTES_TO_T_UINT_8(0x17, 0xFC, 0xF2, 0x26, 0xFE, 0xFF, 0xFF, 0xFF),
     MBEDTLS_BYTES_TO_T_UINT_8(0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF),
 };
+<<<<<<< HEAD
 
 #if MBEDTLS_ECP_FIXED_POINT_OPTIM == 1
 static const mbedtls_mpi_uint secp192k1_T_0_X[] = {
@@ -2379,6 +2417,8 @@ static const mbedtls_ecp_point secp192k1_T[16] = {
 #define secp192k1_T NULL
 #endif
 
+=======
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #endif /* MBEDTLS_ECP_DP_SECP192K1_ENABLED */
 
 #if defined(MBEDTLS_ECP_DP_SECP224K1_ENABLED)
@@ -2412,6 +2452,7 @@ static const mbedtls_mpi_uint secp224k1_n[] = {
     MBEDTLS_BYTES_TO_T_UINT_8(0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00),
     MBEDTLS_BYTES_TO_T_UINT_8(0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00),
 };
+<<<<<<< HEAD
 
 #if MBEDTLS_ECP_FIXED_POINT_OPTIM == 1
 static const mbedtls_mpi_uint secp224k1_T_0_X[] = {
@@ -2627,6 +2668,8 @@ static const mbedtls_ecp_point secp224k1_T[16] = {
 #else
 #define secp224k1_T NULL
 #endif
+=======
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #endif /* MBEDTLS_ECP_DP_SECP224K1_ENABLED */
 
 #if defined(MBEDTLS_ECP_DP_SECP256K1_ENABLED)
@@ -2660,6 +2703,7 @@ static const mbedtls_mpi_uint secp256k1_n[] = {
     MBEDTLS_BYTES_TO_T_UINT_8(0xFE, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF),
     MBEDTLS_BYTES_TO_T_UINT_8(0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF),
 };
+<<<<<<< HEAD
 
 #if MBEDTLS_ECP_FIXED_POINT_OPTIM == 1
 static const mbedtls_mpi_uint secp256k1_T_0_X[] = {
@@ -2875,6 +2919,8 @@ static const mbedtls_ecp_point secp256k1_T[16] = {
 #else
 #define secp256k1_T NULL
 #endif
+=======
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #endif /* MBEDTLS_ECP_DP_SECP256K1_ENABLED */
 
 /*
@@ -2917,6 +2963,7 @@ static const mbedtls_mpi_uint brainpoolP256r1_n[] = {
     MBEDTLS_BYTES_TO_T_UINT_8(0x71, 0x8D, 0x83, 0x9D, 0x90, 0x0A, 0x66, 0x3E),
     MBEDTLS_BYTES_TO_T_UINT_8(0xBC, 0xA9, 0xEE, 0xA1, 0xDB, 0x57, 0xFB, 0xA9),
 };
+<<<<<<< HEAD
 
 #if MBEDTLS_ECP_FIXED_POINT_OPTIM == 1
 static const mbedtls_mpi_uint brainpoolP256r1_T_0_X[] = {
@@ -3133,6 +3180,8 @@ static const mbedtls_ecp_point brainpoolP256r1_T[16] = {
 #define brainpoolP256r1_T NULL
 #endif
 
+=======
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #endif /* MBEDTLS_ECP_DP_BP256R1_ENABLED */
 
 /*
@@ -3187,6 +3236,7 @@ static const mbedtls_mpi_uint brainpoolP384r1_n[] = {
     MBEDTLS_BYTES_TO_T_UINT_8(0xDF, 0x41, 0xE6, 0x50, 0x7E, 0x6F, 0x5D, 0x0F),
     MBEDTLS_BYTES_TO_T_UINT_8(0x28, 0x6D, 0x38, 0xA3, 0x82, 0x1E, 0xB9, 0x8C),
 };
+<<<<<<< HEAD
 
 #if MBEDTLS_ECP_FIXED_POINT_OPTIM == 1
 static const mbedtls_mpi_uint brainpoolP384r1_T_0_X[] = {
@@ -3739,6 +3789,8 @@ static const mbedtls_ecp_point brainpoolP384r1_T[32] = {
 #define brainpoolP384r1_T NULL
 #endif
 
+=======
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #endif /* MBEDTLS_ECP_DP_BP384R1_ENABLED */
 
 /*
@@ -3805,6 +3857,7 @@ static const mbedtls_mpi_uint brainpoolP512r1_n[] = {
     MBEDTLS_BYTES_TO_T_UINT_8(0x07, 0xFC, 0xC9, 0x33, 0xAE, 0xE6, 0xD4, 0x3F),
     MBEDTLS_BYTES_TO_T_UINT_8(0x8B, 0xC4, 0xE9, 0xDB, 0xB8, 0x9D, 0xDD, 0xAA),
 };
+<<<<<<< HEAD
 
 #if MBEDTLS_ECP_FIXED_POINT_OPTIM == 1
 static const mbedtls_mpi_uint brainpoolP512r1_T_0_X[] = {
@@ -4486,6 +4539,25 @@ static const mbedtls_ecp_point brainpoolP512r1_T[32] = {
 #endif
 #endif /* MBEDTLS_ECP_DP_BP512R1_ENABLED */
 
+=======
+#endif /* MBEDTLS_ECP_DP_BP512R1_ENABLED */
+
+#if defined(MBEDTLS_ECP_DP_SECP192R1_ENABLED) ||   \
+    defined(MBEDTLS_ECP_DP_SECP224R1_ENABLED) ||   \
+    defined(MBEDTLS_ECP_DP_SECP256R1_ENABLED) ||   \
+    defined(MBEDTLS_ECP_DP_SECP384R1_ENABLED) ||   \
+    defined(MBEDTLS_ECP_DP_SECP521R1_ENABLED) ||   \
+    defined(MBEDTLS_ECP_DP_BP256R1_ENABLED)   ||   \
+    defined(MBEDTLS_ECP_DP_BP384R1_ENABLED)   ||   \
+    defined(MBEDTLS_ECP_DP_BP512R1_ENABLED)   ||   \
+    defined(MBEDTLS_ECP_DP_SECP192K1_ENABLED) ||   \
+    defined(MBEDTLS_ECP_DP_SECP224K1_ENABLED) ||   \
+    defined(MBEDTLS_ECP_DP_SECP256K1_ENABLED)
+/* For these curves, we build the group parameters dynamically. */
+#define ECP_LOAD_GROUP
+#endif
+
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #if defined(ECP_LOAD_GROUP)
 /*
  * Create an MPI from embedded constants
@@ -4494,7 +4566,11 @@ static const mbedtls_ecp_point brainpoolP512r1_T[32] = {
 static inline void ecp_mpi_load(mbedtls_mpi *X, const mbedtls_mpi_uint *p, size_t len)
 {
     X->s = 1;
+<<<<<<< HEAD
     X->n = (unsigned short) (len / sizeof(mbedtls_mpi_uint));
+=======
+    X->n = len / sizeof(mbedtls_mpi_uint);
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
     X->p = (mbedtls_mpi_uint *) p;
 }
 
@@ -4503,9 +4579,16 @@ static inline void ecp_mpi_load(mbedtls_mpi *X, const mbedtls_mpi_uint *p, size_
  */
 static inline void ecp_mpi_set1(mbedtls_mpi *X)
 {
+<<<<<<< HEAD
     X->s = 1;
     X->n = 1;
     X->p = (mbedtls_mpi_uint *) mpi_one; /* X->p will not be modified so the cast is safe */
+=======
+    static const mbedtls_mpi_uint one[] = { 1 };
+    X->s = 1;
+    X->n = 1;
+    X->p = (mbedtls_mpi_uint *) one; /* X->p will not be modified so the cast is safe */
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 }
 
 /*
@@ -4517,8 +4600,12 @@ static int ecp_group_load(mbedtls_ecp_group *grp,
                           const mbedtls_mpi_uint *b,  size_t blen,
                           const mbedtls_mpi_uint *gx, size_t gxlen,
                           const mbedtls_mpi_uint *gy, size_t gylen,
+<<<<<<< HEAD
                           const mbedtls_mpi_uint *n,  size_t nlen,
                           const mbedtls_ecp_point *T)
+=======
+                          const mbedtls_mpi_uint *n,  size_t nlen)
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 {
     ecp_mpi_load(&grp->P, p, plen);
     if (a != NULL) {
@@ -4536,12 +4623,15 @@ static int ecp_group_load(mbedtls_ecp_group *grp,
 
     grp->h = 1;
 
+<<<<<<< HEAD
     grp->T = (mbedtls_ecp_point *) T;
     /*
      * Set T_size to 0 to prevent T free by mbedtls_ecp_group_free.
      */
     grp->T_size = 0;
 
+=======
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
     return 0;
 }
 #endif /* ECP_LOAD_GROUP */
@@ -4593,9 +4683,13 @@ static int ecp_mod_p256k1(mbedtls_mpi *);
                                          G ## _b,  sizeof(G ## _b),   \
                                          G ## _gx, sizeof(G ## _gx),   \
                                          G ## _gy, sizeof(G ## _gy),   \
+<<<<<<< HEAD
                                          G ## _n,  sizeof(G ## _n),   \
                                          G ## _T                         \
                                          )
+=======
+                                         G ## _n,  sizeof(G ## _n))
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 
 #define LOAD_GROUP(G)     ecp_group_load(grp,            \
                                          G ## _p,  sizeof(G ## _p),   \
@@ -4603,9 +4697,13 @@ static int ecp_mod_p256k1(mbedtls_mpi *);
                                          G ## _b,  sizeof(G ## _b),   \
                                          G ## _gx, sizeof(G ## _gx),   \
                                          G ## _gy, sizeof(G ## _gy),   \
+<<<<<<< HEAD
                                          G ## _n,  sizeof(G ## _n),   \
                                          G ## _T                         \
                                          )
+=======
+                                         G ## _n,  sizeof(G ## _n))
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #endif /* ECP_LOAD_GROUP */
 
 #if defined(MBEDTLS_ECP_DP_CURVE25519_ENABLED)
@@ -4716,6 +4814,10 @@ cleanup:
  */
 int mbedtls_ecp_group_load(mbedtls_ecp_group *grp, mbedtls_ecp_group_id id)
 {
+<<<<<<< HEAD
+=======
+    ECP_VALIDATE_RET(grp != NULL);
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
     mbedtls_ecp_group_free(grp);
 
     mbedtls_ecp_group_init(grp);
@@ -4947,6 +5049,12 @@ static inline void sub32(uint32_t *dst, uint32_t src, signed char *carry)
 #define ADD(j)    add32(&cur, A(j), &c);
 #define SUB(j)    sub32(&cur, A(j), &c);
 
+<<<<<<< HEAD
+=======
+#define ciL    (sizeof(mbedtls_mpi_uint))         /* chars in limb  */
+#define biL    (ciL << 3)                         /* bits  in limb  */
+
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 /*
  * Helpers for the main 'loop'
  */
@@ -4978,7 +5086,12 @@ static inline void sub32(uint32_t *dst, uint32_t src, signed char *carry)
  * If the result is negative, we get it in the form
  * c * 2^bits + N, with c negative and N positive shorter than 'bits'
  */
+<<<<<<< HEAD
 static void mbedtls_ecp_fix_negative(mbedtls_mpi *N, signed char c, size_t bits)
+=======
+MBEDTLS_STATIC_TESTABLE
+void mbedtls_ecp_fix_negative(mbedtls_mpi *N, signed char c, size_t bits)
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 {
     size_t i;
 
@@ -5193,6 +5306,7 @@ cleanup:
 
 /*
  * Fast quasi-reduction modulo p255 = 2^255 - 19
+<<<<<<< HEAD
  * Write N as A0 + 2^256 A1, return A0 + 38 * A1
  */
 static int ecp_mod_p255(mbedtls_mpi *N)
@@ -5219,6 +5333,45 @@ static int ecp_mod_p255(mbedtls_mpi *N)
                          38);
 
     return 0;
+=======
+ * Write N as A0 + 2^255 A1, return A0 + 19 * A1
+ */
+static int ecp_mod_p255(mbedtls_mpi *N)
+{
+    int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
+    size_t i;
+    mbedtls_mpi M;
+    mbedtls_mpi_uint Mp[P255_WIDTH + 2];
+
+    if (N->n < P255_WIDTH) {
+        return 0;
+    }
+
+    /* M = A1 */
+    M.s = 1;
+    M.n = N->n - (P255_WIDTH - 1);
+    if (M.n > P255_WIDTH + 1) {
+        return MBEDTLS_ERR_ECP_BAD_INPUT_DATA;
+    }
+    M.p = Mp;
+    memset(Mp, 0, sizeof(Mp));
+    memcpy(Mp, N->p + P255_WIDTH - 1, M.n * sizeof(mbedtls_mpi_uint));
+    MBEDTLS_MPI_CHK(mbedtls_mpi_shift_r(&M, 255 % (8 * sizeof(mbedtls_mpi_uint))));
+    M.n++; /* Make room for multiplication by 19 */
+
+    /* N = A0 */
+    MBEDTLS_MPI_CHK(mbedtls_mpi_set_bit(N, 255, 0));
+    for (i = P255_WIDTH; i < N->n; i++) {
+        N->p[i] = 0;
+    }
+
+    /* N = A0 + 19 * A1 */
+    MBEDTLS_MPI_CHK(mbedtls_mpi_mul_int(&M, &M, 19));
+    MBEDTLS_MPI_CHK(mbedtls_mpi_add_abs(N, N, &M));
+
+cleanup:
+    return ret;
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 }
 #endif /* MBEDTLS_ECP_DP_CURVE25519_ENABLED */
 
@@ -5229,9 +5382,14 @@ static int ecp_mod_p255(mbedtls_mpi *N)
 
 /* Number of limbs fully occupied by 2^224 (max), and limbs used by it (min) */
 #define DIV_ROUND_UP(X, Y) (((X) + (Y) -1) / (Y))
+<<<<<<< HEAD
 #define P224_SIZE        (224 / 8)
 #define P224_WIDTH_MIN   (P224_SIZE / sizeof(mbedtls_mpi_uint))
 #define P224_WIDTH_MAX   DIV_ROUND_UP(P224_SIZE, sizeof(mbedtls_mpi_uint))
+=======
+#define P224_WIDTH_MIN   (28 / sizeof(mbedtls_mpi_uint))
+#define P224_WIDTH_MAX   DIV_ROUND_UP(28, sizeof(mbedtls_mpi_uint))
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
 #define P224_UNUSED_BITS ((P224_WIDTH_MAX * sizeof(mbedtls_mpi_uint) * 8) - 224)
 
 /*
@@ -5333,9 +5491,15 @@ static inline int ecp_mod_koblitz(mbedtls_mpi *N, const mbedtls_mpi_uint *Rp, si
     M.p = Mp;
 
     /* M = A1 */
+<<<<<<< HEAD
     M.n = (unsigned short) (N->n - (p_limbs - adjust));
     if (M.n > p_limbs + adjust) {
         M.n = (unsigned short) (p_limbs + adjust);
+=======
+    M.n = N->n - (p_limbs - adjust);
+    if (M.n > p_limbs + adjust) {
+        M.n = p_limbs + adjust;
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
     }
     memset(Mp, 0, sizeof(Mp));
     memcpy(Mp, N->p + p_limbs - adjust, M.n * sizeof(mbedtls_mpi_uint));
@@ -5359,9 +5523,15 @@ static inline int ecp_mod_koblitz(mbedtls_mpi *N, const mbedtls_mpi_uint *Rp, si
     /* Second pass */
 
     /* M = A1 */
+<<<<<<< HEAD
     M.n = (unsigned short) (N->n - (p_limbs - adjust));
     if (M.n > p_limbs + adjust) {
         M.n = (unsigned short) (p_limbs + adjust);
+=======
+    M.n = N->n - (p_limbs - adjust);
+    if (M.n > p_limbs + adjust) {
+        M.n = p_limbs + adjust;
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
     }
     memset(Mp, 0, sizeof(Mp));
     memcpy(Mp, N->p + p_limbs - adjust, M.n * sizeof(mbedtls_mpi_uint));
@@ -5392,7 +5562,11 @@ cleanup:
 #if defined(MBEDTLS_ECP_DP_SECP192K1_ENABLED)
 /*
  * Fast quasi-reduction modulo p192k1 = 2^192 - R,
+<<<<<<< HEAD
  * with R = 2^32 + 2^12 + 2^8 + 2^7 + 2^6 + 2^3 + 1 = 0x01000011C9
+=======
+ * with R = 2^32 + 2^12 + 2^8 + 2^7 + 2^6 + 2^3 + 1 = 0x0100001119
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
  */
 static int ecp_mod_p192k1(mbedtls_mpi *N)
 {
@@ -5444,6 +5618,7 @@ static int ecp_mod_p256k1(mbedtls_mpi *N)
 }
 #endif /* MBEDTLS_ECP_DP_SECP256K1_ENABLED */
 
+<<<<<<< HEAD
 #if defined(MBEDTLS_TEST_HOOKS)
 
 MBEDTLS_STATIC_TESTABLE
@@ -5458,3 +5633,8 @@ mbedtls_ecp_variant mbedtls_ecp_get_variant(void)
 
 #endif /* MBEDTLS_ECP_LIGHT */
 #endif /* MBEDTLS_ECP_WITH_MPI_UINT */
+=======
+#endif /* !MBEDTLS_ECP_ALT */
+
+#endif /* MBEDTLS_ECP_C */
+>>>>>>> 92eb519ef88cdabe32536fc75c44a9f25f758ce7
