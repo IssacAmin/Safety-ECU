@@ -31,6 +31,6 @@ typedef enum{
 	FLASH_BANK_NOT_VALID,
 }UDS_Utils_ReturnType;
 UDS_Utils_ReturnType validate_flashbank(FlashBankType flashBankType,flags* flags);
-UDS_Utils_ReturnType updateBootloader(uint32_t length,flags* flags_instance);
+UDS_Utils_ReturnType updateBootloader(flags* flags_instance);
 
 #endif /* UDS_UTILS_H_ */

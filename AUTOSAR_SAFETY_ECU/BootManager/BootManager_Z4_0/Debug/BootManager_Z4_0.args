@@ -68,6 +68,7 @@
 "./src/MPC574XG_MCAL4_3_RTM_HF8_1_0_1/eclipse/plugins/Rte_TS_T2D35M10I1R0/src/SchM_Spi.o"
 "./src/MPC574XG_MCAL4_3_RTM_HF8_1_0_1/eclipse/plugins/Rte_TS_T2D35M10I1R0/src/SchM_Wdg.o"
 "./src/MPC57xx__Interrupt_Init.o"
+"./src/UDS_utils.o"
 "./src/Vector.o"
 "./src/flags.o"
 "./src/flashrchw.o"
@@ -81,3 +82,4 @@
 "./src/output/generated/src/Mcu_PBcfg.o"
 "./src/output/generated/src/Port_Cfg.o"
 "./src/output/generated/src/Port_PBcfg.o"
+"./src/src/crc.o"

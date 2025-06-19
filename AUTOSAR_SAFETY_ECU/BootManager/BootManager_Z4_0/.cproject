@@ -43,6 +43,7 @@
 								</option>
 								<option id="gnu.c.compiler.option.include.paths.1413911115" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Mcu_TS_T2D35M10I1R0\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../crc/inc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../MPC574XG_MCAL4_0_RTM_1_0_5\eclipse\plugins\MemIf_TS_T2D35M10I5R0\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Port_TS_T2D35M10I1R0\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/../../../MPC574XG_MCAL4_3_RTM_HF8_1_0_1\eclipse\plugins\Dio_TS_T2D35M10I1R0\include&quot;"/>

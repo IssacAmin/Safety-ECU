@@ -35,6 +35,11 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
+			<name>src/src</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
 			<name>src/MPC574XG_MCAL4_3_RTM_HF8_1_0_1/eclipse</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
@@ -43,6 +48,11 @@
 			<name>src/output/generated</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>src/src/crc.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/crc/src/crc.c</locationURI>
 		</link>
 		<link>
 			<name>src/MPC574XG_MCAL4_3_RTM_HF8_1_0_1/eclipse/plugins</name>

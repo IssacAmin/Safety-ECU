@@ -57,7 +57,7 @@ int main(void)
 	if(flags_instance.bootLoader_update_request)
 	{
 		UDS_Utils_ReturnType ret;
-		ret = updateBootloader(length,&flags_instance);
+		ret = updateBootloader(&flags_instance);
 	}
 
 	//TODO: eh da????
@@ -142,11 +142,4 @@ int main(void)
 	}
 }
 
-void flsWaitUntilJobDone(void)
-{
-	Fls_MainFunction();
-	while(Fls_GetJobResult() == MEMIF_JOB_PENDING)
-	{
-		Fls_MainFunction();
-	}
-}
+

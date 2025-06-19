@@ -30,6 +30,11 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
+			<name>src/ECDSA_signing</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
 			<name>src/MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
@@ -71,6 +76,16 @@
 		</link>
 		<link>
 			<name>src/CanIfConfig/src</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/src</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
@@ -143,6 +158,16 @@
 			<name>src/CanIfConfig/src/CanIf_Cfg.c</name>
 			<type>1</type>
 			<location>C:/Users/Fady/Downloads/Safety-ECU/AUTOSAR_SAFETY_ECU/BootloaderConfig/CanIfConfig/src/CanIf_Cfg.c</location>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/src/sign_verify.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/src/sign_verify.c</locationURI>
 		</link>
 		<link>
 			<name>src/MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3/src/Os_alarm.c</name>
@@ -415,6 +440,11 @@
 			<location>C:/Users/Fady/Downloads/Safety-ECU/AUTOSAR_SAFETY_ECU/BootloaderConfig/udsConfig/src/uds_supplier_manufacturer_cfg.c</location>
 		</link>
 		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
 			<name>src/UDS_C_SERVER/server_main/src/uds_NR_Handler.c</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/UDS_C_SERVER/server_main/src/uds_NR_Handler.c</locationURI>
@@ -513,6 +543,71 @@
 			<name>src/output/generated/epc/Os_cfg.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/bootloaderOsConfig/output/generated/epc/Os_cfg.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/asn1parse.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/asn1parse.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/asn1write.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/asn1write.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/bignum.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/bignum.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/bignum_core.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/bignum_core.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/bignum_mod.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/bignum_mod.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/bignum_mod_raw.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/bignum_mod_raw.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/ecdh.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/ecdh.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/ecdsa.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/ecdsa.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/ecp.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/ecp.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/ecp_curves.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/ecp_curves.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/ecp_curves_new.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/ecp_curves_new.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/oid.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/oid.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/sha256.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/sha256.c</locationURI>
 		</link>
 		<link>
 			<name>src/UDS_C_SERVER/srv_handlers/ECUReset/src/SID_0x11_ECUReset.c</name>

@@ -31,6 +31,8 @@ RM := rm -rf
 -include src/UDS_C_SERVER/server_main/src/subdir.mk
 -include src/UDS_C_SERVER/subdir.mk
 -include src/MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3/src/subdir.mk
+-include src/ECDSA_signing/src/subdir.mk
+-include src/ECDSA_signing/mbedtls_stripped/library/src/subdir.mk
 -include src/CanIfConfig/src/subdir.mk
 -include src/subdir.mk
 -include Project_Settings/Startup_Code/subdir.mk

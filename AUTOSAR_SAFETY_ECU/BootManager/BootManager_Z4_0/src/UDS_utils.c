@@ -8,6 +8,15 @@
 
 static uint8_t app_sector_buffer[SECTOR_SIZE]  __attribute__((section(".appSectorBuffer")));
 
+void flsWaitUntilJobDone(void)
+{
+	Fls_MainFunction();
+	while(Fls_GetJobResult() == MEMIF_JOB_PENDING)
+	{
+		Fls_MainFunction();
+	}
+}
+
 UDS_Utils_ReturnType validate_flashbank(FlashBankType flashBankType,flags * flags_instance) 
 {
 	Std_ReturnType fls_ret;
@@ -81,8 +90,9 @@ UDS_Utils_ReturnType validate_flashbank(FlashBankType flashBankType,flags * flag
 	return FLASH_BANK_NOT_VALID;
 }
 
-UDS_Utils_ReturnType updateBootloader(uint32_t length,flags* flags_instance)
+UDS_Utils_ReturnType updateBootloader(flags* flags_instance)
 {
+	uint32_t length = flags_instance-> bootloader_update_size;
 	Std_ReturnType fls_ret;
 	uint32_t newStartAddress;
 	if(flags_instance->current_app == 0)
@@ -103,11 +113,11 @@ UDS_Utils_ReturnType updateBootloader(uint32_t length,flags* flags_instance)
 
 	for(;i<num_of_sectors;i++)
 	{
-		Fls_read(newStartAddress + (SECTOR_SIZE * i),app_sector_buffer,SECTOR_SIZE);
+		Fls_Read(newStartAddress + (SECTOR_SIZE * i),app_sector_buffer,SECTOR_SIZE);
 		flsWaitUntilJobDone();
 
-		Fls_write(BOOTLOADER_LOGICAL_ADDRESS_SECTOR_1 + (SECTOR_SIZE * i),app_sector_buffer,SECTOR_SIZE);
-		flsWaitUntilJobDone()
+		Fls_Write(BOOTLOADER_LOGICAL_ADDRESS_SECTOR_1 + (SECTOR_SIZE * i),app_sector_buffer,SECTOR_SIZE);
+		flsWaitUntilJobDone();
 	}
 	return FLASH_OK;
 }

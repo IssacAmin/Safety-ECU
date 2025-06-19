@@ -228,7 +228,7 @@ extern void Fls_Flash_AccessCode( CONST(uint32, AUTOMATIC) u32RegBaseAddr, P2FUN
 */
 #include "Fls_MemMap.h"
 /* aFlsSectorFlags[] (FlsConfigSet) */
-static CONST(uint8, FLS_CONST) FlsConfigSet_aFlsSectorFlags[17] =
+static CONST(uint8, FLS_CONST) FlsConfigSet_aFlsSectorFlags[20] =
 {
     0U, /* (Fls_Flags_Sector) */
     0U, /* (Fls_Flashbank_A_0) */
@@ -246,10 +246,13 @@ static CONST(uint8, FLS_CONST) FlsConfigSet_aFlsSectorFlags[17] =
     0U, /* (Fls_Flashbank_B_4) */
     0U, /* (Fls_Flashbank_B_5) */
     0U, /* (Fls_Flashbank_B_6) */
-    0U /* (Fls_Flashbank_B_7) */
+    0U, /* (Fls_Flashbank_B_7) */
+    0U, /* (Fls_Bootloader_0) */
+    0U, /* (Fls_Bootloader_1) */
+    0U /* (Fls_Bootloader_2) */
 };
 /* aFlsSectorUnlock[] (FlsConfigSet) */
-static CONST(uint8, FLS_CONST) FlsConfigSet_aFlsSectorUnlock[17] =
+static CONST(uint8, FLS_CONST) FlsConfigSet_aFlsSectorUnlock[20] =
 {
     1U, /* (Fls_Flags_Sector) */
     1U, /* (Fls_Flashbank_A_0) */
@@ -267,7 +270,10 @@ static CONST(uint8, FLS_CONST) FlsConfigSet_aFlsSectorUnlock[17] =
     1U, /* (Fls_Flashbank_B_4) */
     1U, /* (Fls_Flashbank_B_5) */
     1U, /* (Fls_Flashbank_B_6) */
-    1U /* (Fls_Flashbank_B_7) */
+    1U, /* (Fls_Flashbank_B_7) */
+    1U, /* (Fls_Bootloader_0) */
+    1U, /* (Fls_Bootloader_1) */
+    1U /* (Fls_Bootloader_2) */
 };
 #define FLS_STOP_SEC_CONFIG_DATA_8
 /* 
@@ -283,7 +289,7 @@ static CONST(uint8, FLS_CONST) FlsConfigSet_aFlsSectorUnlock[17] =
 */
 #include "Fls_MemMap.h"
 /* aFlsSectorEndAddr[] (FlsConfigSet) */
-static CONST(Fls_AddressType, FLS_CONST) FlsConfigSet_aFlsSectorEndAddr[17] =
+static CONST(Fls_AddressType, FLS_CONST) FlsConfigSet_aFlsSectorEndAddr[20] =
 {
     (Fls_AddressType)16383U, /* FlsSectorEndAddr (Fls_Flags_Sector)*/
     (Fls_AddressType)278527U, /* FlsSectorEndAddr (Fls_Flashbank_A_0)*/
@@ -301,11 +307,14 @@ static CONST(Fls_AddressType, FLS_CONST) FlsConfigSet_aFlsSectorEndAddr[17] =
     (Fls_AddressType)3424255U, /* FlsSectorEndAddr (Fls_Flashbank_B_4)*/
     (Fls_AddressType)3686399U, /* FlsSectorEndAddr (Fls_Flashbank_B_5)*/
     (Fls_AddressType)3948543U, /* FlsSectorEndAddr (Fls_Flashbank_B_6)*/
-    (Fls_AddressType)4210687U /* FlsSectorEndAddr (Fls_Flashbank_B_7)*/
+    (Fls_AddressType)4210687U, /* FlsSectorEndAddr (Fls_Flashbank_B_7)*/
+    (Fls_AddressType)4472831U, /* FlsSectorEndAddr (Fls_Bootloader_0)*/
+    (Fls_AddressType)4734975U, /* FlsSectorEndAddr (Fls_Bootloader_1)*/
+    (Fls_AddressType)4997119U /* FlsSectorEndAddr (Fls_Bootloader_2)*/
 };
 
 /* paSectorProgSize[] (FlsConfigSet) */
-static CONST(Fls_LengthType, FLS_CONST) FlsConfigSet_aFlsProgSize[17] =
+static CONST(Fls_LengthType, FLS_CONST) FlsConfigSet_aFlsProgSize[20] =
 {
     (Fls_LengthType)FLS_WRITE_QUAD_PAGE, /* FlsProgrammingSize (Fls_Flags_Sector) */
     (Fls_LengthType)FLS_WRITE_QUAD_PAGE, /* FlsProgrammingSize (Fls_Flashbank_A_0) */
@@ -323,12 +332,15 @@ static CONST(Fls_LengthType, FLS_CONST) FlsConfigSet_aFlsProgSize[17] =
     (Fls_LengthType)FLS_WRITE_QUAD_PAGE, /* FlsProgrammingSize (Fls_Flashbank_B_4) */
     (Fls_LengthType)FLS_WRITE_QUAD_PAGE, /* FlsProgrammingSize (Fls_Flashbank_B_5) */
     (Fls_LengthType)FLS_WRITE_QUAD_PAGE, /* FlsProgrammingSize (Fls_Flashbank_B_6) */
-    (Fls_LengthType)FLS_WRITE_QUAD_PAGE /* FlsProgrammingSize (Fls_Flashbank_B_7) */
+    (Fls_LengthType)FLS_WRITE_QUAD_PAGE, /* FlsProgrammingSize (Fls_Flashbank_B_7) */
+    (Fls_LengthType)FLS_WRITE_QUAD_PAGE, /* FlsProgrammingSize (Fls_Bootloader_0) */
+    (Fls_LengthType)FLS_WRITE_QUAD_PAGE, /* FlsProgrammingSize (Fls_Bootloader_1) */
+    (Fls_LengthType)FLS_WRITE_QUAD_PAGE /* FlsProgrammingSize (Fls_Bootloader_2) */
 };
 
 
 /* paSectorPageSize[] (FlsConfigSet) */
-static CONST(Fls_LengthType, FLS_CONST) FlsConfigSet_aFlsSectorPageSize[17] =
+static CONST(Fls_LengthType, FLS_CONST) FlsConfigSet_aFlsSectorPageSize[20] =
 {
     (Fls_LengthType)8U, /* FlsPageSize (Fls_Flags_Sector) */
     (Fls_LengthType)8U, /* FlsPageSize (Fls_Flashbank_A_0) */
@@ -346,7 +358,10 @@ static CONST(Fls_LengthType, FLS_CONST) FlsConfigSet_aFlsSectorPageSize[17] =
     (Fls_LengthType)8U, /* FlsPageSize (Fls_Flashbank_B_4) */
     (Fls_LengthType)8U, /* FlsPageSize (Fls_Flashbank_B_5) */
     (Fls_LengthType)8U, /* FlsPageSize (Fls_Flashbank_B_6) */
-    (Fls_LengthType)8U /* FlsPageSize (Fls_Flashbank_B_7) */
+    (Fls_LengthType)8U, /* FlsPageSize (Fls_Flashbank_B_7) */
+    (Fls_LengthType)8U, /* FlsPageSize (Fls_Bootloader_0) */
+    (Fls_LengthType)8U, /* FlsPageSize (Fls_Bootloader_1) */
+    (Fls_LengthType)8U /* FlsPageSize (Fls_Bootloader_2) */
 };
 
 
@@ -589,9 +604,51 @@ static CONST(Fls_Flash_InternalSectorInfoType, FLS_CONST) Fls_Flashbank_B_7_FlsC
     (boolean)TRUE,                        /* bEccTriggersExc */
     31U         /* u32SectorId (Sector location to calculate cfgCRC) */
 };
+static CONST(Fls_Flash_InternalSectorInfoType, FLS_CONST) Fls_Bootloader_0_FlsConfigSet_sInternalSectorInfo =
+{
+    /* 
+    * @violates @ref fls_pbcfg_c_REF_2 Conversions involing function pointers must be to/from integral types 
+    * @violates @ref fls_pbcfg_c_REF_8 A cast should not be performed between a pointer type and an integral type.
+    */
+    (volatile uint32*)0x014C0000,         /* pSectorStartAddressPtr */
+    FLASH_LGBS_LGSL19_U32,                /* u32AddrSpaceBloSelValue */
+    FLASH_LGBL_LGLK19_U32,                /* u32AddrSpaceBloLockValue */
+    FLASH_SEL2_ADDR32,                    /* u32SectorBloSelRegAddr */
+    FLASH_LOCK2_ADDR32,                   /* u32AddrSpaceBloLockRegAddr */
+    (boolean)TRUE,                        /* bEccTriggersExc */
+    35U         /* u32SectorId (Sector location to calculate cfgCRC) */
+};
+static CONST(Fls_Flash_InternalSectorInfoType, FLS_CONST) Fls_Bootloader_1_FlsConfigSet_sInternalSectorInfo =
+{
+    /* 
+    * @violates @ref fls_pbcfg_c_REF_2 Conversions involing function pointers must be to/from integral types 
+    * @violates @ref fls_pbcfg_c_REF_8 A cast should not be performed between a pointer type and an integral type.
+    */
+    (volatile uint32*)0x01500000,         /* pSectorStartAddressPtr */
+    FLASH_LGBS_LGSL20_U32,                /* u32AddrSpaceBloSelValue */
+    FLASH_LGBL_LGLK20_U32,                /* u32AddrSpaceBloLockValue */
+    FLASH_SEL2_ADDR32,                    /* u32SectorBloSelRegAddr */
+    FLASH_LOCK2_ADDR32,                   /* u32AddrSpaceBloLockRegAddr */
+    (boolean)TRUE,                        /* bEccTriggersExc */
+    36U         /* u32SectorId (Sector location to calculate cfgCRC) */
+};
+static CONST(Fls_Flash_InternalSectorInfoType, FLS_CONST) Fls_Bootloader_2_FlsConfigSet_sInternalSectorInfo =
+{
+    /* 
+    * @violates @ref fls_pbcfg_c_REF_2 Conversions involing function pointers must be to/from integral types 
+    * @violates @ref fls_pbcfg_c_REF_8 A cast should not be performed between a pointer type and an integral type.
+    */
+    (volatile uint32*)0x01540000,         /* pSectorStartAddressPtr */
+    FLASH_LGBS_LGSL21_U32,                /* u32AddrSpaceBloSelValue */
+    FLASH_LGBL_LGLK21_U32,                /* u32AddrSpaceBloLockValue */
+    FLASH_SEL2_ADDR32,                    /* u32SectorBloSelRegAddr */
+    FLASH_LOCK2_ADDR32,                   /* u32AddrSpaceBloLockRegAddr */
+    (boolean)TRUE,                        /* bEccTriggersExc */
+    37U         /* u32SectorId (Sector location to calculate cfgCRC) */
+};
 
 /*  FLASH physical sectorization description */
-static CONSTP2CONST(Fls_Flash_InternalSectorInfoType, FLS_VAR, FLS_APPL_CONST) FlsConfigSet_aSectorList[17] =
+static CONSTP2CONST(Fls_Flash_InternalSectorInfoType, FLS_VAR, FLS_APPL_CONST) FlsConfigSet_aSectorList[20] =
 {
     /* FLS_CODE_ARRAY_0_PART_3_M04 */
     &Fls_Flags_Sector_FlsConfigSet_sInternalSectorInfo
@@ -627,13 +684,19 @@ static CONSTP2CONST(Fls_Flash_InternalSectorInfoType, FLS_VAR, FLS_APPL_CONST) F
     &Fls_Flashbank_B_6_FlsConfigSet_sInternalSectorInfo
     ,    /* FLS_CODE_ARRAY_0_PART_7_LG15 */
     &Fls_Flashbank_B_7_FlsConfigSet_sInternalSectorInfo
+    ,    /* FLS_CODE_ARRAY_0_PART_9_LG19 */
+    &Fls_Bootloader_0_FlsConfigSet_sInternalSectorInfo
+    ,    /* FLS_CODE_ARRAY_0_PART_9_LG20 */
+    &Fls_Bootloader_1_FlsConfigSet_sInternalSectorInfo
+    ,    /* FLS_CODE_ARRAY_0_PART_9_LG21 */
+    &Fls_Bootloader_2_FlsConfigSet_sInternalSectorInfo
 };
 
 
 /* External QSPI flash parameters. */
 
 /* paHwCh[] (FlsConfigSet) */
-static CONST(Fls_HwChType, FLS_CONST) FlsConfigSet_paHwCh[17] =
+static CONST(Fls_HwChType, FLS_CONST) FlsConfigSet_paHwCh[20] =
 {
     FLS_CH_INTERN, /* (Fls_Flags_Sector) */
     FLS_CH_INTERN, /* (Fls_Flashbank_A_0) */
@@ -651,11 +714,14 @@ static CONST(Fls_HwChType, FLS_CONST) FlsConfigSet_paHwCh[17] =
     FLS_CH_INTERN, /* (Fls_Flashbank_B_4) */
     FLS_CH_INTERN, /* (Fls_Flashbank_B_5) */
     FLS_CH_INTERN, /* (Fls_Flashbank_B_6) */
-    FLS_CH_INTERN /* (Fls_Flashbank_B_7) */
+    FLS_CH_INTERN, /* (Fls_Flashbank_B_7) */
+    FLS_CH_INTERN, /* (Fls_Bootloader_0) */
+    FLS_CH_INTERN, /* (Fls_Bootloader_1) */
+    FLS_CH_INTERN /* (Fls_Bootloader_2) */
 };
 
 /* paSectorHwAddress[] (FlsConfigSet) */
-static CONST(Fls_AddressType, FLS_CONST) FlsConfigSet_paSectorHwAddress[17] =
+static CONST(Fls_AddressType, FLS_CONST) FlsConfigSet_paSectorHwAddress[20] =
 {
     (Fls_AddressType)0U, /* (Fls_Flags_Sector) */
     (Fls_AddressType)0U, /* (Fls_Flashbank_A_0) */
@@ -673,7 +739,10 @@ static CONST(Fls_AddressType, FLS_CONST) FlsConfigSet_paSectorHwAddress[17] =
     (Fls_AddressType)0U, /* (Fls_Flashbank_B_4) */
     (Fls_AddressType)0U, /* (Fls_Flashbank_B_5) */
     (Fls_AddressType)0U, /* (Fls_Flashbank_B_6) */
-    (Fls_AddressType)0U /* (Fls_Flashbank_B_7) */
+    (Fls_AddressType)0U, /* (Fls_Flashbank_B_7) */
+    (Fls_AddressType)0U, /* (Fls_Bootloader_0) */
+    (Fls_AddressType)0U, /* (Fls_Bootloader_1) */
+    (Fls_AddressType)0U /* (Fls_Bootloader_2) */
 };
 
 
@@ -705,7 +774,7 @@ CONST(Fls_ConfigType, FLS_CONST) FlsConfigSet=
     1024U, /* FlsMaxReadNormalMode */
     256U, /* FlsMaxWriteFastMode */
     8U, /* FlsMaxWriteNormalMode */
-    17U, /* FlsSectorCount */
+    20U, /* FlsSectorCount */
     &FlsConfigSet_aFlsSectorEndAddr,                /* (*paSectorEndAddr)[]  */
     &FlsConfigSet_aSectorList,                      /* (*pSectorList)[] */
     &FlsConfigSet_aFlsSectorFlags,                  /* (*paSectorFlags)[] */
@@ -714,7 +783,7 @@ CONST(Fls_ConfigType, FLS_CONST) FlsConfigSet=
     &FlsConfigSet_aFlsSectorUnlock,                 /* (*paSectorUnlock)[] */
     &FlsConfigSet_paHwCh,                           /* (*paHwCh)[] */
     &FlsConfigSet_paSectorHwAddress,                /* (*paSectorHwAddress)[] */
-    16447U /* configCrc */
+    16590U /* configCrc */
 };
 #define FLS_STOP_SEC_CONFIG_DATA_UNSPECIFIED
 /* 

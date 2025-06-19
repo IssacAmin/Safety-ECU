@@ -24,6 +24,8 @@ SUBDIRS := \
 Project_Settings/Linker_Files \
 Project_Settings/Startup_Code \
 src/CanIfConfig/src \
+src/ECDSA_signing/mbedtls_stripped/library/src \
+src/ECDSA_signing/src \
 src/MPC574xG_AUTOSAR_OS_4_0_92_RTM_1_0_3/src \
 src \
 src/UDS_C_SERVER \
