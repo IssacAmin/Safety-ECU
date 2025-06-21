@@ -81,10 +81,6 @@
                   <DEFINITION-REF DEST="ECUC-ENUMERATION-PARAM-DEF">/TS_T2D35M10I1R0/Fls/FlsConfigSet/FlsDefaultMode</DEFINITION-REF>
                   <VALUE>MEMIF_MODE_SLOW</VALUE>
                 </ECUC-TEXTUAL-PARAM-VALUE>
-                <ECUC-TEXTUAL-PARAM-VALUE>
-                  <DEFINITION-REF DEST="ECUC-FUNCTION-NAME-DEF">/TS_T2D35M10I1R0/Fls/FlsConfigSet/FlsJobEndNotification</DEFINITION-REF>
-                  <VALUE>Fls_JobEndNotification</VALUE>
-                </ECUC-TEXTUAL-PARAM-VALUE>
                 <ECUC-NUMERICAL-PARAM-VALUE>
                   <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/TS_T2D35M10I1R0/Fls/FlsConfigSet/FlsMaxReadFastMode</DEFINITION-REF>
                   <VALUE>1048576</VALUE>

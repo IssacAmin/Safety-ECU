@@ -560,19 +560,9 @@
 			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/bignum.c</locationURI>
 		</link>
 		<link>
-			<name>src/ECDSA_signing/mbedtls_stripped/library/src/bignum_core.c</name>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/constant_time.c</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/bignum_core.c</locationURI>
-		</link>
-		<link>
-			<name>src/ECDSA_signing/mbedtls_stripped/library/src/bignum_mod.c</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/bignum_mod.c</locationURI>
-		</link>
-		<link>
-			<name>src/ECDSA_signing/mbedtls_stripped/library/src/bignum_mod_raw.c</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/bignum_mod_raw.c</locationURI>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/constant_time.c</locationURI>
 		</link>
 		<link>
 			<name>src/ECDSA_signing/mbedtls_stripped/library/src/ecdh.c</name>
@@ -595,14 +585,44 @@
 			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/ecp_curves.c</locationURI>
 		</link>
 		<link>
-			<name>src/ECDSA_signing/mbedtls_stripped/library/src/ecp_curves_new.c</name>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/hmac_drbg.c</name>
 			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/ecp_curves_new.c</locationURI>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/hmac_drbg.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/md.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/md.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/md2.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/md2.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/md4.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/md4.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/md5.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/md5.c</locationURI>
 		</link>
 		<link>
 			<name>src/ECDSA_signing/mbedtls_stripped/library/src/oid.c</name>
 			<type>1</type>
 			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/oid.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/platform.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/platform.c</locationURI>
+		</link>
+		<link>
+			<name>src/ECDSA_signing/mbedtls_stripped/library/src/platform_util.c</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/ECDSA_signing/mbedtls_stripped/library/src/platform_util.c</locationURI>
 		</link>
 		<link>
 			<name>src/ECDSA_signing/mbedtls_stripped/library/src/sha256.c</name>

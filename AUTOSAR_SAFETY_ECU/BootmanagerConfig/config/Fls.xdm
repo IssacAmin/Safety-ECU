@@ -1572,12 +1572,7 @@
                         <a:a name="IMPORTER_INFO" value="@DEF"/>
                       </d:var>
                       <d:var name="FlsPhysicalSector" type="ENUMERATION" 
-                             value="FLS_CODE_ARRAY_0_PART_6_LG03">
-                        <a:a name="IMPORTER_INFO">
-                          <a:v>@DEF</a:v>
-                          <a:v>@CALC</a:v>
-                        </a:a>
-                      </d:var>
+                             value="FLS_CODE_ARRAY_0_PART_9_LG21"/>
                       <d:var name="FlsNumberOfSectors" type="INTEGER" value="1">
                         <a:a name="IMPORTER_INFO" value="@DEF"/>
                       </d:var>

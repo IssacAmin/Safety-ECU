@@ -19,5 +19,5 @@ const uint32_t flags_section[4096] __attribute__((section(".flags"))) = {
 	0x5a5a5a5a   /*test flag*/
 };
 
-const uint32_t appALength __attribute__((section(".appAMetaData"))) = 0x14e80;
-const uint16_t appACRC __attribute__((section(".appAMetaData"))) = 0x1149;
+const uint32_t appALength __attribute__((section(".appAMetaData"))) = 0x14600;
+const uint16_t appACRC __attribute__((section(".appAMetaData"))) =  0x4779;

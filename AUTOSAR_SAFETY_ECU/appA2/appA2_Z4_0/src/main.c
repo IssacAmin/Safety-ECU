@@ -63,7 +63,7 @@ int main(void)
 	canRet = Can_GetControllerMode(0, &controllerState);
 
 	/* Turn On on board LED4 to indicate App state*/
-	Dio_WriteChannel(DioConf_DioChannel_LED_5, STD_LOW);
+	Dio_WriteChannel(DioConf_DioChannel_LED_6, STD_LOW);
 
 	init_flags();
 

@@ -21,7 +21,7 @@ uint8_t signVerifier_init(const uint8_t *raw_pubkey, size_t raw_pubkey_len)
     return 1U;
 }
 
-uint8_t signVerifier_updateHash(const uint8_t *chunk, size_t chunk_len) 
+void signVerifier_updateHash(const uint8_t *chunk, size_t chunk_len) 
 {
     mbedtls_sha256_update(&ctx.sha256, chunk, chunk_len);
 }

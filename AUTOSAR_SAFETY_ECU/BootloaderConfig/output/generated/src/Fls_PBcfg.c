@@ -157,21 +157,6 @@ extern "C"{
 /*==================================================================================================
                                      FUNCTION PROTOTYPES
 ==================================================================================================*/
-#define FLS_START_SEC_CODE
-/* 
-* @violates @ref fls_pbcfg_c_REF_1 Only preprocessor statements
-* and comments before '#include'
-*/
-#include "Fls_MemMap.h"        
-/* Declaration of Fls notification function (Fls_JobEndNotification())*/
-/* @violates @ref fls_pbcfg_c_REF_4 Object/function previously declared */
-extern FUNC( void, FLS_CODE ) Fls_JobEndNotification( void );
-#define FLS_STOP_SEC_CODE
-/* 
-* @violates @ref fls_pbcfg_c_REF_1 Only preprocessor statements
-* and comments before '#include'
-*/
-#include "Fls_MemMap.h"
 
 #define FLS_START_SEC_CODE_AC
 /* 
@@ -780,7 +765,7 @@ CONST(Fls_ConfigType, FLS_CONST) FlsConfigSet=
     /* @violates @ref fls_pbcfg_c_REF_8 A cast should not be performed between a pointer type and an integral type.*/
     (Fls_AcWritePtrType)&Fls_Flash_AccessCode, /* FlsAcWrite */
     NULL_PTR, /* FlsACCallback */  
-    &Fls_JobEndNotification, /* FlsJobEndNotification */
+    NULL_PTR, /* FlsJobEndNotification */
     NULL_PTR, /* FlsJobErrorNotification */  
     NULL_PTR, /* FlsStartFlashAccessNotif */
     NULL_PTR, /* FlsFinishedFlashAccessNotif */

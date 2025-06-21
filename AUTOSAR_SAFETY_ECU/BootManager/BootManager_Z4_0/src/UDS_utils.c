@@ -90,6 +90,7 @@ UDS_Utils_ReturnType validate_flashbank(FlashBankType flashBankType,flags * flag
 	return FLASH_BANK_NOT_VALID;
 }
 
+#ifdef BOOTLOADER_USE_BOOTLOADER_UPDATER
 UDS_Utils_ReturnType updateBootloader(flags* flags_instance)
 {
 	uint32_t length = flags_instance-> bootloader_update_size;
@@ -121,3 +122,4 @@ UDS_Utils_ReturnType updateBootloader(flags* flags_instance)
 	}
 	return FLASH_OK;
 }
+#endif

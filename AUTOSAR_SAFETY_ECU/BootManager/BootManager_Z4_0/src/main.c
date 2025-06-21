@@ -54,13 +54,6 @@ int main(void)
 	ptr_to_flashbank_A	= (func_ptr_t) FLASHBANK_A_ENTRY_POINT;
 	ptr_to_flashbank_B	= (func_ptr_t) FLASHBANK_B_ENTRY_POINT;
 
-	if(flags_instance.bootLoader_update_request)
-	{
-		UDS_Utils_ReturnType ret;
-		ret = updateBootloader(&flags_instance);
-	}
-
-	//TODO: eh da????
 	if(flags_instance.flashing_in_progress)
 	{
 		/*TODO: there should be another action here jump to bootloader? notify and log error? eh elklam*/
@@ -74,13 +67,48 @@ int main(void)
 		fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
 		flsWaitUntilJobDone();
 	}
+
+#ifdef BOOTLOADER_USE_BOOTLOADER_UPDATER
+	if(flags_instance.bootLoader_update_request)
+	{
+		if(flags_instance.current_app == 0U)
+			flags_instance.flashbank_B_valid = 0;
+		else
+			flags_instance.flashbank_A_valid = 0;
+		flags_instance.bootloader_valid_flag = 0;
+		flags_instance.flashing_in_progress = 1;
+		fls_ret = Fls_Erase(FLAGS, FLAGS_SECTOR_SIZE);
+		flsWaitUntilJobDone();
+		fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
+		flsWaitUntilJobDone();
+
+		UDS_Utils_ReturnType ret;
+		ret = updateBootloader(&flags_instance);
+		if(ret == FLASH_OK)
+		{
+			flags_instance.bootLoader_update_request = 0;
+			flags_instance.bootloader_update_size = 0;
+			flags_instance.flashing_in_progress = 1;
+			fls_ret = Fls_Erase(FLAGS, FLAGS_SECTOR_SIZE);
+			flsWaitUntilJobDone();
+			fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
+			flsWaitUntilJobDone();
+		}
+	}
+#endif
+	//TODO: eh da????
 	else
 	{
 		Dio_WriteChannel(DioConf_DioChannel_LED_1, STD_HIGH);
 		/* Jump to BL if programming_session flag is set or current APP is invalid*/
 		if(flags_instance.programming_session)
 		{
-			ptr_to_bootloader();
+			#ifdef BOOTLOADER_USE_BOOTLOADER_UPDATER
+			if(flags_instance.bootloader_valid_flag)
+			#endif 
+			{
+				ptr_to_bootloader();
+			}
 		}
 		else
 		{
@@ -89,6 +117,8 @@ int main(void)
 				if(flags_instance.flashbank_A_valid)
 				{
 					validate_flashbank(PRIMARY_APP,&flags_instance);
+					fls_ret = Fls_Erase(FLAGS, FLAGS_SECTOR_SIZE);
+					flsWaitUntilJobDone();
 					fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
 					flsWaitUntilJobDone();
 					if(flags_instance.flashbank_A_valid == 1U)
@@ -102,6 +132,8 @@ int main(void)
 					if(flags_instance.flashbank_B_valid == 1U)
 					{
 						flags_instance.current_app = 1;
+						fls_ret = Fls_Erase(FLAGS, FLAGS_SECTOR_SIZE);
+						flsWaitUntilJobDone();
 						fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
 						flsWaitUntilJobDone();
 						ptr_to_flashbank_B();
@@ -113,6 +145,8 @@ int main(void)
 				if(flags_instance.flashbank_B_valid)
 				{
 					validate_flashbank(PRIMARY_APP,&flags_instance);
+					fls_ret = Fls_Erase(FLAGS, FLAGS_SECTOR_SIZE);
+					flsWaitUntilJobDone();
 					fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
 					flsWaitUntilJobDone();
 					if(flags_instance.flashbank_B_valid == 1U)
@@ -126,6 +160,8 @@ int main(void)
 					if(flags_instance.flashbank_A_valid == 1U)
 					{
 						flags_instance.current_app = 0;
+						fls_ret = Fls_Erase(FLAGS, FLAGS_SECTOR_SIZE);
+						flsWaitUntilJobDone();
 						fls_ret = Fls_Write(FLAGS , &flags_instance, QUAD_PAGE_SIZE);
 						flsWaitUntilJobDone();
 						ptr_to_flashbank_A();
@@ -133,7 +169,12 @@ int main(void)
 
 				}
 			}
-			ptr_to_bootloader();
+			#ifdef BOOTLOADER_USE_BOOTLOADER_UPDATER 
+			if(flags_instance.bootloader_valid_flag)
+			#endif
+			{
+				ptr_to_bootloader();
+			}
 		}
 	}
 	/* Loop forever */

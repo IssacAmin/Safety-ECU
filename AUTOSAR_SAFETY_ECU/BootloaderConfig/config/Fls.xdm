@@ -57,7 +57,7 @@
                 </d:var>
                 <d:var name="FlsJobEndNotification" type="FUNCTION-NAME" 
                        value="Fls_JobEndNotification">
-                  <a:a name="ENABLE" value="true"/>
+                  <a:a name="ENABLE" value="false"/>
                 </d:var>
                 <d:var name="FlsJobErrorNotification" type="FUNCTION-NAME" 
                        value="Fee_JobErrorNotification">
